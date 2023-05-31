@@ -1,0 +1,21 @@
+@use '@/styles/base.module';
+
+.container {
+  @extend .full-screen;
+  @apply flex flex-col;
+
+  .header {
+    @apply h-16 px-6 flex justify-between;
+  }
+
+  .main {
+    @apply flex-1;
+  }
+
+  .footer {
+    @apply h-18 bg-[#f7f7f7] border-t border-solid border-[#e8e8e8] text-center;
+    span {
+      @apply prose prose-sm;
+    }
+  }
+}

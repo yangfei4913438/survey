@@ -1,0 +1,16 @@
+@use '@/styles/base.module';
+
+.container {
+  @apply w-52 my-3 px-8 leading-none text-center;
+
+  .logo {
+    @apply flex items-center space-x-1;
+
+    .logoImg {
+      @apply w-5 h-5 fill-white;
+    }
+    .logoText {
+      @apply prose prose-2xl text-white;
+    }
+  }
+}

@@ -1,13 +1,9 @@
-import styles from '@/styles/app.module.scss';
+import { RouterProvider } from 'react-router-dom';
+
+import { browserRouter } from '@/router';
 
 function App() {
-  return (
-    <section className={styles.container}>
-      <article className={styles.box}>
-        <h1>Hello React!</h1>
-      </article>
-    </section>
-  );
+  return <RouterProvider router={browserRouter}></RouterProvider>;
 }
 
 export default App;

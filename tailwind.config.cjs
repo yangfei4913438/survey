@@ -3,6 +3,7 @@ const distance = {
   d2: '2px',
   d3: '3px',
   d4: '4px',
+  18: '72px',
   'screen-10': '10%',
   'screen-20': '20%',
   'screen-30': '30%',

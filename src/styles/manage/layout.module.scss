@@ -1,0 +1,15 @@
+.container {
+  @apply py-6 w-[1200px] mx-auto flex space-x-16;
+
+  .left {
+    @apply w-40;
+
+    :global(.ant-btn) {
+      @apply flex items-center;
+    }
+  }
+
+  .right {
+    @apply flex-1;
+  }
+}

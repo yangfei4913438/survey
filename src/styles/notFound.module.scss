@@ -1,0 +1,6 @@
+@use "base.module";
+
+.container {
+  @apply w-full h-full;
+  @extend .flex-center;
+}
