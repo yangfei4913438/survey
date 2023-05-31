@@ -1,0 +1,10 @@
+@use 'base.module';
+
+.container {
+  @extend .full-screen;
+
+  .box {
+    @apply w-full h-full prose-2xl;
+    @extend .flex-center;
+  }
+}

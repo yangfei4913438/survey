@@ -1,0 +1,54 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@tailwind screens;
+
+@import 'normalize.css';
+@import 'sanitize.css';
+
+:root {
+  /* White */
+  --white: #fff;
+  --white-opacity-1: rgba(255, 255, 255, 0.04);
+  --white-opacity-2: rgba(255, 255, 255, 0.08);
+  --white-opacity-3: rgba(255, 255, 255, 0.16);
+  --white-opacity-4: rgba(255, 255, 255, 0.24);
+  --white-opacity-5: rgba(255, 255, 255, 0.32);
+  --white-opacity-6: rgba(255, 255, 255, 0.48);
+  --white-opacity-7: rgba(255, 255, 255, 0.64);
+  --white-opacity-8: rgba(255, 255, 255, 0.8);
+  --white-opacity-9: rgba(255, 255, 255, 0.88);
+
+  /* Black */
+  --black: #000;
+  --black-opacity-1: rgba(0, 0, 0, 0.04);
+  --black-opacity-2: rgba(0, 0, 0, 0.08);
+  --black-opacity-3: rgba(0, 0, 0, 0.16);
+  --black-opacity-4: rgba(0, 0, 0, 0.24);
+  --black-opacity-5: rgba(0, 0, 0, 0.32);
+  --black-opacity-6: rgba(0, 0, 0, 0.48);
+  --black-opacity-7: rgba(0, 0, 0, 0.64);
+  --black-opacity-8: rgba(0, 0, 0, 0.8);
+  --black-opacity-9: rgba(0, 0, 0, 0.88);
+
+  /* Gray */
+  --gray-05: hsl(0, 0%, 98%);
+  --gray-1: hsl(0, 0%, 95%);
+  --gray-2: hsl(0, 0%, 90%);
+  --gray-3: hsl(0, 0%, 85%);
+  --gray-4: hsl(0, 0%, 80%);
+  --gray-5: hsl(0, 0%, 60%);
+  --gray-6: hsl(0, 0%, 50%);
+  --gray-7: hsl(0, 0%, 40%);
+  --gray-8: hsl(0, 0%, 30%);
+  --gray-9: hsl(0, 0%, 16%);
+
+  /* Font Family */
+  --font-zh-cn: 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;
+  --font-zh-tw: 'MHei', 'Helvetica Neue', 'Helvetica', 'Arial', 'Verdana', sans-serif;
+  --font-ja-jp: 'Apple TP', 'Helvetica Neue', 'Helvetica', 'Hiragino Kaku Gothic Pro',
+    'ヒラギノ角ゴ Pro W3', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'Arial', 'Verdana', sans-serif;
+  --font-en-us: 'Myriad Set Pro', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+  --font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+    monospace;
+}
