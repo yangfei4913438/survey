@@ -12,7 +12,7 @@ const ManageLayout: FC = () => {
 
   return (
     <section className={styles.container}>
-      <article className={styles.left}>
+      <article className='h-full w-40'>
         <Space direction='vertical'>
           <Button type='primary' size='large' icon={<PlusOutlined />}>
             新建问卷
@@ -46,7 +46,7 @@ const ManageLayout: FC = () => {
           </Button>
         </Space>
       </article>
-      <article className={styles.right}>
+      <article className='h-full flex-1'>
         <Outlet />
       </article>
     </section>

@@ -1,0 +1,7 @@
+.container {
+  @apply w-full mt-5 p-3 rounded bg-white hover:shadow-lg;
+
+  :global(.ant-btn) {
+    @apply flex items-center text-gray-6;
+  }
+}

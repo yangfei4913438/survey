@@ -46,7 +46,7 @@ const useProjectRoute = () => {
   const reFresh = () => navigate(0);
 
   // 跳转路由
-  const goToRoute = (routePath: RoutePath, options?: NavigateOptions) =>
+  const goToRoute = <P>(routePath: RoutePath<P>, options?: NavigateOptions) =>
     navigate(routePath, options);
 
   return {
