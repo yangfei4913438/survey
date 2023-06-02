@@ -10,7 +10,14 @@ export default defineConfig({
     jsxFragment: 'Fragment',
   },
   server: {
-    proxy: {},
+    // 代理设置查看 https://cn.vitejs.dev/config/server-options.html#server-proxy
+    proxy: {
+      // 访问 /api/test 等价于访问 http://localhost:6001/api/test
+      '/api': {
+        target: 'http://localhost:6001/',
+        changeOrigin: true,
+      },
+    },
     port: 5001,
   },
   plugins: [react(), eslint()],

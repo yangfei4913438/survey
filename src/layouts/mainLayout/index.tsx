@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import Logo from '@/components/logo';
 import UserInfo from '@/components/userInfo';
 
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Content } = Layout;
 
 // 入口布局
 const MainLayout: FC = () => {
