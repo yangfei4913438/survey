@@ -21,5 +21,8 @@ dist-ssr
 /analyse.html
 /tsconfig.tsbuildinfo
 
+# build storybook
+/storybook-static/
+
 # test
 coverage

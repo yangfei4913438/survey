@@ -47,7 +47,7 @@ export default defineConfig({
     eslint(),
     visualizer({
       template: 'treemap',
-      open: true,
+      open: false,
       gzipSize: true,
       brotliSize: true,
       filename: 'analyse.html', // will be saved in project's root
