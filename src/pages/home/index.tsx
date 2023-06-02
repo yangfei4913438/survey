@@ -9,7 +9,7 @@ const Home: FC = () => {
   const { goToRoute } = useProjectRoute();
 
   return (
-    <article className={styles.container}>
+    <article className={styles.wrapper}>
       <h1>问卷调查 ｜ 在线投票</h1>
       <p>已累计创建问卷 100 份，发布问卷 90 份，收到答卷 980份</p>
       <Button type='primary' size='large' onClick={() => goToRoute(routePath.manageList)}>

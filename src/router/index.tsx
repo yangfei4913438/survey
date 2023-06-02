@@ -7,7 +7,7 @@ import SurveyLayout from '@/layouts/surveyLayout';
 import Home from '@/pages/home';
 import Login from '@/pages/login';
 import ManageList from '@/pages/manage/list';
-import ManageStart from '@/pages/manage/start';
+import ManageStar from '@/pages/manage/star';
 import ManageTrash from '@/pages/manage/trash';
 import NotFound from '@/pages/notFound';
 import Register from '@/pages/register';
@@ -41,8 +41,8 @@ const routes: RouteObject[] = [
             element: <ManageList />,
           },
           {
-            path: routePath.manageStart,
-            element: <ManageStart />,
+            path: routePath.manageStar,
+            element: <ManageStar />,
           },
           {
             path: routePath.manageTrash,

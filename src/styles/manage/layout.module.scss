@@ -1,7 +1,10 @@
-.container {
-  @apply py-6 w-[1200px] h-full mx-auto flex space-x-16;
+@use '@/styles/base.module';
 
-  :global(.ant-btn) {
-    @apply flex items-center;
+.wrapper {
+  @extend .layout;
+  @apply py-8 flex space-x-4 bg-slate-200;
+
+  :global(.ant-btn-icon > .anticon) {
+    vertical-align: 1px;
   }
 }

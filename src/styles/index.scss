@@ -1,0 +1,23 @@
+/** 这将注入Tailwind的基本样式和任何由插件注册的基本样式。*/
+@tailwind base;
+/** 这将注入Tailwind的组件类和任何由插件注册的组件类。*/
+@tailwind components;
+/** 这将注入Tailwind的实用类和任何由插件注册的实用类 */
+@tailwind utilities;
+/**
+ * 使用这个指令来控制Tailwind在哪里注入悬停、聚焦、响应、黑暗模式和其他每个类的变体。
+ * 如果省略，默认情况下，Tailwind将把这些类附加到样式表的最后
+ */
+@tailwind variants;
+
+@import 'normalize.css';
+@import 'sanitize.css';
+
+:root {
+  /* Font Family */
+  --font-zh-cn: 'PingFang SC', 'Helvetica Neue', 'Helvetica', 'STHeitiSC-Light', 'Arial', sans-serif;
+  --font-zh-tw: 'MHei', 'Helvetica Neue', 'Helvetica', 'Arial', 'Verdana', sans-serif;
+  --font-ja-jp: 'Apple TP', 'Helvetica Neue', 'Helvetica', 'Hiragino Kaku Gothic Pro',
+    'ヒラギノ角ゴ Pro W3', 'メイリオ', 'Meiryo', 'ＭＳ Ｐゴシック', 'Arial', 'Verdana', sans-serif;
+  --font-en-us: 'Myriad Set Pro', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+}

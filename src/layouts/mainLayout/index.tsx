@@ -11,7 +11,7 @@ const { Header, Footer, Sider, Content } = Layout;
 // 入口布局
 const MainLayout: FC = () => {
   return (
-    <Layout className={styles.container}>
+    <Layout className={styles.wrapper}>
       <Header className={styles.header}>
         <Logo />
         <UserInfo />
@@ -20,7 +20,9 @@ const MainLayout: FC = () => {
         <Outlet />
       </Content>
       <Footer className={styles.footer}>
-        <span>版权所有 © 2022-2023 星星问卷 All rights reserved.</span>
+        <span className='prose prose-slate'>
+          版权所有 © 2022-2023 星星问卷 All rights reserved.
+        </span>
       </Footer>
     </Layout>
   );

@@ -1,5 +1,5 @@
 @use '@/styles/base.module';
 
-.container {
-  @extend .full-screen;
+.wrapper {
+  @extend .layout;
 }

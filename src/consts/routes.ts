@@ -11,7 +11,7 @@ export const routeBasePath = {
   // 问卷列表, 嵌套路由可以写绝对路径，不会出问题
   manageList: '/manage/list',
   // 星标问卷
-  manageStart: '/manage/start',
+  manageStar: '/manage/star',
   // 问卷回收站
   manageTrash: '/manage/trash',
   // 问卷详情
@@ -41,7 +41,7 @@ type SurveyPath<Path> = Path extends `/${infer PartA}/${infer PartB}/${infer Par
   : never;
 
 // 路由类型定义
-type StringPath<P> = RouteBaseType | SurveyPath<P>;
+export type StringPath<P> = RouteBaseType | SurveyPath<P>;
 
 // 跳转路由的可传递参数
 export type RoutePath<P> =

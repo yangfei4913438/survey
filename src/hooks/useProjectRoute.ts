@@ -61,7 +61,7 @@ const useProjectRoute = () => {
     // 直接跳转路由的React组件
     Link,
     // 路由path参数获取
-    params,
+    pathParams: params,
     // 获取KV参数 https://www.xxx.com/user?name=tom
     searchParams,
     // 更新KV参数 https://www.xxx.com/user?name=tom

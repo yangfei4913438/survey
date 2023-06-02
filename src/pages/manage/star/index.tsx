@@ -1,24 +1,27 @@
 import { Empty } from 'antd';
-import React, { FC } from 'react';
+import React, { FC, useEffect } from 'react';
 
 import ListCard from '@/components/ListCard';
+import ListTitle from '@/components/ListTitle';
+import { actions } from '@/consts/actions';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import { list } from '@/pages/manage/mock';
 import styles from '@/styles/manage/list.module.scss';
 
-const ManageStart: FC = () => {
+const ManageStar: FC = () => {
   const { goToRoute } = useProjectRoute();
+
+  const { searchParams } = useProjectRoute();
+
+  useEffect(() => {
+    console.log('star params:', searchParams.get(actions.manage.searchKey));
+  }, [searchParams]);
 
   const startList = list.filter((item) => item.isStar);
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
-        <div className={styles.left}>
-          <span className='prose prose-2xl font-bold'>我的问卷</span>
-        </div>
-        <div className={styles.right}>{/*<ListSearch />*/}</div>
-      </div>
+      <ListTitle name='星标问卷' />
       <div className={startList.length > 0 ? styles.content : styles.contentEmpty}>
         {/* 问卷列表 */}
         {startList.length > 0 ? (
@@ -35,4 +38,4 @@ const ManageStart: FC = () => {
   );
 };
 
-export default ManageStart;
+export default ManageStar;

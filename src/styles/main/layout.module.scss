@@ -1,8 +1,7 @@
 @use '@/styles/base.module';
 
-.container {
-  @extend .full-screen;
-  @apply flex flex-col;
+.wrapper {
+  @apply flex flex-col h-screen bg-slate-100;
 
   .header {
     @apply h-16 px-6 flex justify-between;
@@ -13,9 +12,6 @@
   }
 
   .footer {
-    @apply h-18 bg-[#f7f7f7] border-t border-solid border-[#e8e8e8] text-center;
-    span {
-      @apply prose prose-sm;
-    }
+    @apply h-18 border-t border-solid border-slate-200 text-center bg-inherit;
   }
 }

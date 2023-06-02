@@ -11,7 +11,7 @@ const ManageLayout: FC = () => {
   const { currentRoutePath, goToRoute } = useProjectRoute();
 
   return (
-    <section className={styles.container}>
+    <section className={styles.wrapper}>
       <article className='h-full w-40'>
         <Space direction='vertical'>
           <Button type='primary' size='large' icon={<PlusOutlined />}>
@@ -29,10 +29,10 @@ const ManageLayout: FC = () => {
             我的问卷
           </Button>
           <Button
-            type={currentRoutePath.startsWith(routePath.manageStart) ? 'default' : 'text'}
+            type={currentRoutePath.startsWith(routePath.manageStar) ? 'default' : 'text'}
             size='large'
             icon={<StarOutlined />}
-            onClick={() => goToRoute(routePath.manageStart)}
+            onClick={() => goToRoute(routePath.manageStar)}
           >
             星标问卷
           </Button>
