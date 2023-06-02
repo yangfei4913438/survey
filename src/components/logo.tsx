@@ -1,19 +1,20 @@
+import cls from 'classnames';
 import React, { FC } from 'react';
 
 import logo from '@/assets/stars-logo.svg';
 import { routePath } from '@/consts/routes';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import styles from '@/styles/main/logo.module.scss';
+import styles from '@/styles/base.module.scss';
 
 const Logo: FC = () => {
   const { Link } = useProjectRoute();
 
   return (
-    <section className={styles.container}>
+    <section className={cls(styles.flexCenterStart, 'w-52 h-full px-8')}>
       <Link to={routePath.home} title={'星星问卷'}>
-        <div className={styles.logo}>
-          <img src={logo} alt={'星星问卷'} className={styles.logoImg} />
-          <span className={styles.logoText}>星星问卷</span>
+        <div className='flex items-center space-x-1'>
+          <img src={logo} alt={'星星问卷'} className='h-5 w-5' />
+          <span className={'prose-2xl text-white'}>星星问卷</span>
         </div>
       </Link>
     </section>

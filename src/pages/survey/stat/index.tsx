@@ -6,14 +6,14 @@ import useProjectRoute from '@/hooks/useProjectRoute';
 const SurveyStat: FC = () => {
   const {
     goToRoute,
-    params: { id },
+    pathParams: { id },
   } = useProjectRoute();
 
   return (
     <div className=''>
       <p>this is Survey Stat Page</p>
       <p>参数: {id}</p>
-      <button type='button' onClick={() => goToRoute(routePath.surveyEdit)}>
+      <button type='button' onClick={() => goToRoute(routePath.login)}>
         登陆页
       </button>
     </div>

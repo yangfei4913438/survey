@@ -1,17 +1,18 @@
 import { BarsOutlined, DeleteOutlined, PlusOutlined, StarOutlined } from '@ant-design/icons';
 import { Button, Divider, Space } from 'antd';
+import cls from 'classnames';
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { routePath } from '@/consts/routes';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import styles from '@/styles/manage/layout.module.scss';
+import styles from '@/styles/base.module.scss';
 
 const ManageLayout: FC = () => {
   const { currentRoutePath, goToRoute } = useProjectRoute();
 
   return (
-    <section className={styles.wrapper}>
+    <section className={cls(styles.layout, 'py-8 flex space-x-4 bg-slate-200')}>
       <article className='h-full w-40'>
         <Space direction='vertical'>
           <Button type='primary' size='large' icon={<PlusOutlined />}>

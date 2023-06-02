@@ -6,7 +6,7 @@ import useProjectRoute from '@/hooks/useProjectRoute';
 const SurveyEdit: FC = () => {
   const {
     goToRoute,
-    params: { id },
+    pathParams: { id },
   } = useProjectRoute();
 
   return (

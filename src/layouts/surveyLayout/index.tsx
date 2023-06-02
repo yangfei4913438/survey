@@ -1,11 +1,9 @@
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import styles from '@/styles/survey/layout.module.scss';
-
 const SurveyLayout: FC = () => {
   return (
-    <section className={styles.wrapper}>
+    <section className={''}>
       <article>Survey Layout</article>
       <article>
         <Outlet />

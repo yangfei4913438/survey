@@ -1,29 +1,35 @@
 .layout {
   @apply container h-full;
+
+  // antd 样式修复
+  :global(.anticon) {
+    vertical-align: 0.125em;
+  }
 }
 
-.flex-start {
-  @apply flex items-center justify-start;
-}
-.flex-center {
+// 必须使用驼峰写法
+.flexCenter {
   @apply flex items-center justify-center;
 }
-.flex-end {
+.flexCenterStart {
+  @apply flex items-center justify-start;
+}
+.flexCenterEnd {
   @apply flex items-center justify-end;
 }
-.flex-between {
+.flexCenterBetween {
   @apply flex items-center justify-between;
 }
 
-.flex-col-start {
-  @apply flex flex-col items-center justify-start;
-}
-.flex-col-center {
+.flexColCenter {
   @apply flex flex-col items-center justify-center;
 }
-.flex-col-end {
+.flexColCenterStart {
+  @apply flex flex-col items-center justify-start;
+}
+.flexColCenterEnd {
   @apply flex flex-col items-center justify-end;
 }
-.flex-col-between {
+.flexColCenterBetween {
   @apply flex flex-col items-center justify-between;
 }

@@ -4,22 +4,21 @@ import { Outlet } from 'react-router-dom';
 
 import Logo from '@/components/logo';
 import UserInfo from '@/components/userInfo';
-import styles from '@/styles/main/layout.module.scss';
 
 const { Header, Footer, Sider, Content } = Layout;
 
 // 入口布局
 const MainLayout: FC = () => {
   return (
-    <Layout className={styles.wrapper}>
-      <Header className={styles.header}>
+    <Layout className={'flex h-screen flex-col bg-white'}>
+      <Header className={'flex h-16 justify-between px-6'}>
         <Logo />
         <UserInfo />
       </Header>
-      <Content className={styles.main}>
+      <Content className={'flex-1'}>
         <Outlet />
       </Content>
-      <Footer className={styles.footer}>
+      <Footer className={'h-18 border-t border-solid border-gray-200 bg-gray-50 text-center'}>
         <span className='prose prose-slate'>
           版权所有 © 2022-2023 星星问卷 All rights reserved.
         </span>

@@ -10,7 +10,6 @@ import { Button, Divider, Modal, Popconfirm, Space, Tag } from 'antd';
 import { FC } from 'react';
 
 import useProjectRoute from '@/hooks/useProjectRoute';
-import styles from '@/styles/manage/listCard.module.scss';
 
 const { confirm } = Modal;
 
@@ -42,7 +41,7 @@ const ListCard: FC<IListCard> = ({ _id, title, createdAt, answerCount, isPublish
   }
 
   return (
-    <article className={styles.container}>
+    <article className={'mt-5 w-full rounded bg-white p-3 hover:shadow-lg'}>
       <div className='flex'>
         <div className='flex-1'>
           <Link to={isPublished ? statUrl : editorUrl}>

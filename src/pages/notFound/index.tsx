@@ -1,11 +1,12 @@
 import { Button, Result } from 'antd';
+import cls from 'classnames';
 import React from 'react';
 
-import styles from '@/styles/notFound.module.scss';
+import styles from '@/styles/base.module.scss';
 
 const NotFound = () => {
   return (
-    <section className={styles.container}>
+    <section className={cls(styles.flexCenter, 'w-full h-full')}>
       <Result
         status='404'
         title='404'
