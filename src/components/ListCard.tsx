@@ -9,6 +9,7 @@ import {
 import { Button, Divider, Modal, Popconfirm, Space, Tag } from 'antd';
 import { FC } from 'react';
 
+import { surveyPath } from '@/consts/routes';
 import useProjectRoute from '@/hooks/useProjectRoute';
 
 const { confirm } = Modal;
@@ -27,9 +28,9 @@ const ListCard: FC<IListCard> = ({ _id, title, createdAt, answerCount, isPublish
   const { goToRoute, Link } = useProjectRoute();
 
   // 编辑问卷
-  const editorUrl = `/survey/edit/${_id}` as const; // 必须使用const断言，下同
+  const editorUrl = surveyPath.edit(_id);
   // 统计问卷
-  const statUrl = `/survey/stat/${_id}` as const;
+  const statUrl = surveyPath.stat(_id);
 
   function del() {
     confirm({

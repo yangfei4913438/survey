@@ -6,13 +6,13 @@ import { mockList } from './mock/index.mjs';
 const app = new Koa();
 const router = new Router();
 
-// 模拟网络延迟，500ms
+// 模拟网络延迟，1s
 async function getResult(fn) {
   return new Promise((resolve) => {
     setTimeout(() => {
       const res = fn();
       resolve(res);
-    }, 500);
+    }, 1000);
   });
 }
 

@@ -18,6 +18,7 @@ export const routeBasePath = {
   survey: '/survey',
 } as const; // 最后声明为 const, 对象的值才能转换成类型
 
+// 路由配置需要完整的路由定义
 export const routePath = {
   ...routeBasePath,
   // 问卷详情 - 编辑问卷
@@ -39,6 +40,12 @@ type IsMore<Path> = Path extends `${infer PartA}/${infer PartB}` ? never : IsNul
 type SurveyPath<Path> = Path extends `/${infer PartA}/${infer PartB}/${infer PartC}`
   ? `/${IsSurvey<PartA>}/${IsSubPath<PartB>}/${IsMore<PartC>}`
   : never;
+
+// 问卷路由，传入ID获取到完整路由地址
+export const surveyPath = {
+  edit: (id: string) => <const>`/survey/edit/${id}`, // 路由匹配，必须使用const断言
+  stat: (id: string) => <const>`/survey/stat/${id}`,
+};
 
 // 路由类型定义
 export type StringPath<P> = RouteBaseType | SurveyPath<P>;

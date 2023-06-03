@@ -1,21 +1,13 @@
 import { Button } from 'antd';
 import cls from 'classnames';
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
 import { routePath } from '@/consts/routes';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import { getQuestion } from '@/services/question';
 import styles from '@/styles/base.module.scss';
-
-type TempType = { id: string; title: string };
 
 const Home: FC = () => {
   const { goToRoute } = useProjectRoute();
-
-  useEffect(() => {
-    getQuestion<TempType>('100').then(({ id, title }) => console.log(id, title));
-    // createQuestion<{ id: string }>().then(({ id }) => console.log(id));
-  }, []);
 
   return (
     <article
