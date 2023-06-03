@@ -10,8 +10,8 @@ const Logo: FC = () => {
   const { Link } = useProjectRoute();
 
   return (
-    <section className={cls(styles.flexCenterStart, 'w-52 h-full px-8')}>
-      <Link to={routePath.home} title={'星星问卷'}>
+    <section className={cls(styles.flexCenterStart, 'w-52 h-full')}>
+      <Link to={routePath.home} title={'星星问卷'} className='decoration-transparent'>
         <div className='flex items-center space-x-1'>
           <img src={logo} alt={'星星问卷'} className='h-5 w-5' />
           <span className={'prose-2xl text-white'}>星星问卷</span>

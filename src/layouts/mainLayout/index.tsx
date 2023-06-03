@@ -1,24 +1,28 @@
 import { Layout } from 'antd';
+import cls from 'classnames';
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import Logo from '@/components/logo';
 import UserInfo from '@/components/userInfo';
+import styles from '@/styles/base.module.scss';
 
-const { Header, Footer, Content } = Layout;
+const { Header, Content, Footer } = Layout;
 
 // 入口布局
 const MainLayout: FC = () => {
   return (
-    <Layout className={'flex h-screen flex-col bg-white'}>
-      <Header className={'flex h-16 justify-between px-6'}>
+    <Layout className='bg-white'>
+      <Header className={cls(styles.flexCenterBetween, 'sticky top-0 z-40 px-8 h-16')}>
         <Logo />
         <UserInfo />
       </Header>
-      <Content className={'flex-1'}>
+
+      <Content style={{ minHeight: `calc(100vh - 64px - 72px)` }}>
         <Outlet />
       </Content>
-      <Footer className={'h-18 border-t border-solid border-gray-200 bg-gray-50 text-center'}>
+
+      <Footer className={cls('w-full h-18 border-t border-solid border-gray-200 text-center')}>
         <span className='prose prose-slate'>
           版权所有 © 2022-2023 星星问卷 All rights reserved.
         </span>

@@ -1,12 +1,12 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { Button, Empty, Modal, Space, Table, Tag } from 'antd';
+import { Button, Empty, Modal, Space, Spin, Table, Tag } from 'antd';
 import cls from 'classnames';
 import React, { FC, useEffect, useState } from 'react';
 
 import ListTitle from '@/components/ListTitle';
 import { actions } from '@/consts/actions';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import { list } from '@/pages/manage/mock';
+import useLoadingSurveyListData from '@/pages/manage/hooks/useLoadingSurveyListData';
 import styles from '@/styles/base.module.scss';
 
 const { confirm } = Modal;
@@ -16,6 +16,8 @@ const ManageTrash: FC = () => {
   const [selectedIds, setSelectedIds] = useState<React.Key[]>([]);
 
   const { searchParams } = useProjectRoute();
+
+  const { loading, data } = useLoadingSurveyListData<ResultSurveySimpleType>();
 
   useEffect(() => {
     console.log('trash params:', searchParams.get(actions.manage.searchKey));
@@ -53,9 +55,11 @@ const ManageTrash: FC = () => {
     });
   }
 
+  const list = data?.list ?? [];
+
   const TableJsx = () => {
     return (
-      <div className='space-y-2'>
+      <div className='space-y-4 pb-8'>
         <Space>
           <Button type='primary' disabled={selectedIds.length === 0}>
             恢复
@@ -84,19 +88,21 @@ const ManageTrash: FC = () => {
   };
 
   return (
-    <div className={cls('space-y-2')}>
+    <div className={cls('h-full space-y-2 flex flex-col')}>
       <ListTitle name='回收站' />
       <div
-        className={cls(
-          'w-full h-full',
-          {
-            'space-y-4': list.length > 0,
-          },
-          list.length === 0 && styles.flexCenter
-        )}
+        className={cls('w-full flex-1 ', {
+          'h-full flex items-center justify-center': list.length === 0,
+        })}
       >
         {/* 问卷列表 */}
-        {list.length > 0 ? <TableJsx /> : <Empty description={'暂无数据'} />}
+        {list.length > 0 ? (
+          <TableJsx />
+        ) : loading ? (
+          <Spin size={'large'} />
+        ) : (
+          <Empty description={'暂无数据'} />
+        )}
       </div>
       <div className={styles.footer}>{/*<div ref={containerRef}>{LoadMoreContentElem}</div>*/}</div>
     </div>

@@ -1,5 +1,5 @@
 .layout {
-  @apply container h-full;
+  @apply container min-h-inherit;
 
   // antd 样式修复
   :global(.anticon) {

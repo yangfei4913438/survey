@@ -31,8 +31,8 @@ const ManageLayout: FC = () => {
   );
 
   return (
-    <section className={cls(styles.layout, 'py-8 flex space-x-4 bg-slate-200')}>
-      <article className='h-full w-40'>
+    <section className={cls(styles.layout, 'pt-8 flex space-x-4 bg-slate-200')}>
+      <article className='w-40'>
         <Space direction='vertical'>
           <Button
             type='primary'
@@ -72,7 +72,7 @@ const ManageLayout: FC = () => {
           </Button>
         </Space>
       </article>
-      <article className='h-full flex-1'>
+      <article className='flex-1'>
         <Outlet />
       </article>
     </section>

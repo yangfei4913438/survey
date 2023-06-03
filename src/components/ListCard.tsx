@@ -42,7 +42,7 @@ const ListCard: FC<IListCard> = ({ _id, title, createdAt, answerCount, isPublish
   }
 
   return (
-    <article className={'mt-5 w-full rounded bg-white p-3 hover:shadow-lg'}>
+    <article className={'w-full rounded bg-white p-3 hover:shadow-lg'}>
       <div className='flex'>
         <div className='flex-1'>
           <Link to={isPublished ? statUrl : editorUrl}>

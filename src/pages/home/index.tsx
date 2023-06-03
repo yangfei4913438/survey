@@ -13,7 +13,7 @@ const Home: FC = () => {
     <article
       className={cls(
         styles.flexColCenter,
-        'w-full h-full bg-gradient-to-r from-[#4facfe] from-0% to-[#00f2fe] to-100%'
+        'w-full min-h-inherit bg-gradient-to-r from-[#4facfe] from-0% to-[#00f2fe] to-100%'
       )}
     >
       <h1 className='prose prose-2xl text-4xl text-gray-900'>问卷调查 ｜ 在线投票</h1>

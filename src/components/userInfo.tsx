@@ -6,7 +6,7 @@ const UserInfo = () => {
 
   return (
     <div className=''>
-      <Link to={routePath.login} className='prose-sm text-lg text-blue-500'>
+      <Link to={routePath.login} className='prose-sm text-lg text-blue-500 decoration-transparent'>
         登录
       </Link>
     </div>

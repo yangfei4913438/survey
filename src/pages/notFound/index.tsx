@@ -6,7 +6,7 @@ import styles from '@/styles/base.module.scss';
 
 const NotFound = () => {
   return (
-    <section className={cls(styles.flexCenter, 'w-full h-full')}>
+    <article className={cls(styles.flexCenter, 'w-full min-h-inherit')}>
       <Result
         status='404'
         title='404'
@@ -17,7 +17,7 @@ const NotFound = () => {
           </Button>
         }
       />
-    </section>
+    </article>
   );
 };
 
