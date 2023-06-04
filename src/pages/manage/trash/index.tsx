@@ -12,7 +12,7 @@ const { confirm } = Modal;
 const ManageTrash: FC = () => {
   // 记录选中的 id
   const [selectedIds, setSelectedIds] = useState<React.Key[]>([]);
-  const { loading, data } = useLoadingSurveyListData<ResultSurveySimpleType>();
+  const { loading, data } = useLoadingSurveyListData<ResultSurveySimpleType>({ isDeleted: true });
 
   const tableColumns = [
     {

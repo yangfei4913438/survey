@@ -4,15 +4,33 @@ import { actions } from '@/consts/actions';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import { getQuestions } from '@/services/question';
 
-const useLoadingSurveyListData = <T>() => {
+interface ILoadingSurveyListData {
+  isStar?: boolean;
+  isDeleted?: boolean;
+}
+
+const useLoadingSurveyListData = <T>(options?: ILoadingSurveyListData) => {
   const { searchParams } = useProjectRoute();
 
   const { loading, data, error } = useRequest(
     async () => {
       // 获取页面的查询参数
-      const keyword = searchParams.get(actions.survey.searchKey) || '';
-      // 判断一下是否为空
-      const params = keyword ? { keyword } : {};
+      const keyword = searchParams.get(actions.survey.searchKey);
+
+      // 定义查询对象
+      const params: any = {};
+      // 判断是否有值
+      if (keyword) {
+        params.keyword = keyword;
+      }
+      // 判断是否为布尔值
+      if (options?.isStar && typeof options?.isStar == 'boolean') {
+        params.isStar = options.isStar;
+      }
+      // 判断是否为布尔值
+      if (options?.isDeleted && typeof options?.isDeleted == 'boolean') {
+        params.isDeleted = options.isDeleted;
+      }
       // 返回请求结果
       return await getQuestions<T>(params);
     },
