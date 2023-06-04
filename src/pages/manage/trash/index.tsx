@@ -1,12 +1,10 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { Button, Empty, Modal, Space, Spin, Table, Tag } from 'antd';
 import cls from 'classnames';
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import ListTitle from '@/components/ListTitle';
-import { actions } from '@/consts/actions';
-import useProjectRoute from '@/hooks/useProjectRoute';
-import useLoadingSurveyListData from '@/pages/manage/hooks/useLoadingSurveyListData';
+import useLoadingSurveyListData from '@/hooks/useLoadingSurveyListData';
 import styles from '@/styles/base.module.scss';
 
 const { confirm } = Modal;
@@ -14,14 +12,7 @@ const { confirm } = Modal;
 const ManageTrash: FC = () => {
   // 记录选中的 id
   const [selectedIds, setSelectedIds] = useState<React.Key[]>([]);
-
-  const { searchParams } = useProjectRoute();
-
   const { loading, data } = useLoadingSurveyListData<ResultSurveySimpleType>();
-
-  useEffect(() => {
-    console.log('trash params:', searchParams.get(actions.manage.searchKey));
-  }, [searchParams]);
 
   const tableColumns = [
     {

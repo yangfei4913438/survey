@@ -1,5 +1,5 @@
 export const actions = {
-  manage: {
+  survey: {
     searchKey: 'keyword',
   },
 };

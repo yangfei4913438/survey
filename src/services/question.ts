@@ -6,8 +6,8 @@ export async function getQuestion<T>(id: string) {
 }
 
 // 获取问卷列表
-export async function getQuestions<T>() {
-  return await request<T>({ name: 'getQuestions' });
+export async function getQuestions<T>(params: Partial<RequestSurveyListType> = {}) {
+  return await request<T>({ name: 'getQuestions', axiosConfig: { params } });
 }
 
 // 创建问卷

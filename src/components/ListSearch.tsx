@@ -13,12 +13,10 @@ const ListSearch = () => {
 
   // 执行搜索，把kv参数添加到路由
   const handleSearch = (val: string) => {
-    if (val) {
-      goToRoute({
-        pathname: currentRoutePath as RouteBaseType,
-        search: `${actions.manage.searchKey}=${val}`,
-      });
-    }
+    goToRoute({
+      pathname: currentRoutePath as RouteBaseType,
+      search: val ? `${actions.survey.searchKey}=${val}` : '', // 如果值为空，需要清空搜索参数
+    });
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {

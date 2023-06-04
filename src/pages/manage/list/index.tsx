@@ -1,24 +1,16 @@
 import { useTitle } from 'ahooks';
 import { Empty, Spin } from 'antd';
 import cls from 'classnames';
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
 import ListCard from '@/components/ListCard';
 import ListTitle from '@/components/ListTitle';
-import { actions } from '@/consts/actions';
-import useProjectRoute from '@/hooks/useProjectRoute';
-import useLoadingSurveyListData from '@/pages/manage/hooks/useLoadingSurveyListData';
+import useLoadingSurveyListData from '@/hooks/useLoadingSurveyListData';
 
 const ManageList: FC = () => {
   useTitle('星星问卷 - 我的问卷');
 
   const { loading, data } = useLoadingSurveyListData<ResultSurveySimpleType>();
-
-  const { searchParams } = useProjectRoute();
-
-  useEffect(() => {
-    console.log('list params:', searchParams.get(actions.manage.searchKey));
-  }, [searchParams]);
 
   const list = data?.list || [];
 

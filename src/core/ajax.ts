@@ -59,45 +59,43 @@ instance.interceptors.response.use(
 interface IRequestParam {
   name: ConfigKeyType;
   id?: string;
-  params?: AxiosRequestConfig;
+  axiosConfig?: AxiosRequestConfig;
 }
-export const request = <T>({ name, id, params }: IRequestParam): Promise<T> => {
+export const request = <T>({ name, id, axiosConfig }: IRequestParam): Promise<T> => {
   const { url, method, needId } = apiConfig[name];
   // 判断一下路由
   const reqUrl = needId ? `${url}/${id}` : url;
 
   switch (method) {
     case 'get':
-      return get<T>(reqUrl, params);
+      return get<T>(reqUrl, axiosConfig);
     case 'post':
-      return post<T>(reqUrl, params);
+      return post<T>(reqUrl, axiosConfig);
     case 'patch':
-      return patch<T>(reqUrl, params);
+      return patch<T>(reqUrl, axiosConfig);
     case 'delete':
-      return del<T>(reqUrl, params);
+      return del<T>(reqUrl, axiosConfig);
     default:
-      return put<T>(reqUrl, params);
+      return put<T>(reqUrl, axiosConfig);
   }
 };
 
-export const get = <T>(url: string, params?: AxiosRequestConfig): Promise<T> => {
-  return instance.get<any, T, any>(url, {
-    params: params,
-  });
+export const get = <T>(url: string, axiosConfig?: AxiosRequestConfig): Promise<T> => {
+  return instance.get<any, T, any>(url, axiosConfig);
 };
 
-export const post = <T>(url: string, params?: AxiosRequestConfig): Promise<T> => {
-  return instance.post<any, T, any>(url, params);
+export const post = <T>(url: string, axiosConfig?: AxiosRequestConfig): Promise<T> => {
+  return instance.post<any, T, any>(url, axiosConfig);
 };
 
-export const put = <T>(url: string, params?: AxiosRequestConfig): Promise<T> => {
-  return instance.put<any, T, any>(url, params);
+export const put = <T>(url: string, axiosConfig?: AxiosRequestConfig): Promise<T> => {
+  return instance.put<any, T, any>(url, axiosConfig);
 };
 
-export const patch = <T>(url: string, params?: AxiosRequestConfig): Promise<T> => {
-  return instance.patch<any, T, any>(url, params);
+export const patch = <T>(url: string, axiosConfig?: AxiosRequestConfig): Promise<T> => {
+  return instance.patch<any, T, any>(url, axiosConfig);
 };
 
-export const del = <T>(url: string, params?: AxiosRequestConfig): Promise<T> => {
-  return instance.delete<any, T, any>(url, params);
+export const del = <T>(url: string, axiosConfig?: AxiosRequestConfig): Promise<T> => {
+  return instance.delete<any, T, any>(url, axiosConfig);
 };

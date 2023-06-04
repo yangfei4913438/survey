@@ -1,23 +1,13 @@
 import { Empty, Spin } from 'antd';
 import cls from 'classnames';
-import React, { FC, useEffect } from 'react';
+import React, { FC } from 'react';
 
 import ListCard from '@/components/ListCard';
 import ListTitle from '@/components/ListTitle';
-import { actions } from '@/consts/actions';
-import useProjectRoute from '@/hooks/useProjectRoute';
-import useLoadingSurveyListData from '@/pages/manage/hooks/useLoadingSurveyListData';
+import useLoadingSurveyListData from '@/hooks/useLoadingSurveyListData';
 import styles from '@/styles/base.module.scss';
 
 const ManageStar: FC = () => {
-  const { goToRoute } = useProjectRoute();
-
-  const { searchParams } = useProjectRoute();
-
-  useEffect(() => {
-    console.log('star params:', searchParams.get(actions.manage.searchKey));
-  }, [searchParams]);
-
   const { loading, data } = useLoadingSurveyListData<ResultSurveySimpleType>();
 
   const startList = data?.list.filter((item) => item.isStar) || [];

@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 import { routePath } from '@/consts/routes';
 import useProjectRoute from '@/hooks/useProjectRoute';
 
-import useLoadingSurveyData from '../hooks/useLoadingSurveyData';
+import useLoadingSurveyData from '../../../hooks/useLoadingSurveyData';
 
 const SurveyStat: FC = () => {
   const { goToRoute } = useProjectRoute();

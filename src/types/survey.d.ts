@@ -14,3 +14,10 @@ interface ResultSurveySimpleType {
   list: SurveySimpleType[];
   total: number;
 }
+
+// 请求问卷列表数据的查询参数
+interface RequestSurveyListType {
+  keyword: string;
+  isStar: boolean;
+  isDeleted: boolean;
+}
