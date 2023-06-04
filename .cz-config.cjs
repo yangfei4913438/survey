@@ -68,6 +68,10 @@ module.exports = {
       value: ':bricks: chore',
       name: '🧱 chore: 基础设施相关'
     },
+    {
+      value: ':clown_face: chore',
+      name: '🤡 chore: Mock服务相关'
+    }
   ],
   messages: {
     type: '请选择提交类型(必填)',
