@@ -37,11 +37,13 @@ const useLoadingSurveyMoreData = (loadMoreRef: React.RefObject<HTMLDivElement>) 
       refreshDeps: [currentKeyword, pageInfo.page, pageInfo.pageSize], // 依赖项
       manual: true, // 手动触发
       onSuccess: (data) => {
-        setPageInfo((draft) => {
-          draft.page++;
-          draft.total = data.total;
-          draft.list = draft.list.concat(data.list);
-        });
+        if (data?.list && data.list.length > 0) {
+          setPageInfo((draft) => {
+            draft.page++;
+            draft.total = data.total;
+            draft.list = draft.list.concat(data.list);
+          });
+        }
       },
     }
   );

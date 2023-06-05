@@ -26,5 +26,23 @@ mockList.forEach((item) => {
 });
 
 app.use(bodyParser());
+
+app.use((ctx, next) => {
+  // 简单处理一下jwt, 不存在就干掉
+  if (['/api/user/register', '/api/user/login'].includes(ctx.url)) {
+    return next();
+  } else {
+    const jwt = ctx.header.authorization.split(' ')[1];
+    if (!ctx.header.authorization || !jwt) {
+      ctx.body = {
+        errno: 401,
+        msg: '没有权限',
+      };
+      return ctx;
+    }
+    return next();
+  }
+});
+
 app.use(router.routes());
 app.listen(6001); // port

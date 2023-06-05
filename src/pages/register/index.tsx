@@ -1,19 +1,43 @@
 import { UserAddOutlined } from '@ant-design/icons';
-import { Button, Form, Input, Space } from 'antd';
+import { useRequest } from 'ahooks';
+import { Button, Form, Input, message, Space } from 'antd';
 import cls from 'classnames';
 import React, { FC } from 'react';
 
 import { rules } from '@/consts/form';
 import { routePath } from '@/consts/routes';
 import useProjectRoute from '@/hooks/useProjectRoute';
+import { userRegisterServices } from '@/services/user';
 import styles from '@/styles/base.module.scss';
 
 const Register: FC = () => {
-  const { Link } = useProjectRoute();
+  const { Link, goToRoute } = useProjectRoute();
   const [form] = Form.useForm();
 
-  const handleFinish = (values: any) => {
-    console.log('form:', values);
+  const { run, loading } = useRequest(
+    async (value: UserType) => {
+      return await userRegisterServices(value);
+    },
+    {
+      manual: true,
+      onSuccess: () => {
+        message.success('注册成功', 1).then(() => {
+          // 跳转到登录页面
+          goToRoute(routePath.login);
+        });
+      },
+      onError: () => {
+        message.error('注册失败，请稍后再试');
+      },
+    }
+  );
+
+  const handleFinish = (values: UserType) => {
+    run({
+      username: values.username,
+      password: values.password,
+      nickname: values.nickname,
+    });
   };
 
   return (
@@ -47,7 +71,7 @@ const Register: FC = () => {
         </Form.Item>
         <Form.Item wrapperCol={{ className: 'ml-20' }}>
           <Space>
-            <Button type='primary' htmlType='submit'>
+            <Button type='primary' htmlType='submit' loading={loading}>
               注册
             </Button>
             <Link to={routePath.login}>已有账户，登录</Link>

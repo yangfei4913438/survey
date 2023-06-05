@@ -3,6 +3,8 @@ import axios, { AxiosRequestConfig } from 'axios';
 import axiosRetry from 'axios-retry';
 
 import { apiConfig, ConfigKeyType } from '@/consts/apis';
+import { cacheKeys } from '@/consts/cache';
+import localCache from '@/core/cache';
 
 /**
  * 创建 axios 实例
@@ -30,6 +32,26 @@ export type ResType<T = ResDataType> = {
 };
 
 /**
+ * 发起请求，统一拦截
+ * */
+instance.interceptors.request.use(
+  (config) => {
+    // Do something before the request is sent
+
+    // 取出存储的token
+    const token = localCache.getItem(cacheKeys.token);
+    // 追加jwt的信息到头部
+    config.headers['Authorization'] = token ? `Bearer ${token}` : '';
+
+    return config;
+  },
+  (error) => {
+    // Do something with request error
+    return Promise.reject(error);
+  }
+);
+
+/**
  * 对返回体错误信息分类
  */
 instance.interceptors.response.use(
@@ -39,11 +61,11 @@ instance.interceptors.response.use(
     // 不使用http异常码，http状态码都返回200
     // 自定义错误码: 0 表示正常。
     if (typeof errno === 'number' && errno !== 0) {
-      if (msg) {
-        message.error(msg);
-      }
-      // 上报异常
-      throw new Error(msg);
+      message.error(msg ?? '操作异常，请稍后再试', 1).then(() => {
+        window.location.href = '/login';
+        // 上报异常
+        throw new Error(msg ?? `错误码: ${errno}`);
+      });
     }
     // 返回数据
     return data as any;
