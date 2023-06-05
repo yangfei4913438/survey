@@ -1,5 +1,6 @@
 import Koa from 'koa';
 import Router from 'koa-router';
+import bodyParser from 'koa-bodyparser';
 
 import { mockList } from './mock/index.mjs';
 
@@ -24,5 +25,6 @@ mockList.forEach((item) => {
   });
 });
 
+app.use(bodyParser());
 app.use(router.routes());
 app.listen(6001); // port

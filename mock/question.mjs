@@ -74,4 +74,14 @@ export const question = [
       };
     },
   },
+  {
+    url: '/api/question', // 更新问卷
+    method: 'patch',
+    response(ctx) {
+      console.log('query body:', ctx.request.body);
+      return {
+        errno: 0,
+      };
+    },
+  },
 ];
