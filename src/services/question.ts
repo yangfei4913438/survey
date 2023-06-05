@@ -27,3 +27,8 @@ export async function updateQuestionServices<T>(
 export async function copyQuestionServices<T>(id: string) {
   return await request<T>({ name: 'copyQuestion', id });
 }
+
+// 删除问卷
+export async function deleteSurveysService<T>(data: string[]) {
+  return await request<T>({ name: 'delQuestions', axiosConfig: { data } });
+}

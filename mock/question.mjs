@@ -75,6 +75,16 @@ export const question = [
     },
   },
   {
+    url: '/api/question', // 创建问卷
+    method: 'delete',
+    response(ctx) {
+      console.log('query body:', ctx.request.body);
+      return {
+        errno: 0,
+      };
+    },
+  },
+  {
     url: '/api/question/duplicate/:id', // 复制问卷
     method: 'post',
     response(ctx) {

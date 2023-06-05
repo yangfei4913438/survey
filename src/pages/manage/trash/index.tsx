@@ -1,18 +1,23 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { Button, Empty, Modal, Space, Spin, Table, Tag } from 'antd';
+import { useRequest } from 'ahooks';
+import { Button, Empty, message, Modal, Space, Spin, Table, Tag } from 'antd';
 import cls from 'classnames';
 import React, { FC, useState } from 'react';
+import { useImmer } from 'use-immer';
 
 import ListPagination from '@/components/ListPagination';
 import ListTitle from '@/components/ListTitle';
 import useLoadingSurveyListData from '@/hooks/useLoadingSurveyListData';
+import { deleteSurveysService, updateQuestionServices } from '@/services/question';
 
 const { confirm } = Modal;
 
 const ManageTrash: FC = () => {
   // 记录选中的 id
-  const [selectedIds, setSelectedIds] = useState<React.Key[]>([]);
-  const { loading, data } = useLoadingSurveyListData<ResultSurveySimpleType>({ isDeleted: true });
+  const [selectedIds, setSelectedIds] = useImmer<React.Key[]>([]);
+  const { loading, data, refresh } = useLoadingSurveyListData<ResultSurveySimpleType>({
+    isDeleted: true,
+  });
 
   const tableColumns = [
     {
@@ -37,12 +42,57 @@ const ManageTrash: FC = () => {
     },
   ];
 
+  // 恢复被删除的问卷（软删除恢复）
+  // 调用更新接口
+  const { run: recover, loading: recoverLoading } = useRequest(
+    async () => {
+      // 发送更新请求
+      for await (const id of selectedIds) {
+        await updateQuestionServices(id as string, { isDeleted: false });
+      }
+    },
+    {
+      manual: true,
+      onSuccess: () => {
+        message.success('恢复成功');
+        // 清理内存
+        setSelectedIds([]);
+        // 刷新删除列表
+        refresh();
+      },
+      onError: () => {
+        message.error('恢复失败, 请稍后再试');
+      },
+    }
+  );
+
+  // 删除
+  const { loading: delLoading, run: delRun } = useRequest(
+    async () => {
+      await deleteSurveysService(selectedIds as string[]);
+    },
+    {
+      manual: true,
+      onSuccess: () => {
+        message.success('删除成功');
+        // 清理内存
+        setSelectedIds([]);
+        // 刷新删除列表
+        refresh();
+      },
+      onError: () => {
+        message.error('删除失败, 请稍后再试');
+      },
+    }
+  );
+
   function del() {
     confirm({
       title: '确认彻底删除该问卷？',
       icon: <ExclamationCircleOutlined />,
       content: '删除以后不可以找回',
-      onOk: () => undefined,
+      onOk: delRun,
+      okType: 'danger',
     });
   }
 
@@ -53,10 +103,15 @@ const ManageTrash: FC = () => {
     return (
       <div className='space-y-4 pb-8'>
         <Space>
-          <Button type='primary' disabled={selectedIds.length === 0}>
+          <Button
+            type='primary'
+            disabled={selectedIds.length === 0}
+            onClick={recover}
+            loading={recoverLoading}
+          >
             恢复
           </Button>
-          <Button danger disabled={selectedIds.length === 0} onClick={del}>
+          <Button danger disabled={selectedIds.length === 0} onClick={del} loading={delLoading}>
             彻底删除
           </Button>
         </Space>

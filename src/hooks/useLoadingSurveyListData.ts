@@ -11,7 +11,7 @@ interface ILoadingSurveyListData {
 const useLoadingSurveyListData = <T>(options?: ILoadingSurveyListData) => {
   const { currentPage, currentPageSize, currentKeyword } = useProjectRoute();
 
-  const { loading, data, error } = useRequest(
+  const { loading, data, error, refresh } = useRequest(
     async () => {
       // 定义查询对象
       const params: any = { page: currentPage, pageSize: currentPageSize };
@@ -40,6 +40,7 @@ const useLoadingSurveyListData = <T>(options?: ILoadingSurveyListData) => {
     loading,
     data,
     error,
+    refresh,
   };
 };
 
