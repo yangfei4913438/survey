@@ -25,7 +25,7 @@ export const question = [
     url: '/api/question/:id', // 单个问卷
     method: 'get',
     response(ctx) {
-      console.log('query path params:', ctx.request.params.id);
+      console.log('query path params:', ctx.params.id);
       return {
         errno: 0,
         data: {
@@ -39,18 +39,21 @@ export const question = [
     url: '/api/question', // 问卷分页
     method: 'get',
     response(ctx) {
-      const { isDeleted, isStar, keyword } = ctx.request.query;
-      console.log('query search params:', ctx.request.query);
+      const { isDeleted, isStar, keyword, page, pageSize } = ctx.query;
+      console.log('query search params:', ctx.query);
       console.log(
         'query search params type: isDeleted %s, isStar %s, keyword %s',
         typeof isDeleted,
         typeof isStar,
-        typeof keyword
+        typeof keyword,
+        typeof page,
+        typeof pageSize
       );
       return {
         errno: 0,
         data: {
           list: makeData({
+            lens: pageSize,
             isDeleted: isDeleted === 'true',
             isStar: isStar === 'true',
           }), // 当前页的列表数据

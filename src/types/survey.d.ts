@@ -21,3 +21,11 @@ interface RequestSurveyListType {
   isStar: boolean;
   isDeleted: boolean;
 }
+
+// 加载更多的分页信息类型
+interface SurveyPageInfoType {
+  page: number;
+  pageSize: number;
+  total: number;
+  list: SurveySimpleType[];
+}

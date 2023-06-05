@@ -1,7 +1,7 @@
 import { useRequest } from 'ahooks';
 
 import useProjectRoute from '@/hooks/useProjectRoute';
-import { getQuestion } from '@/services/question';
+import { getQuestionServices } from '@/services/question';
 
 const useLoadingSurveyData = <T>() => {
   const {
@@ -10,7 +10,7 @@ const useLoadingSurveyData = <T>() => {
 
   const { loading, data, error } = useRequest(
     async () => {
-      return await getQuestion<T>(id);
+      return await getQuestionServices<T>(id);
     },
     {
       ready: !!id,

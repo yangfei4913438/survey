@@ -3,9 +3,9 @@ import { Button, Empty, Modal, Space, Spin, Table, Tag } from 'antd';
 import cls from 'classnames';
 import React, { FC, useState } from 'react';
 
+import ListPagination from '@/components/ListPagination';
 import ListTitle from '@/components/ListTitle';
 import useLoadingSurveyListData from '@/hooks/useLoadingSurveyListData';
-import styles from '@/styles/base.module.scss';
 
 const { confirm } = Modal;
 
@@ -47,6 +47,7 @@ const ManageTrash: FC = () => {
   }
 
   const list = data?.list ?? [];
+  const total = data?.total || 0;
 
   const TableJsx = () => {
     return (
@@ -74,6 +75,9 @@ const ManageTrash: FC = () => {
             },
           }}
         />
+        <div className='bg-white py-8 text-center'>
+          <ListPagination total={total} />
+        </div>
       </div>
     );
   };
@@ -95,7 +99,6 @@ const ManageTrash: FC = () => {
           <Empty description={'暂无数据'} />
         )}
       </div>
-      <div className={styles.footer}>{/*<div ref={containerRef}>{LoadMoreContentElem}</div>*/}</div>
     </div>
   );
 };

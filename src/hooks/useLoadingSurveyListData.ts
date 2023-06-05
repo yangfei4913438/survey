@@ -1,8 +1,7 @@
 import { useRequest } from 'ahooks';
 
-import { actions } from '@/consts/actions';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import { getQuestions } from '@/services/question';
+import { getQuestionsServices } from '@/services/question';
 
 interface ILoadingSurveyListData {
   isStar?: boolean;
@@ -10,32 +9,30 @@ interface ILoadingSurveyListData {
 }
 
 const useLoadingSurveyListData = <T>(options?: ILoadingSurveyListData) => {
-  const { searchParams } = useProjectRoute();
+  const { currentPage, currentPageSize, currentKeyword } = useProjectRoute();
 
   const { loading, data, error } = useRequest(
     async () => {
-      // 获取页面的查询参数
-      const keyword = searchParams.get(actions.survey.searchKey);
-
       // 定义查询对象
-      const params: any = {};
-      // 判断是否有值
-      if (keyword) {
-        params.keyword = keyword;
+      const params: any = { page: currentPage, pageSize: currentPageSize };
+      // 如果搜索关键字不存在，那么就不用加上了，这个和分页不一样。
+      if (currentKeyword) {
+        params.keyword = currentKeyword;
       }
       // 判断是否为布尔值
-      if (options?.isStar && typeof options?.isStar == 'boolean') {
+      if (options?.isStar && typeof options?.isStar === 'boolean') {
         params.isStar = options.isStar;
       }
       // 判断是否为布尔值
-      if (options?.isDeleted && typeof options?.isDeleted == 'boolean') {
+      if (options?.isDeleted && typeof options?.isDeleted === 'boolean') {
         params.isDeleted = options.isDeleted;
       }
+
       // 返回请求结果
-      return await getQuestions<T>(params);
+      return await getQuestionsServices<T>(params);
     },
     {
-      refreshDeps: [searchParams], // 重新发起请求的依赖项
+      refreshDeps: [currentKeyword, currentPage, currentPageSize], // 重新发起请求的依赖项
     }
   );
 

@@ -8,7 +8,9 @@ import useProjectRoute from '@/hooks/useProjectRoute';
 const { Search } = Input;
 
 const ListSearch = () => {
-  const [value, setValue] = useState<string>('');
+  const { currentKeyword } = useProjectRoute();
+
+  const [value, setValue] = useState<string>(currentKeyword);
   const { goToRoute, currentRoutePath } = useProjectRoute();
 
   // 执行搜索，把kv参数添加到路由

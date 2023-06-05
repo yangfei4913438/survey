@@ -1,34 +1,19 @@
 import { BarsOutlined, DeleteOutlined, PlusOutlined, StarOutlined } from '@ant-design/icons';
-import { useRequest } from 'ahooks';
 import { Button, Divider, Space } from 'antd';
 import cls from 'classnames';
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import { routePath, surveyPath } from '@/consts/routes';
+import { routePath } from '@/consts/routes';
+import useCreateSurvey from '@/hooks/useCreateSurvey';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import { createQuestion } from '@/services/question';
 import styles from '@/styles/base.module.scss';
 
 const ManageLayout: FC = () => {
   const { currentRoutePath, goToRoute } = useProjectRoute();
 
   // 响应创建问卷
-  // 业务逻辑：从后台拿到新的ID, 然后跳转到编辑问卷的页面，走编辑问卷流程。
-  const { loading, run: handleCreate } = useRequest(
-    async () => {
-      return await createQuestion<{ id: string }>();
-    },
-    {
-      manual: true, // 手动触发
-      onSuccess: ({ id }) => {
-        // 编辑问卷
-        const editorUrl = surveyPath.edit(id);
-        // 跳转路由
-        goToRoute<typeof editorUrl>(editorUrl);
-      },
-    }
-  );
+  const { loading, handleCreate } = useCreateSurvey();
 
   return (
     <section className={cls(styles.layout, 'pt-8 flex space-x-4 bg-slate-200')}>

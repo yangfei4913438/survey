@@ -1,17 +1,29 @@
 import { useTitle } from 'ahooks';
-import React, { FC } from 'react';
+import { Spin } from 'antd';
+import cls from 'classnames';
+import React, { FC, useRef } from 'react';
 
-import useLoadingSurveyListData from '@/hooks/useLoadingSurveyListData';
+import ListTitle from '@/components/ListTitle';
+import useLoadingSurveyMoreData from '@/hooks/useLoadingSurveyMoreData';
 import SurveyList from '@/pages/manage/components/surveyList';
 
 const ManageList: FC = () => {
   useTitle('星星问卷 - 我的问卷');
 
-  const { loading, data } = useLoadingSurveyListData<ResultSurveySimpleType>();
+  const loadMoreRef = useRef<HTMLDivElement>(null);
 
-  const list = data?.list || [];
+  const { pageInfo, loading, haveMoreData } = useLoadingSurveyMoreData(loadMoreRef);
 
-  return <SurveyList title={'我的问卷'} list={list} loading={loading} />;
+  return (
+    <div className={cls('flex h-full flex-col space-y-4')}>
+      <ListTitle name={'我的问卷'} />
+      <SurveyList list={pageInfo.list} loading={loading}>
+        <div className='bg-white py-8 text-center'>
+          <div ref={loadMoreRef}>{haveMoreData ? <Spin size={'large'} /> : '------ END -----'}</div>
+        </div>
+      </SurveyList>
+    </div>
+  );
 };
 
 export default ManageList;
