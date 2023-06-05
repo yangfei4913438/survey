@@ -9,21 +9,27 @@ import { rules } from '@/consts/form';
 import { routePath } from '@/consts/routes';
 import localCache from '@/core/cache';
 import useProjectRoute from '@/hooks/useProjectRoute';
+import useUserInfo from '@/hooks/useUserInfo';
 import { userLoginServices } from '@/services/user';
 import styles from '@/styles/base.module.scss';
 
 const Login: FC = () => {
   const { goToRoute, Link } = useProjectRoute();
+  const { setUserInfo } = useUserInfo();
   const [remember, setRemember] = useState(false);
 
   const { run, loading } = useRequest(
     async (value: Omit<UserType, 'nickname'>) => {
-      return await userLoginServices<{ token: string }>(value);
+      return await userLoginServices<UserLoginResult>(value);
     },
     {
       manual: true,
-      onSuccess: ({ token }) => {
+      onSuccess: ({ token, user }) => {
+        // 记录token到浏览器
         localCache.setItem(cacheKeys.token, token, remember);
+        // 记录用户信息到内存
+        setUserInfo(user);
+        // 提示用户，然后跳转路由
         message.success('登录成功', 1).then(() => {
           // 跳转到登录页面
           goToRoute(routePath.manageList);

@@ -11,7 +11,7 @@ export const user = [
       return {
         errno: 0,
         data: {
-          username: Random.title(),
+          username: Random.name(),
           nickname: Random.cname(),
         },
       };
@@ -35,7 +35,13 @@ export const user = [
       return {
         errno: 0,
         data: {
+          // jwt令牌
           token: Random.word(20),
+          // 登录之后就把登录用户的数据返回，避免单独再发起一次用户数据的请求。
+          user: {
+            username: Random.name(),
+            nickname: Random.cname(),
+          },
         },
       };
     },

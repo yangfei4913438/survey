@@ -1,30 +1,19 @@
 import { UserOutlined } from '@ant-design/icons';
-import { useRequest } from 'ahooks';
-import { Button } from 'antd';
+import { Button, Spin } from 'antd';
 
-import { cacheKeys } from '@/consts/cache';
 import { routePath } from '@/consts/routes';
 import localCache from '@/core/cache';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import { getUserInfoServices } from '@/services/user';
+import useUserInfo from '@/hooks/useUserInfo';
 
 const UserInfo = () => {
   const { Link, goToRoute } = useProjectRoute();
 
-  const { data, mutate } = useRequest(
-    async () => {
-      return await getUserInfoServices<Omit<UserType, 'password'>>();
-    },
-    {
-      ready: !!localCache.getItem(cacheKeys.token),
-    }
-  );
-
-  const { username, nickname } = data ?? {};
+  const { loading, userInfo, resetUserInfo } = useUserInfo();
 
   const logoutHandler = () => {
     localCache.clear();
-    mutate({ username: '', nickname: '' });
+    resetUserInfo();
     goToRoute(routePath.login);
   };
 
@@ -32,7 +21,7 @@ const UserInfo = () => {
     <>
       <span className='prose-sm text-white'>
         <UserOutlined />
-        {nickname || username}
+        {userInfo.nickname || userInfo.username}
       </span>
       <Button type='link' onClick={logoutHandler}>
         退出
@@ -40,13 +29,15 @@ const UserInfo = () => {
     </>
   );
 
-  const Login = (
+  const Login = loading ? (
+    <Spin />
+  ) : (
     <Link to={routePath.login} className='prose-sm text-lg text-blue-500 decoration-transparent'>
       登录
     </Link>
   );
 
-  return <div className=''>{username ? User : Login}</div>;
+  return <div className=''>{userInfo.username ? User : Login}</div>;
 };
 
 export default UserInfo;

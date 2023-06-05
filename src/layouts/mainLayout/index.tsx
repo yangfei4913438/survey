@@ -5,12 +5,15 @@ import { Outlet } from 'react-router-dom';
 
 import Logo from '@/components/logo';
 import UserInfo from '@/components/userInfo';
+import useJwt from '@/hooks/useJwt';
 import styles from '@/styles/base.module.scss';
 
 const { Header, Content, Footer } = Layout;
 
 // 入口布局
 const MainLayout: FC = () => {
+  useJwt();
+
   return (
     <Layout className='bg-white'>
       <Header className={cls(styles.flexCenterBetween, 'sticky top-0 z-40 px-8 h-16')}>

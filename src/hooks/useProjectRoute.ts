@@ -18,6 +18,9 @@ const useProjectRoute = () => {
   const params = useParams();
   const [searchParams, setSearchParams] = useSearchParams();
 
+  // 当前是不是首页《不需要访问权限》
+  const isHomePage = location.pathname === '/';
+
   // 当前是不是登陆页
   const isLoginPage = useMemo(() => {
     const match = matchPath(routePath.login, location.pathname);
@@ -63,6 +66,7 @@ const useProjectRoute = () => {
     navigate(routePath, options);
 
   return {
+    isHomePage,
     isLoginPage,
     is404Page,
     isRegisterPage,
