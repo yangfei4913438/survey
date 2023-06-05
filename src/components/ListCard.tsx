@@ -6,11 +6,13 @@ import {
   LineChartOutlined,
   StarOutlined,
 } from '@ant-design/icons';
-import { Button, Divider, Modal, Popconfirm, Space, Tag } from 'antd';
-import { FC } from 'react';
+import { Button, Divider, message, Modal, Popconfirm, Space, Tag } from 'antd';
+import { FC, useState } from 'react';
 
 import { surveyPath } from '@/consts/routes';
+import useCopySurvey from '@/hooks/useCopySurvey';
 import useProjectRoute from '@/hooks/useProjectRoute';
+import useUpdateSurvey from '@/hooks/useUpdateSurvey';
 
 const { confirm } = Modal;
 
@@ -24,22 +26,62 @@ export interface IListCard {
 }
 
 // 列表卡片
-const ListCard: FC<IListCard> = ({ _id, title, createdAt, answerCount, isPublished, isStar }) => {
+const ListCard: FC<IListCard> = (surveyData) => {
+  const { _id, title, createdAt, answerCount, isPublished, isStar } = surveyData;
+
   const { goToRoute, Link } = useProjectRoute();
 
-  // 编辑问卷
-  const editorUrl = surveyPath.edit(_id);
-  // 统计问卷
-  const statUrl = surveyPath.stat(_id);
+  const [starState, setStarState] = useState(isStar);
 
+  // 复制问卷
+  const { copySurvey, copyLoading } = useCopySurvey(_id);
+
+  // 更新问卷
+  const { changeSurvey, changeSurveyLoading } = useUpdateSurvey({
+    _id,
+    updateData: {
+      isStar: !isStar, // 这里要把需要更新的数据，直接写好放进去，里面是没有逻辑的
+    },
+    onSuccess: () => {
+      setStarState(!starState);
+      message.success('更新成功');
+    },
+    onError: () => {
+      message.error('更新失败, 请稍后再试');
+    },
+  });
+
+  // 问卷是否已经被删除
+  const [isDeleted, setIsDeleted] = useState(false);
+  // 删除问卷（软删除）
+  const { changeSurvey: delSurvey, changeSurveyLoading: delSurveyLoading } = useUpdateSurvey({
+    _id,
+    updateData: {
+      isDeleted: true,
+    },
+    onSuccess: () => {
+      setIsDeleted(true);
+      message.success('删除成功');
+    },
+    onError: () => {
+      message.error('删除失败, 请稍后再试');
+    },
+  });
   function del() {
     confirm({
       title: '确定删除该问卷？',
       icon: <ExclamationCircleOutlined />,
       okType: 'danger',
-      onOk: () => undefined,
+      onOk: delSurvey,
     });
   }
+  // 如果已经被删除，就不再渲染
+  if (isDeleted) return null;
+
+  // 编辑问卷Url
+  const editorUrl = surveyPath.edit(_id);
+  // 统计问卷Url
+  const statUrl = surveyPath.stat(_id);
 
   return (
     <article className={'w-full rounded bg-white p-3 hover:shadow-lg'}>
@@ -47,7 +89,7 @@ const ListCard: FC<IListCard> = ({ _id, title, createdAt, answerCount, isPublish
         <div className='flex-1'>
           <Link to={isPublished ? statUrl : editorUrl}>
             <div className='flex items-center space-x-1'>
-              {isStar && <StarOutlined style={{ color: 'red' }} />}
+              {starState && <StarOutlined style={{ color: 'red' }} />}
               <span>{title}</span>
             </div>
           </Link>
@@ -88,23 +130,18 @@ const ListCard: FC<IListCard> = ({ _id, title, createdAt, answerCount, isPublish
             type='text'
             icon={<StarOutlined />}
             size='small'
-            // onClick={changeStar}
-            // disabled={changeStarLoading}
+            onClick={changeSurvey}
+            loading={changeSurveyLoading}
           >
-            {isStar ? '取消标星' : '标星'}
+            {starState ? '取消标星' : '标星'}
           </Button>
           <Popconfirm
             title='确定复制该问卷？'
             okText='确定'
             cancelText='取消'
-            // onConfirm={duplicate}
+            onConfirm={copySurvey}
           >
-            <Button
-              type='text'
-              icon={<CopyOutlined />}
-              size='small'
-              // disabled={duplicateLoading}
-            >
+            <Button type='text' icon={<CopyOutlined />} size='small' loading={copyLoading}>
               复制
             </Button>
           </Popconfirm>
@@ -113,7 +150,7 @@ const ListCard: FC<IListCard> = ({ _id, title, createdAt, answerCount, isPublish
             icon={<DeleteOutlined />}
             size='small'
             onClick={del}
-            // disabled={deleteLoading}
+            loading={delSurveyLoading}
           >
             删除
           </Button>

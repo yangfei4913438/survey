@@ -14,3 +14,16 @@ export async function getQuestionsServices<T>(params: Partial<RequestSurveyListT
 export async function createQuestionServices<T>() {
   return await request<T>({ name: 'createQuestion' });
 }
+
+// 更新问卷
+export async function updateQuestionServices<T>(
+  id: string,
+  data: Partial<Omit<SurveySimpleType, '_id'>>
+) {
+  return await request<T>({ name: 'patchQuestion', id, axiosConfig: { data } });
+}
+
+// 复制问卷
+export async function copyQuestionServices<T>(id: string) {
+  return await request<T>({ name: 'copyQuestion', id });
+}

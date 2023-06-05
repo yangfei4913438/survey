@@ -75,7 +75,20 @@ export const question = [
     },
   },
   {
-    url: '/api/question', // 更新问卷
+    url: '/api/question/duplicate/:id', // 复制问卷
+    method: 'post',
+    response(ctx) {
+      console.log('query path params:', ctx.params.id);
+      return {
+        errno: 0,
+        data: {
+          id: Random.id(),
+        },
+      };
+    },
+  },
+  {
+    url: '/api/question/:id', // 更新问卷
     method: 'patch',
     response(ctx) {
       console.log('query body:', ctx.request.body);
