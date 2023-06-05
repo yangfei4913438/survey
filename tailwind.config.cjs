@@ -18,7 +18,7 @@ const distance = {
 
 /** @type {import('tailwindcss').Config} */
 const config = {
-  content: ['./src/**/*.{js,ts,jsx,tsx,scss}'],
+  content: ['./src/**/*.{jsx,tsx,scss}'],
   safelist: [
     'col-span-1',
     'col-span-2',

@@ -1,10 +1,5 @@
 .layout {
   @apply container min-h-inherit;
-
-  // antd 样式修复
-  :global(.anticon) {
-    vertical-align: 0.125em;
-  }
 }
 
 // 必须使用驼峰写法
