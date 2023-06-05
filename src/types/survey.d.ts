@@ -29,3 +29,18 @@ interface SurveyPageInfoType {
   total: number;
   list: SurveySimpleType[];
 }
+
+// 返回的组件数据类型
+interface ResultComponentType {
+  fe_id: string;
+  title: string;
+  type: EditorComponentTypes;
+  props: EditorComponentsPropsType;
+}
+
+// 返回的问卷详情
+interface ResultSurveyDetailType {
+  id: string;
+  title: string;
+  componentList: ResultComponentType[];
+}

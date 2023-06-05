@@ -1,22 +1,28 @@
 import React, { FC } from 'react';
 
-import { routePath } from '@/consts/routes';
-import useProjectRoute from '@/hooks/useProjectRoute';
-
-import useLoadingSurveyData from '../../../hooks/useLoadingSurveyData';
+import useEditorComponents from '@/hooks/useEditorComponents';
+import EditCanvas from '@/pages/survey/edit/EditCanvas';
 
 const SurveyEdit: FC = () => {
-  const { goToRoute } = useProjectRoute();
-
-  const { data, loading } = useLoadingSurveyData<{ id: string; title: string }>();
+  const { clearSelectedId } = useEditorComponents();
 
   return (
-    <div className=''>
-      <p>this is Survey Edit Page</p>
-      <p>{loading ? '加载中...' : `id: ${data?.id} title: ${data?.title}`}</p>
-      <button type='button' onClick={() => goToRoute(routePath.login)}>
-        登陆页
-      </button>
+    <div className='flex h-full min-w-lg flex-col bg-gray-50'>
+      <div className='flex h-16 items-center justify-between bg-sky-500'>
+        <div>左边</div>
+        <div>中间</div>
+        <div>右边</div>
+      </div>
+      <div
+        className='flex flex-1 justify-between overflow-hidden bg-slate-100 p-4 xl:p-12'
+        onClick={clearSelectedId}
+      >
+        <div className='w-80 bg-white p-4 xl:w-96 xl:p-8'>左边</div>
+        <div className='mb-4 mt-16 w-1/4 min-w-sm overflow-auto bg-white p-4 xl:p-8'>
+          <EditCanvas />
+        </div>
+        <div className='w-80 bg-white p-4 xl:w-96 xl:p-8'>右边</div>
+      </div>
     </div>
   );
 };

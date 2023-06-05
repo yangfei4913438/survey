@@ -1,10 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit';
 
+import editorComponentsReducer from '@/store/editorComponents';
 import userInfoReducer from '@/store/userInfo';
 
-// 修改时，请一起修改类型定义文件 src/types/reduxStore.d.ts
 export default configureStore({
+  // 不同的命名空间，对应的reducer
   reducer: {
-    userInfo: userInfoReducer, // 不同的命名空间，对应的reducer
+    userInfo: userInfoReducer, // 用户信息
+    editorComponents: editorComponentsReducer, // 编辑器组件信息
   },
 });
