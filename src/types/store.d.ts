@@ -6,17 +6,26 @@ interface ReduxStoreType {
 
 // 编辑器组件类型
 interface EditorComponentType {
-  fe_id: string; // 表示前端生成的ID，和后端的ID进行区分
-  type: EditorComponentTypes;
+  // 表示前端生成的ID，和后端的ID进行区分
+  fe_id: string;
+  // 组件标题
   title: string;
+  // 组件可见性
   visible: boolean;
+  // 组件是否被锁定
   locked: boolean;
+  // 组件类型
+  type: SurveyEditorComponentType;
+  // 组件参数
   props: EditorComponentsPropsType;
 }
 
 // 编辑器组件列表类型
 interface EditorComponentsStateType {
+  // 选中组件的ID
   selectedId: string;
+  // 编辑组件的列表
   editorComponentList: EditorComponentType[];
-  copiedComponent: EditorComponentType | null; // 复制组件
+  // 拷贝的组件
+  copiedComponent: EditorComponentType | null;
 }

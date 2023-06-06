@@ -2,18 +2,14 @@ import { FC } from 'react';
 
 // 统一的组件配置类型
 export type EditorComponentConfType = {
+  // 组件标题
   title: string;
-  type: EditorComponentTypes;
+  // 组件类型
+  type: SurveyEditorComponentType;
+  // 编辑器组件
   Component: FC<EditorComponentsPropsType>;
+  // 参数组件
   PropComponent: FC<EditorComponentsPropsType>;
+  // 默认参数
   defaultProps: EditorComponentsPropsType;
-};
-
-// 编辑器组件对象Key数组
-export const EditorComponentTypeKeyNames = <const>['title', 'input', 'paragraph'];
-// 编辑器组件类型key
-type EditorComponentTypeKeyName = (typeof EditorComponentTypeKeyNames)[number];
-// 编辑器组件对象类型
-export type EditorComponentTypesObjectType = {
-  [k in EditorComponentTypeKeyName]: EditorComponentTypes;
 };

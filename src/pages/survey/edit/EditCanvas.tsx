@@ -17,7 +17,7 @@ const EditCanvas = () => {
     );
   }
 
-  const renderComponent = (type: EditorComponentTypes, props: EditorComponentsPropsType) => {
+  const renderComponent = (type: SurveyEditorComponentType, props: EditorComponentsPropsType) => {
     // 获取组件配置
     const conf = getComponentConfByType(type);
     if (conf) {

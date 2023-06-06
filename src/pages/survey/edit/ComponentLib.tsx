@@ -15,9 +15,9 @@ const ComponentLib = () => {
     const handleClick = () => {
       // 添加新组件
       addComponent({
-        fe_id: nanoid(5), // 这里其实是新创建一个组件，不是把组件库里的通用组件拿进去。。。
-        title: title,
-        type: type,
+        fe_id: nanoid(), // 这里其实是新创建一个组件，不是把组件库里的通用组件拿进去。。。
+        title,
+        type,
         visible: true,
         locked: false,
         props: defaultProps,

@@ -31,14 +31,7 @@ interface SurveyPageInfoType {
 }
 
 // 返回的组件数据类型
-interface ResultComponentType {
-  fe_id: string;
-  title: string;
-  type: EditorComponentTypes;
-  visible: boolean;
-  locked: boolean;
-  props: EditorComponentsPropsType;
-}
+type ResultComponentType = EditorComponentType;
 
 // 返回的问卷详情
 interface ResultSurveyDetailType {

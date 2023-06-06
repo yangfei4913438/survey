@@ -1,8 +1,8 @@
-// 编辑器组件类型对象
-import { EditorComponentTypesObjectType } from '@/components/EditorComponents';
-
-export const editorComponentTypesObject: EditorComponentTypesObjectType = {
+// 问卷编辑器组件类型对象
+export const editorComponentTypes: SurveyEditorComponentTypes = {
+  header: 'editor_header',
   title: 'editor_title',
-  input: 'editor_input',
   paragraph: 'editor_paragraph',
+  input: 'editor_input',
+  textarea: 'editor_textarea',
 };

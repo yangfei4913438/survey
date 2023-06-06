@@ -29,11 +29,11 @@ const useEditorCanvasKeyPress = () => {
   });
 
   // 删除监听
-  useKeyPress(['backspace', 'delete'], () => {
-    // 编辑状态不能操作
-    if (editActive) return;
-    removeSelectedComponent();
-  });
+  // useKeyPress(['backspace', 'delete'], () => {
+  //   // 编辑状态不能操作
+  //   if (editActive) return;
+  //   removeSelectedComponent();
+  // });
 
   // 选中上一个
   useKeyPress('uparrow', () => {

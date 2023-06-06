@@ -29,7 +29,7 @@ const PropsParagraph: FC<EditorParagraphPropsType> = ({ text, alignment, onChang
         name='text'
         rules={[{ required: true, message: '请输入段落内容' }]}
       >
-        <Input.TextArea size={'large'} autoSize className='max-h-80' />
+        <Input.TextArea size={'large'} className='max-h-80' />
       </Form.Item>
       <Form.Item label='对齐方式' name='alignment'>
         <Radio.Group

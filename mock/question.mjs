@@ -33,16 +33,31 @@ export const question = [
           id: Random.id(),
           title: Random.ctitle(),
           componentList: [
+            // header
+            {
+              fe_id: Random.id(),
+              type: component_types.header, // 组件类型不能重复，前后端一致
+              title: '',
+              visible: true,
+              locked: false,
+              props: {
+                title: '个人信息登记表',
+                titleLevel: 1,
+                titleAlignment: 'center',
+                desc: '市场部员工专用',
+                descAlignment: 'right',
+              },
+            },
             // title
             {
               fe_id: Random.id(),
               type: component_types.title, // 组件类型不能重复，前后端一致
-              title: '市场部-张涛-华北区域',
+              title: '基本信息',
               visible: true,
               locked: false,
               props: {
-                text: '个人信息调研',
-                level: 1,
+                text: '基本信息',
+                level: 3,
                 alignment: 'left',
               },
             },
@@ -50,11 +65,11 @@ export const question = [
             {
               fe_id: Random.id(),
               type: component_types.input,
-              title: '输入框1',
+              title: '姓名',
               visible: true,
               locked: false,
               props: {
-                title: '你的姓名',
+                title: '姓名',
                 placeholder: '请输入你的姓名...',
               },
             },
@@ -62,12 +77,48 @@ export const question = [
             {
               fe_id: Random.id(),
               type: component_types.input,
-              title: '输入框2',
+              title: '年龄',
               visible: true,
               locked: false,
               props: {
-                title: '你的电话',
-                placeholder: '请输入你的电话...',
+                title: '年龄',
+                placeholder: '请输入你的年龄...',
+              },
+            },
+            // title
+            {
+              fe_id: Random.id(),
+              type: component_types.title, // 组件类型不能重复，前后端一致
+              title: '工作信息',
+              visible: true,
+              locked: false,
+              props: {
+                text: '工作信息',
+                level: 3,
+                alignment: 'left',
+              },
+            },
+            // input
+            {
+              fe_id: Random.id(),
+              type: component_types.input,
+              title: '职位',
+              visible: true,
+              locked: false,
+              props: {
+                title: '职位',
+                placeholder: '请输入你的工作岗位...',
+              },
+            },
+            {
+              fe_id: Random.id(),
+              type: component_types.input,
+              title: '入职时间',
+              visible: true,
+              locked: false,
+              props: {
+                title: '入职时间',
+                placeholder: '请输入你的入职时间...',
               },
             },
           ],
