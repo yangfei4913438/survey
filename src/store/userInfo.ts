@@ -17,7 +17,7 @@ export const userInfoSlice = createSlice({
 });
 
 // 导出 action 方法
-export const { setUserInfo, resetUserInfo } = userInfoSlice.actions;
+export const userInfoActions = userInfoSlice.actions;
 
-// 导出reducer
-export default userInfoSlice.reducer;
+// 导出 reducer
+export const userInfoReducer = userInfoSlice.reducer;

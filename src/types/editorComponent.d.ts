@@ -1,29 +1,18 @@
 // 问卷输入框，传入参数类型
 interface EditorInputPropsType {
-  /** Input Title
-   * @default 'Input Title'
-   */
   title?: string;
-  /** Input tip Text
-   * @default 'Please enter...'
-   */
   placeholder?: string;
+  onChange?: (newProps: EditorInputPropsType) => void;
+  disabled?: boolean;
 }
 
 // 问卷标题，传入参数类型
 interface EditorTitlePropsType {
-  /** Title Text
-   * @default 'Default Title'
-   */
   text?: string;
-  /** Title Level
-   * @default 1
-   */
   level?: TitleLevelType;
-  /** Title Text Alignment
-   * @default 'left'
-   */
   alignment?: TextAlignType;
+  onChange?: (newProps: EditorTitlePropsType) => void;
+  disabled?: boolean;
 }
 
 // 编辑器各种组件的 props， 与

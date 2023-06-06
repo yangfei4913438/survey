@@ -58,6 +58,9 @@ const useProjectRoute = () => {
   // 返回上个页面
   const toPrevRoute = () => navigate(-1);
 
+  // 去下一个页面
+  const toNextRoute = () => navigate(1);
+
   // 刷新页面
   const reFresh = () => navigate(0);
 
@@ -76,6 +79,7 @@ const useProjectRoute = () => {
     // 当前路由
     currentRoutePath: location.pathname,
     toPrevRoute,
+    toNextRoute,
     goToRoute,
     reFresh,
     // 直接跳转路由的React组件

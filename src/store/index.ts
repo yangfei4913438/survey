@@ -1,7 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import editorComponentsReducer from '@/store/editorComponents';
-import userInfoReducer from '@/store/userInfo';
+import { editorComponentsReducer } from '@/store/editorComponents';
+import { userInfoReducer } from '@/store/userInfo';
 
 export default configureStore({
   // 不同的命名空间，对应的reducer

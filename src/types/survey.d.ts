@@ -35,6 +35,8 @@ interface ResultComponentType {
   fe_id: string;
   title: string;
   type: EditorComponentTypes;
+  visible: boolean;
+  locked: boolean;
   props: EditorComponentsPropsType;
 }
 

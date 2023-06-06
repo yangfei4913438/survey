@@ -1,13 +1,11 @@
-import { changeSelectedId, resetEditorComponents } from './editorComponents';
-import { resetUserInfo, setUserInfo } from './userInfo';
+import { editorComponentActions } from './editorComponents';
+import { userInfoActions } from './userInfo';
 
 export default {
   userInfo: {
-    setUserInfo,
-    resetUserInfo,
+    ...userInfoActions,
   },
   editorComponents: {
-    resetEditorComponents,
-    changeSelectedId,
+    ...editorComponentActions,
   },
 };
