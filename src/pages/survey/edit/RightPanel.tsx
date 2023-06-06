@@ -1,6 +1,6 @@
 import { FileTextOutlined, SettingOutlined } from '@ant-design/icons';
-import { Tabs } from 'antd';
-import React, { FC, useEffect, useState } from 'react';
+import { Tabs, type TabsProps } from 'antd';
+import React, { FC, useState } from 'react';
 
 import ComponentProps from '@/pages/survey/edit/ComponentProps';
 
@@ -13,7 +13,7 @@ enum TAB_KEYS {
 const RightPanel: FC = () => {
   const [activeKey, setActiveKey] = useState(TAB_KEYS.PROP_KEY);
 
-  const tabsItems = [
+  const tabsItems: TabsProps['items'] = [
     {
       key: TAB_KEYS.PROP_KEY,
       label: (
@@ -22,7 +22,11 @@ const RightPanel: FC = () => {
           属性
         </span>
       ),
-      children: <ComponentProps />,
+      children: (
+        <div className='h-full w-full overflow-auto'>
+          <ComponentProps />
+        </div>
+      ),
     },
     {
       key: TAB_KEYS.SETTING_KEY,
@@ -32,11 +36,11 @@ const RightPanel: FC = () => {
           页面设置
         </span>
       ),
-      children: <div />,
+      children: <div>页面设置详情</div>,
     },
   ];
 
-  return <Tabs activeKey={activeKey} items={tabsItems}></Tabs>;
+  return <Tabs defaultActiveKey={activeKey} items={tabsItems} className='h-full'></Tabs>;
 };
 
 export default RightPanel;

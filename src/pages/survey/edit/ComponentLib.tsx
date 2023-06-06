@@ -26,7 +26,7 @@ const ComponentLib = () => {
 
     return (
       <div
-        className='cursor-pointer rounded border border-solid border-white p-3 hover:border-slate-300'
+        className='cursor-pointer rounded border border-solid border-slate-300 p-3 hover:border-sky-500'
         onClick={handleClick}
         key={conf.type} // 类型是不会重复的
       >
@@ -38,12 +38,12 @@ const ComponentLib = () => {
   };
 
   return (
-    <div className='space-y-5'>
+    <div className='space-y-4'>
       {componentConfGroup.map((group, idx) => {
         return (
-          <div key={group.groupId}>
+          <div className='space-y-3' key={group.groupId}>
             <Typography.Title level={3}>{group.groupName}</Typography.Title>
-            <div className='space-y-3'>{group.components.map((conf) => renderComponent(conf))}</div>
+            <div className='space-y-2'>{group.components.map((conf) => renderComponent(conf))}</div>
           </div>
         );
       })}

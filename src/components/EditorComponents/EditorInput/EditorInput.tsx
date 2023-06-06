@@ -8,11 +8,9 @@ const EditorInput: FC<EditorInputPropsType> = ({
   placeholder = EditorInputDefaultProps.placeholder,
 }) => {
   return (
-    <div>
+    <div className='space-y-2'>
       <Typography.Paragraph strong>{title}</Typography.Paragraph>
-      <div>
-        <Input placeholder={placeholder} />
-      </div>
+      <Input placeholder={placeholder} />
     </div>
   );
 };

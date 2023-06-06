@@ -1,19 +1,17 @@
-import { FC } from 'react';
-
+import { EditorComponentConfType } from './editorComponentTypes';
 import EditorInputConf from './EditorInput';
+import EditorParagraphConf from './EditorParagraph';
 import EditorTitleConf from './EditorTitle';
 
-// 统一的组件配置类型
-export type EditorComponentConfType = {
-  title: string;
-  type: EditorComponentTypes;
-  Component: FC<EditorComponentsPropsType>;
-  PropComponent: FC<EditorComponentsPropsType>;
-  defaultProps: EditorComponentsPropsType;
-};
+// 导出编辑器组件相关类型
+export * from './editorComponentTypes';
 
 // 全部的组件配置列表
-const editorComponentsConfList: EditorComponentConfType[] = [EditorInputConf, EditorTitleConf];
+const editorComponentsConfList: EditorComponentConfType[] = [
+  EditorInputConf,
+  EditorTitleConf,
+  EditorParagraphConf,
+];
 
 // 组件分组
 export const componentConfGroup = [
@@ -25,7 +23,7 @@ export const componentConfGroup = [
   {
     groupId: 'G002',
     groupName: '用户输入',
-    components: [EditorInputConf],
+    components: [EditorInputConf, EditorParagraphConf],
   },
 ];
 

@@ -25,7 +25,10 @@ const SurveyEdit: FC = () => {
         >
           <EditCanvas />
         </div>
-        <div className='w-80 bg-white p-4 xl:w-96 xl:p-8' onClick={(e) => e.stopPropagation()}>
+        <div
+          className='w-80 overflow-hidden bg-white p-4 xl:w-96 xl:p-8'
+          onClick={(e) => e.stopPropagation()}
+        >
           <RightPanel />
         </div>
       </div>

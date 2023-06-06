@@ -2,6 +2,7 @@ import { Typography } from 'antd';
 import cls from 'classnames';
 import { FC } from 'react';
 
+import { getTextAlign } from '../utils/styles';
 import { EditorTitleDefaultProps } from './interface';
 
 const EditorTitle: FC<EditorTitlePropsType> = ({
@@ -9,17 +10,6 @@ const EditorTitle: FC<EditorTitlePropsType> = ({
   level = EditorTitleDefaultProps.level,
   alignment = EditorTitleDefaultProps.alignment,
 }) => {
-  const getTextAlign = (textAlignment: TextAlignType) => {
-    switch (textAlignment) {
-      case 'left':
-        return 'text-left';
-      case 'center':
-        return 'text-center';
-      default:
-        return 'text-right';
-    }
-  };
-
   const getFontSize = (titleLevel: TitleLevelType) => {
     switch (titleLevel) {
       case 1:
@@ -36,10 +26,7 @@ const EditorTitle: FC<EditorTitlePropsType> = ({
   };
 
   return (
-    <Typography.Title
-      level={level}
-      className={cls('mb-0', getFontSize(level), getTextAlign(alignment))}
-    >
+    <Typography.Title level={level} className={cls(getFontSize(level), getTextAlign(alignment))}>
       {text}
     </Typography.Title>
   );

@@ -20,6 +20,14 @@
     display: inline;
     vertical-align: baseline;
   }
+  .ant-typography {
+    margin-bottom: 0 !important;
+    margin-top: 0 !important;
+  }
+  .ant-tabs-content-holder {
+    flex: 1 !important;
+    overflow: auto;
+  }
 }
 
 :root {

@@ -1,28 +1,34 @@
+// 表单控制类型
+interface FormControlType<T> {
+  // 接受数据回传
+  onChange?: (newProps: T) => void;
+  // 是否禁用表单
+  disabled?: boolean;
+}
+
 // 问卷输入框，传入参数类型
-interface EditorInputPropsType {
+interface EditorInputPropsType extends FormControlType<EditorInputPropsType> {
   title?: string;
   placeholder?: string;
-  onChange?: (newProps: EditorInputPropsType) => void;
-  disabled?: boolean;
 }
 
 // 问卷标题，传入参数类型
-interface EditorTitlePropsType {
+interface EditorTitlePropsType extends FormControlType<EditorTitlePropsType> {
   text?: string;
   level?: TitleLevelType;
   alignment?: TextAlignType;
-  onChange?: (newProps: EditorTitlePropsType) => void;
-  disabled?: boolean;
+}
+
+// 问卷段落，穿入参数类型
+interface EditorParagraphPropsType extends FormControlType<EditorParagraphPropsType> {
+  text?: string;
+  alignment?: TextAlignType;
 }
 
 // 编辑器各种组件的 props， 与
-type EditorComponentsPropsType = EditorTitlePropsType & EditorInputPropsType;
+type EditorComponentsPropsType = EditorTitlePropsType &
+  EditorInputPropsType &
+  EditorParagraphPropsType;
 
 // 编辑器组件类型
-type EditorComponentTypes = 'editor_title' | 'editor_input';
-// 编辑器组件对象Key数组
-const EditorComponentTypeKeyNames = <const>['title', 'input'];
-// 编辑器组件类型key
-type EditorComponentTypeKeyName = (typeof EditorComponentTypeKeyNames)[number];
-// 编辑器组件对象类型
-type EditorComponentTypesObjectType = { [k in EditorComponentTypeKeyName]: EditorComponentTypes };
+type EditorComponentTypes = 'editor_title' | 'editor_input' | 'editor_paragraph';
