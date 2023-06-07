@@ -3,12 +3,10 @@ import { Button, Form, Input, Radio, Select, Space } from 'antd';
 import { nanoid } from 'nanoid';
 import { FC, useEffect } from 'react';
 
-import { EditorRadioDefaultProps } from './interface';
-
 const PropsRadio: FC<EditorRadioPropsType> = ({
   title,
   selected,
-  options = EditorRadioDefaultProps.options,
+  options,
   orientation,
   disabled,
   onChange,
@@ -78,8 +76,8 @@ const PropsRadio: FC<EditorRadioPropsType> = ({
                       <Input placeholder='输入选项文字...' />
                     </Form.Item>
 
-                    {/* 最少要有3个选项，所以序号大于2，才显示删除按钮。name是关键字，操作属性删除只能这样操作 */}
-                    {index > 2 && <MinusCircleOutlined onClick={() => remove(name)} />}
+                    {/* 最少要有2个选项，所以长度大于2，才显示删除按钮。name是关键字，操作属性删除只能这样操作 */}
+                    {fields.length > 2 && <MinusCircleOutlined onClick={() => remove(name)} />}
                   </Space>
                 );
               })}

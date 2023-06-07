@@ -37,16 +37,28 @@ interface EditorTextareaPropsType extends FormControlType<EditorTextareaPropsTyp
   placeholder?: string;
 }
 // 问卷单选框，传入参数类型
-interface EditorRadioPropsType extends FormControlType<EditorTextareaPropsType> {
+interface EditorRadioPropsType extends FormControlType<EditorRadioPropsType> {
   title?: string;
   orientation?: Orientation;
   options?: SelectOption[];
   selected?: string;
 }
+// 问卷多选框，传入参数类型
+interface EditorCheckboxPropsType extends FormControlType<EditorCheckboxPropsType> {
+  // 标题
+  title?: string;
+  // 选项列表, 相同属性的类型要保持一致，否则TS会有异常
+  list?: CheckboxOption[];
+  // 选项布局
+  orientation?: Orientation;
+}
 
-// 编辑器各种组件的 props， 与
-type EditorComponentsPropsType = EditorHeaderPropsType &
-  EditorTitlePropsType &
-  EditorParagraphPropsType &
-  EditorInputPropsType &
-  EditorTextareaPropsType;
+// 编辑器各种组件的 props 联合类型
+type EditorComponentsPropsType =
+  | EditorHeaderPropsType
+  | EditorTitlePropsType
+  | EditorParagraphPropsType
+  | EditorInputPropsType
+  | EditorTextareaPropsType
+  | EditorRadioPropsType
+  | EditorCheckboxPropsType;

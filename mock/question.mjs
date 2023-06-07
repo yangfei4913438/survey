@@ -36,14 +36,14 @@ export const question = [
             {
               fe_id: Random.id(),
               type: component_types.header, // 组件类型不能重复，前后端一致
-              title: '',
+              title: '个人信息登记表',
               visible: true,
               locked: false,
               props: {
                 title: '个人信息登记表',
                 titleLevel: 1,
                 titleAlignment: 'center',
-                desc: '市场部员工专用',
+                desc: '技术工程部员工专用',
                 descAlignment: 'right',
               },
             },
@@ -130,6 +130,26 @@ export const question = [
               props: {
                 title: '入职时间',
                 placeholder: '请输入你的入职时间...',
+              },
+            },
+            {
+              fe_id: Random.id(),
+              type: component_types.checkbox,
+              title: '技术栈',
+              visible: true,
+              locked: false,
+              props: {
+                title: '技术栈',
+                orientation: 'horizontal',
+                list: [
+                  { value: 'web', label: 'Web端', checked: false, disabled: false },
+                  { value: 'mobile', label: '移动端', checked: false, disabled: false },
+                  { value: 'client', label: '客户端', checked: false, disabled: false },
+                  { value: 'service', label: '后端', checked: false, disabled: false },
+                  { value: 'test', label: '测试', checked: false, disabled: false },
+                  { value: 'system', label: '系统运维', checked: false, disabled: false },
+                  { value: 'database', label: 'DBA', checked: false, disabled: false },
+                ],
               },
             },
           ],

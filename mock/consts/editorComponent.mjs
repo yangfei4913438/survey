@@ -5,4 +5,5 @@ export const component_types = {
   input: 'editor_input',
   textarea: 'editor_textarea',
   radio: 'editor_radio',
+  checkbox: 'editor_checkbox',
 };
