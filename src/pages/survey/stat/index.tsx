@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 
-import useEditorComponents from '@/hooks/useEditorComponents';
+import useSurveyEditor from '@/hooks/useSurveyEditor';
 
 const SurveyStat: FC = () => {
-  const { editorComponentList, loading } = useEditorComponents();
+  const { editorComponentList, loading } = useSurveyEditor();
 
   return (
     <div className=''>

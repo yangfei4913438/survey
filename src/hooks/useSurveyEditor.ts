@@ -5,16 +5,20 @@ import useProjectRoute from '@/hooks/useProjectRoute';
 import { getQuestionServices } from '@/services/question';
 import storeActions from '@/store/storeActions';
 
-const useEditorComponents = () => {
+const useSurveyEditor = () => {
   const {
     pathParams: { id = '' },
   } = useProjectRoute();
 
-  // 取出redux中的数据，第一个泛型是整个store的导出类型，第二个是目标命名空间的类型
+  // 第一个泛型参数是整个store的导出类型，第二个泛型参数是目标命名空间的类型。下同。
+  // 取出组件列表数据
   const { editorComponentList, selectedId, copiedComponent } = useSelector<
     ReduxStoreType,
     EditorComponentsStateType
   >((state) => state.editorComponents);
+
+  // 取出页面数据
+  const pageInfo = useSelector<ReduxStoreType, PageInfoType>((state) => state.pageInfo);
 
   // redux 的 action 调用方法
   const dispatch = useDispatch();
@@ -29,19 +33,37 @@ const useEditorComponents = () => {
     dispatch(storeActions.editorComponents.resetEditorComponents(state));
   };
 
+  // 设置页面信息
+  const setPageInfo = (state: PageInfoType) => {
+    dispatch(storeActions.pageInfo.setPageInfo(state));
+  };
+
+  // 设置页面标题
+  const setPageTitle = (title: string) => {
+    dispatch(storeActions.pageInfo.setPageTitle(title));
+  };
+
   // 加载编辑器组件数据
-  const { loading, error } = useRequest(
+  const {
+    loading,
+    error,
+    run: getSurveyData,
+  } = useRequest(
     async () => {
-      return await getQuestionServices<ResultSurveyDetailType>(id);
+      return await getQuestionServices<SurveyDetailType>(id);
     },
     {
       ready: !!id,
-      onSuccess: ({ id, title, componentList }) => {
+      manual: true,
+      onSuccess: ({ id, title, desc, js, css, componentList }) => {
         let selectedId = '';
         if (componentList.length) {
           // 第一个组件默认选中
           selectedId = componentList[0].fe_id;
         }
+        // 设置页面数据
+        setPageInfo({ id, title, desc, js, css });
+        // 设置编辑器组件数据
         resetEditorComponents({ selectedId, editorComponentList: componentList, copiedComponent });
       },
     }
@@ -109,8 +131,12 @@ const useEditorComponents = () => {
   };
 
   return {
+    getSurveyData,
     loading,
     error,
+    pageInfo,
+    setPageInfo,
+    setPageTitle,
     selectedId,
     selectedComponent,
     editorComponentList,
@@ -131,4 +157,4 @@ const useEditorComponents = () => {
   };
 };
 
-export default useEditorComponents;
+export default useSurveyEditor;

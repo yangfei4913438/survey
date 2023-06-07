@@ -18,7 +18,7 @@ export async function createQuestionServices<T>() {
 // 更新问卷
 export async function updateQuestionServices<T>(
   id: string,
-  data: Partial<Omit<SurveySimpleType, '_id'>>
+  data: Partial<Omit<SurveySimpleType, '_id'>> | SurveyDetailType
 ) {
   return await request<T>({ name: 'patchQuestion', id, axiosConfig: { data } });
 }

@@ -20,8 +20,8 @@ const SurveyList: FC<ISurveyList> = ({ list, loading, children }) => {
       {list.length > 0 ? (
         <div className='space-y-4 pb-4'>
           {list.map((item) => {
-            const { _id } = item;
-            return <ListCard key={_id} {...item} />;
+            const { id } = item;
+            return <ListCard key={id} {...item} />;
           })}
           {children}
         </div>

@@ -5,13 +5,13 @@ import { surveyPath } from '@/consts/routes';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import { copyQuestionServices } from '@/services/question';
 
-const useCopySurvey = (_id: string) => {
+const useCopySurvey = (id: string) => {
   const { goToRoute } = useProjectRoute();
 
   // 复制问卷
   const { loading: copyLoading, run: copySurvey } = useRequest(
     async () => {
-      return await copyQuestionServices<{ id: string }>(_id);
+      return await copyQuestionServices<{ id: string }>(id);
     },
     {
       manual: true,

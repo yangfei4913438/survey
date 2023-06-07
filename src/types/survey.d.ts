@@ -1,6 +1,6 @@
 // 问卷简单类型，列表展示用
 interface SurveySimpleType {
-  _id: string;
+  id: string;
   title: string;
   isPublished: boolean;
   isStar: boolean;
@@ -33,9 +33,7 @@ interface SurveyPageInfoType {
 // 返回的组件数据类型
 type ResultComponentType = EditorComponentType;
 
-// 返回的问卷详情
-interface ResultSurveyDetailType {
-  id: string;
-  title: string;
+// 问卷详情, 查询和更新都是这个
+interface SurveyDetailType extends PageInfoType {
   componentList: ResultComponentType[];
 }

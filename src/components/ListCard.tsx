@@ -17,7 +17,7 @@ import useUpdateSurvey from '@/hooks/useUpdateSurvey';
 const { confirm } = Modal;
 
 export interface IListCard {
-  _id: string;
+  id: string;
   title: string;
   isStar: boolean;
   isPublished: boolean;
@@ -27,18 +27,18 @@ export interface IListCard {
 
 // 列表卡片
 const ListCard: FC<IListCard> = (surveyData) => {
-  const { _id, title, createdAt, answerCount, isPublished, isStar } = surveyData;
+  const { id, title, createdAt, answerCount, isPublished, isStar } = surveyData;
 
   const { goToRoute, Link } = useProjectRoute();
 
   const [starState, setStarState] = useState(isStar);
 
   // 复制问卷
-  const { copySurvey, copyLoading } = useCopySurvey(_id);
+  const { copySurvey, copyLoading } = useCopySurvey(id);
 
   // 更新问卷
   const { changeSurvey, changeSurveyLoading } = useUpdateSurvey({
-    _id,
+    id,
     updateData: {
       isStar: !isStar, // 这里要把需要更新的数据，直接写好放进去，里面是没有逻辑的
     },
@@ -55,7 +55,7 @@ const ListCard: FC<IListCard> = (surveyData) => {
   const [isDeleted, setIsDeleted] = useState(false);
   // 删除问卷（软删除）
   const { changeSurvey: delSurvey, changeSurveyLoading: delSurveyLoading } = useUpdateSurvey({
-    _id,
+    id,
     updateData: {
       isDeleted: true,
     },
@@ -79,9 +79,9 @@ const ListCard: FC<IListCard> = (surveyData) => {
   if (isDeleted) return null;
 
   // 编辑问卷Url
-  const editorUrl = surveyPath.edit(_id);
+  const editorUrl = surveyPath.edit(id);
   // 统计问卷Url
-  const statUrl = surveyPath.stat(_id);
+  const statUrl = surveyPath.stat(id);
 
   return (
     <article className={'w-full rounded bg-white p-3 hover:shadow-lg'}>

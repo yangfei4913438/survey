@@ -7,7 +7,7 @@ function makeData({ lens = 10, isDeleted = false, isStar = false }) {
   const mockData = {
     [`data|${lens}`]: [
       {
-        _id: '@id',
+        id: '@id',
         title: '@ctitle',
         'isPublished|1': '@boolean',
         answerCount: '@integer(50,1000)',
@@ -31,7 +31,10 @@ export const question = [
         errno: 0,
         data: {
           id: Random.id(),
-          title: Random.ctitle(),
+          title: '这是问卷标题',
+          desc: '这是问卷描述',
+          js: '',
+          css: '',
           componentList: [
             {
               fe_id: Random.id(),

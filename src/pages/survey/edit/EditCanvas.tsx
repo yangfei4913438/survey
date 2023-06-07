@@ -3,11 +3,11 @@ import cls from 'classnames';
 
 import { getComponentConfByType } from '@/components/EditorComponents';
 import useEditorCanvasKeyPress from '@/hooks/useEditorCanvasKeyPress';
-import useEditorComponents from '@/hooks/useEditorComponents';
+import useSurveyEditor from '@/hooks/useSurveyEditor';
 
 const EditCanvas = () => {
   useEditorCanvasKeyPress();
-  const { editorComponentList, loading, changeSelectedId, selectedId } = useEditorComponents();
+  const { editorComponentList, loading, changeSelectedId, selectedId } = useSurveyEditor();
 
   if (loading) {
     return (

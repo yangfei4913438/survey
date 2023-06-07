@@ -9,7 +9,7 @@ import {
 import { Button, Space, Tooltip } from 'antd';
 import React from 'react';
 
-import useEditorComponents from '@/hooks/useEditorComponents';
+import useSurveyEditor from '@/hooks/useSurveyEditor';
 
 const EditHeaderToolbar = () => {
   const {
@@ -21,7 +21,7 @@ const EditHeaderToolbar = () => {
     copySelectComponent,
     copiedComponent,
     pasteCopiedComponent,
-  } = useEditorComponents();
+  } = useSurveyEditor();
 
   const handleHidden = () => {
     // 工具栏里面操作的都是选中组件，其他地方不一定是

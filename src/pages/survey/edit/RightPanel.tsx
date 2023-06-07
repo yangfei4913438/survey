@@ -1,8 +1,10 @@
 import { FileTextOutlined, SettingOutlined } from '@ant-design/icons';
 import { Tabs, type TabsProps } from 'antd';
-import React, { FC, useState } from 'react';
+import React, { FC, useLayoutEffect, useState } from 'react';
 
+import useSurveyEditor from '@/hooks/useSurveyEditor';
 import ComponentProps from '@/pages/survey/edit/ComponentProps';
+import PageSetting from '@/pages/survey/edit/PageSetting';
 
 // TS 枚举
 enum TAB_KEYS {
@@ -11,7 +13,16 @@ enum TAB_KEYS {
 }
 
 const RightPanel: FC = () => {
+  const { selectedId, selectNextComponent } = useSurveyEditor();
   const [activeKey, setActiveKey] = useState(TAB_KEYS.PROP_KEY);
+
+  useLayoutEffect(() => {
+    if (!selectedId) {
+      setActiveKey(TAB_KEYS.SETTING_KEY);
+    } else {
+      setActiveKey(TAB_KEYS.PROP_KEY);
+    }
+  }, [selectedId]);
 
   const tabsItems: TabsProps['items'] = [
     {
@@ -22,11 +33,7 @@ const RightPanel: FC = () => {
           属性
         </span>
       ),
-      children: (
-        <div className='h-full w-full overflow-auto'>
-          <ComponentProps />
-        </div>
-      ),
+      children: <ComponentProps />,
     },
     {
       key: TAB_KEYS.SETTING_KEY,
@@ -36,11 +43,29 @@ const RightPanel: FC = () => {
           页面设置
         </span>
       ),
-      children: <div>页面设置详情</div>,
+      children: <PageSetting />,
     },
   ];
 
-  return <Tabs defaultActiveKey={activeKey} items={tabsItems} className='h-full'></Tabs>;
+  const handleTabChange = (key: string) => {
+    if (key === TAB_KEYS.PROP_KEY) {
+      // 不存在就设置为第一个，存在就不用管了
+      if (!selectedId) {
+        selectNextComponent();
+      }
+    }
+    // 更新tab
+    setActiveKey(key as TAB_KEYS);
+  };
+
+  return (
+    <Tabs
+      activeKey={activeKey}
+      items={tabsItems}
+      onChange={handleTabChange}
+      className='h-full'
+    ></Tabs>
+  );
 };
 
 export default RightPanel;

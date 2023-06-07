@@ -2,7 +2,7 @@ import { EyeInvisibleOutlined, EyeOutlined, LockOutlined, UnlockOutlined } from 
 import { Button, Divider, Input, message, Space, Tooltip, Typography } from 'antd';
 import React, { ChangeEvent, useState } from 'react';
 
-import useEditorComponents from '@/hooks/useEditorComponents';
+import useSurveyEditor from '@/hooks/useSurveyEditor';
 
 const Layers = () => {
   const {
@@ -12,7 +12,7 @@ const Layers = () => {
     editorComponentList,
     changeSelectedId,
     changeComponentTitle,
-  } = useEditorComponents();
+  } = useSurveyEditor();
 
   const [changeTitleID, setChangeTitleID] = useState('');
 

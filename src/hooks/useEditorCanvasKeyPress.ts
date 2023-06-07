@@ -2,16 +2,16 @@
 import { useKeyPress } from 'ahooks';
 
 import useEditActive from '@/hooks/useEditActive';
-import useEditorComponents from '@/hooks/useEditorComponents';
+import useSurveyEditor from '@/hooks/useSurveyEditor';
 
 const useEditorCanvasKeyPress = () => {
   const {
-    removeSelectedComponent,
+    // removeSelectedComponent,
     copySelectComponent,
     selectPrevComponent,
     selectNextComponent,
     pasteCopiedComponent,
-  } = useEditorComponents();
+  } = useSurveyEditor();
   const editActive = useEditActive();
 
   // 复制

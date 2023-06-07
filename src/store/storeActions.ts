@@ -1,3 +1,5 @@
+import { pageInfoActions } from '@/store/pageInfo';
+
 import { editorComponentActions } from './editorComponents';
 import { userInfoActions } from './userInfo';
 
@@ -7,5 +9,8 @@ export default {
   },
   editorComponents: {
     ...editorComponentActions,
+  },
+  pageInfo: {
+    ...pageInfoActions,
   },
 };

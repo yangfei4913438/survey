@@ -1,13 +1,13 @@
 import React, { FC } from 'react';
 
-import useEditorComponents from '@/hooks/useEditorComponents';
+import useSurveyEditor from '@/hooks/useSurveyEditor';
 import EditCanvas from '@/pages/survey/edit/EditCanvas';
 import EditHeader from '@/pages/survey/edit/EditHeader';
 import LeftPanel from '@/pages/survey/edit/LeftPanel';
 import RightPanel from '@/pages/survey/edit/RightPanel';
 
 const SurveyEdit: FC = () => {
-  const { clearSelectedId } = useEditorComponents();
+  const { clearSelectedId } = useSurveyEditor();
 
   return (
     <div className='flex h-full min-w-lg flex-col bg-gray-50'>

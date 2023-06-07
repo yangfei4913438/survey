@@ -153,8 +153,8 @@ const editorComponentsSlice = createSlice({
       // 当前索引
       const idx = visibleList.findIndex((c) => c.fe_id === state.selectedId);
       if (idx < 0) {
-        // 没选中
-        return;
+        // 当前没选中, 就选中第一个
+        state.selectedId = visibleList[0].fe_id;
       } else if (idx === visibleList.length - 1) {
         // 已经是最后一个了
         return;

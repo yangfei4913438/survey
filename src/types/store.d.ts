@@ -2,6 +2,7 @@
 interface ReduxStoreType {
   userInfo: LocalUserType;
   editorComponents: EditorComponentsStateType;
+  pageInfo: PageInfoType;
 }
 
 // 编辑器组件类型
@@ -28,4 +29,18 @@ interface EditorComponentsStateType {
   editorComponentList: EditorComponentType[];
   // 拷贝的组件
   copiedComponent: EditorComponentType | null;
+}
+
+// 页面信息
+interface PageInfoType {
+  // 问卷ID
+  id: string;
+  // 问卷标题
+  title: string;
+  // 问卷描述
+  desc?: string;
+  // 问卷的JS代码
+  js?: string;
+  // 问卷的css代码
+  css?: string;
 }

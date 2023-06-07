@@ -2,10 +2,10 @@ import { Typography } from 'antd';
 import { nanoid } from 'nanoid';
 
 import { componentConfGroup, EditorComponentConfType } from '@/components/EditorComponents';
-import useEditorComponents from '@/hooks/useEditorComponents';
+import useSurveyEditor from '@/hooks/useSurveyEditor';
 
 const ComponentLib = () => {
-  const { addComponent } = useEditorComponents();
+  const { addComponent } = useSurveyEditor();
 
   // 渲染默认配置的组件
   const renderComponent = (conf: EditorComponentConfType) => {

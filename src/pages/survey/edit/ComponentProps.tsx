@@ -1,12 +1,12 @@
 import { FC } from 'react';
 
 import { getComponentConfByType } from '@/components/EditorComponents';
-import useEditorComponents from '@/hooks/useEditorComponents';
+import useSurveyEditor from '@/hooks/useSurveyEditor';
 
 const NoProp: FC = () => <div className='text-center'>未选中任何组件</div>;
 
 const ComponentProps = () => {
-  const { selectedComponent, changeComponentProps } = useEditorComponents();
+  const { selectedComponent, changeComponentProps } = useSurveyEditor();
   if (!selectedComponent) return <NoProp />;
 
   const { type, props, fe_id, locked } = selectedComponent;
@@ -19,7 +19,11 @@ const ComponentProps = () => {
   };
 
   const { PropComponent } = conf;
-  return <PropComponent {...props} onChange={changeProps} disabled={locked} />;
+  return (
+    <div className='h-full w-full overflow-auto'>
+      <PropComponent {...props} onChange={changeProps} disabled={locked} />
+    </div>
+  );
 };
 
 export default ComponentProps;
