@@ -2,10 +2,12 @@ import {
   BlockOutlined,
   CopyOutlined,
   DeleteOutlined,
-  EyeInvisibleOutlined,
+  EyeOutlined,
   LockOutlined,
+  UnlockOutlined,
 } from '@ant-design/icons';
 import { Button, Space, Tooltip } from 'antd';
+import React from 'react';
 
 import useEditorComponents from '@/hooks/useEditorComponents';
 
@@ -32,24 +34,24 @@ const EditHeaderToolbar = () => {
 
   return (
     <Space>
-      <Tooltip title={'删除'}>
+      <Tooltip title={'点击删除'}>
         <Button shape={'circle'} icon={<DeleteOutlined />} onClick={removeSelectedComponent} />
       </Tooltip>
-      <Tooltip title={'隐藏'}>
-        <Button shape={'circle'} icon={<EyeInvisibleOutlined />} onClick={handleHidden} />
+      <Tooltip title={'点击隐藏'}>
+        <Button shape={'circle'} icon={<EyeOutlined />} onClick={handleHidden} />
       </Tooltip>
-      <Tooltip title={'锁定'}>
+      <Tooltip title={selectedComponent?.locked ? '点击解锁' : '点击锁定'}>
         <Button
           shape={'circle'}
           type={selectedComponent?.locked ? 'primary' : 'default'}
-          icon={<LockOutlined />}
+          icon={selectedComponent?.locked ? <LockOutlined /> : <UnlockOutlined />}
           onClick={handleLock}
         />
       </Tooltip>
-      <Tooltip title={'复制'}>
+      <Tooltip title={'点击复制'}>
         <Button shape={'circle'} icon={<CopyOutlined />} onClick={copySelectComponent} />
       </Tooltip>
-      <Tooltip title={'粘贴'}>
+      <Tooltip title={'点击粘贴'}>
         <Button
           shape={'circle'}
           icon={<BlockOutlined />}

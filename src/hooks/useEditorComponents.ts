@@ -49,7 +49,10 @@ const useEditorComponents = () => {
 
   // 设置选中ID
   const changeSelectedId = (id: string) => {
-    dispatch(storeActions.editorComponents.changeSelectedId(id));
+    // 如果已经是当前ID，那么就不要执行了。
+    if (selectedId !== id) {
+      dispatch(storeActions.editorComponents.changeSelectedId(id));
+    }
   };
 
   // 被选中的组件
@@ -65,9 +68,14 @@ const useEditorComponents = () => {
     dispatch(storeActions.editorComponents.removeSelectedComponent());
   };
 
-  // 修改属性
+  // 修改组件props属性
   const changeComponentProps = (fe_id: string, newProps: EditorComponentsPropsType) => {
     dispatch(storeActions.editorComponents.changeComponentProps({ fe_id, newProps }));
+  };
+
+  // 修改组件标题
+  const changeComponentTitle = (fe_id: string, title: string) => {
+    dispatch(storeActions.editorComponents.changeComponentTitle({ fe_id, title }));
   };
 
   // 设置组件的隐藏/显示状态
@@ -112,6 +120,7 @@ const useEditorComponents = () => {
     changeSelectedId,
     clearSelectedId,
     changeComponentProps,
+    changeComponentTitle,
     setComponentVisible,
     removeSelectedComponent,
     toggleComponentLockStatus,

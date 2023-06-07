@@ -33,6 +33,19 @@ const editorComponentsSlice = createSlice({
     ) => {
       pushComponent(state, action.payload);
     },
+    // 修改组件标题
+    changeComponentTitle: (
+      state: EditorComponentsStateType,
+      action: PayloadAction<{ fe_id: string; title: string }>
+    ) => {
+      // 取出数据
+      const { fe_id, title } = action.payload;
+      // 找到目标组件
+      const component = state.editorComponentList.find((comp) => comp.fe_id === fe_id);
+      if (component) {
+        component.title = title;
+      }
+    },
     // 修改组件的参数
     changeComponentProps: (
       state: EditorComponentsStateType,
@@ -53,7 +66,7 @@ const editorComponentsSlice = createSlice({
         state.selectedId = '';
         state.editorComponentList = [];
       } else {
-        const { index } = changeSelectedId(state);
+        const { index } = changeSelectedId(state, state.selectedId);
         // 移除之前选中的组件
         state.editorComponentList.splice(index, 1);
       }
@@ -81,7 +94,7 @@ const editorComponentsSlice = createSlice({
           state.selectedId = '';
           visibleList[0].visible = false;
         } else {
-          const { index } = changeSelectedId(state);
+          const { index } = changeSelectedId(state, fe_id);
           // 更新组件状态
           state.editorComponentList[index].visible = false;
         }

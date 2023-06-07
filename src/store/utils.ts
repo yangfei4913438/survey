@@ -1,6 +1,6 @@
 // 组件数量大于1的时候，组件删除或者隐藏，变更选中组件ID
-export const changeSelectedId = (state: EditorComponentsStateType) => {
-  const currIndex = state.editorComponentList.findIndex((c) => c.fe_id === state.selectedId);
+export const changeSelectedId = (state: EditorComponentsStateType, currentID: string) => {
+  const currIndex = state.editorComponentList.findIndex((c) => c.fe_id === currentID);
   // 大于1个组件的处理方法
   // 如果已经是最后一个组件了，选中上一个组件
   if (currIndex + 1 >= state.editorComponentList.length) {
