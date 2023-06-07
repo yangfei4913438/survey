@@ -2,6 +2,7 @@ import { EditorComponentConfType } from './editorComponentTypes';
 import EditorHeaderConf from './EditorHeader';
 import EditorInputConf from './EditorInput';
 import EditorParagraphConf from './EditorParagraph';
+import EditorRadioConf from './EditorRadio';
 import EditorTextareaConf from './EditorTextarea';
 import EditorTitleConf from './EditorTitle';
 
@@ -15,6 +16,7 @@ const editorComponentsConfList: EditorComponentConfType[] = [
   EditorParagraphConf,
   EditorInputConf,
   EditorTextareaConf,
+  EditorRadioConf,
 ];
 
 // 组件分组
@@ -27,7 +29,7 @@ export const componentConfGroup = [
   {
     groupId: 'G002',
     groupName: '用户输入',
-    components: [EditorInputConf, EditorTextareaConf],
+    components: [EditorInputConf, EditorTextareaConf, EditorRadioConf],
   },
 ];
 

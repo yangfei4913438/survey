@@ -5,4 +5,5 @@ export const editorComponentTypes: SurveyEditorComponentTypes = {
   paragraph: 'editor_paragraph',
   input: 'editor_input',
   textarea: 'editor_textarea',
+  radio: 'editor_radio',
 };

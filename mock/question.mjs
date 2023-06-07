@@ -33,7 +33,6 @@ export const question = [
           id: Random.id(),
           title: Random.ctitle(),
           componentList: [
-            // header
             {
               fe_id: Random.id(),
               type: component_types.header, // 组件类型不能重复，前后端一致
@@ -48,7 +47,6 @@ export const question = [
                 descAlignment: 'right',
               },
             },
-            // title
             {
               fe_id: Random.id(),
               type: component_types.title, // 组件类型不能重复，前后端一致
@@ -61,7 +59,6 @@ export const question = [
                 alignment: 'left',
               },
             },
-            // input
             {
               fe_id: Random.id(),
               type: component_types.input,
@@ -73,7 +70,23 @@ export const question = [
                 placeholder: '请输入你的姓名...',
               },
             },
-            // input
+            {
+              fe_id: Random.id(),
+              type: component_types.radio,
+              title: '性别',
+              visible: true,
+              locked: false,
+              props: {
+                title: '性别',
+                orientation: 'horizontal',
+                options: [
+                  { value: 'boy', label: '男' },
+                  { value: 'girl', label: '女' },
+                  { value: 'lgbtq', label: 'LGBTQ' },
+                ],
+                selected: '',
+              },
+            },
             {
               fe_id: Random.id(),
               type: component_types.input,
@@ -85,7 +98,6 @@ export const question = [
                 placeholder: '请输入你的年龄...',
               },
             },
-            // title
             {
               fe_id: Random.id(),
               type: component_types.title, // 组件类型不能重复，前后端一致
@@ -98,7 +110,6 @@ export const question = [
                 alignment: 'left',
               },
             },
-            // input
             {
               fe_id: Random.id(),
               type: component_types.input,
