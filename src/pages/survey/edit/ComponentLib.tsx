@@ -13,9 +13,11 @@ const ComponentLib = () => {
 
     // 点击插入到编辑区域
     const handleClick = () => {
+      const id = nanoid(); // 这里其实是新创建一个组件，不是把组件库里的通用组件拿进去。。。
       // 添加新组件
       addComponent({
-        fe_id: nanoid(), // 这里其实是新创建一个组件，不是把组件库里的通用组件拿进去。。。
+        id,
+        fe_id: id,
         title,
         type,
         visible: true,

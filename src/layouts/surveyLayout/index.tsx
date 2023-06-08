@@ -1,15 +1,6 @@
-import { FC, useLayoutEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import useSurveyEditor from '@/hooks/useSurveyEditor';
-
-const SurveyLayout: FC = () => {
-  const { getSurveyData } = useSurveyEditor();
-
-  useLayoutEffect(() => {
-    getSurveyData();
-  }, [getSurveyData]);
-
+const SurveyLayout = () => {
   return (
     <section className='h-screen w-screen'>
       <Outlet />

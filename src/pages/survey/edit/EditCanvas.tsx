@@ -1,6 +1,6 @@
 import { Spin } from 'antd';
 import cls from 'classnames';
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import {
   DragOverlay,
@@ -17,6 +17,7 @@ const EditCanvas = () => {
   useEditorCanvasKeyPress();
   const {
     loading,
+    getSurveyData,
     changeSelectedId,
     selectedId,
     activeComponent,
@@ -24,6 +25,11 @@ const EditCanvas = () => {
     editorComponentList,
     setEditorComponentList,
   } = useSurveyEditor();
+
+  useEffect(() => {
+    // 注意：如果不是在相同组件里面发起的请求，loading的值会一直都是false！！！
+    getSurveyData();
+  }, [getSurveyData]);
 
   if (loading) {
     return (

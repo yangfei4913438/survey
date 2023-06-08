@@ -17,6 +17,7 @@ const useUpdateSurvey = <T>({ id, updateData, onSuccess, onError }: IUseUpdateSu
       return await updateQuestionServices<T>(id, updateData);
     },
     {
+      ready: !!id,
       manual: true,
       onSuccess: onSuccess,
       onError: onError,
