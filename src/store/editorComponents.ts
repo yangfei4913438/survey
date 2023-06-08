@@ -8,6 +8,7 @@ const initialState: EditorComponentsStateType = {
   editorComponentList: [],
   selectedId: '',
   copiedComponent: null,
+  activeComponent: null,
 };
 
 const editorComponentsSlice = createSlice({
@@ -21,6 +22,20 @@ const editorComponentsSlice = createSlice({
       action: PayloadAction<EditorComponentsStateType>
     ) => {
       return action.payload;
+    },
+    // 设置编辑器组件列表
+    setEditorComponentList: (
+      state: EditorComponentsStateType,
+      action: PayloadAction<EditorComponentType[]>
+    ) => {
+      state.editorComponentList = action.payload;
+    },
+    // 设置拖拽活动组件
+    setActiveComponent: (
+      state: EditorComponentsStateType,
+      action: PayloadAction<EditorComponentType | null>
+    ) => {
+      state.activeComponent = action.payload;
     },
     // 修改选中ID
     changeSelectedId: (state: EditorComponentsStateType, action: PayloadAction<string>) => {
@@ -77,26 +92,29 @@ const editorComponentsSlice = createSlice({
       action: PayloadAction<{ fe_id: string; visible: boolean }>
     ) => {
       const { fe_id, visible } = action.payload;
-      // 判断显示还是隐藏
-      if (visible) {
-        // 显示操作
-        state.selectedId = fe_id;
-        // 找到目标组件
-        const component = state.editorComponentList.find((comp) => comp.fe_id === fe_id);
-        if (component) {
-          component.visible = true;
-        }
-      } else {
-        const visibleList = state.editorComponentList.filter((c) => c.visible);
-        // 隐藏操作
-        // 如果显示组件的数量就1个，清空选中组件ID
-        if (visibleList.length === 1) {
-          state.selectedId = '';
-          visibleList[0].visible = false;
+      // 找到目标组件
+      const component = state.editorComponentList.find((comp) => comp.fe_id === fe_id);
+      // 找到才能继续处理
+      if (component) {
+        component.visible = visible;
+
+        // 处理选中组件
+        // 判断显示还是隐藏
+        if (visible) {
+          // 显示操作
+          state.selectedId = fe_id;
         } else {
-          const { index } = changeSelectedId(state, fe_id);
-          // 更新组件状态
-          state.editorComponentList[index].visible = false;
+          const visibleList = state.editorComponentList.filter((c) => c.visible);
+          // 隐藏操作
+          // 如果显示组件的数量就1个，清空选中组件ID
+          if (visibleList.length === 1) {
+            state.selectedId = '';
+            visibleList[0].visible = false;
+          } else {
+            const { index } = changeSelectedId(state, fe_id);
+            // 更新组件状态
+            state.editorComponentList[index].visible = false;
+          }
         }
       }
     },

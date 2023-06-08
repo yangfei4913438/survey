@@ -1,13 +1,29 @@
 import { Spin } from 'antd';
 import cls from 'classnames';
+import React from 'react';
 
+import {
+  DragOverlay,
+  DragSortableSimple,
+  SortableContainer,
+  SortableItem,
+  SortableItemWrapper,
+} from '@/components/DragSortable';
 import { getComponentConfByType } from '@/components/EditorComponents';
 import useEditorCanvasKeyPress from '@/hooks/useEditorCanvasKeyPress';
 import useSurveyEditor from '@/hooks/useSurveyEditor';
 
 const EditCanvas = () => {
   useEditorCanvasKeyPress();
-  const { editorComponentList, loading, changeSelectedId, selectedId } = useSurveyEditor();
+  const {
+    loading,
+    changeSelectedId,
+    selectedId,
+    activeComponent,
+    setActiveComponent,
+    editorComponentList,
+    setEditorComponentList,
+  } = useSurveyEditor();
 
   if (loading) {
     return (
@@ -31,27 +47,55 @@ const EditCanvas = () => {
     changeSelectedId(id);
   };
 
+  const renderComponentList = (comp: EditorComponentType) => {
+    return (
+      <div
+        className={cls(
+          { hidden: !comp.visible },
+          'm-3 rounded border border-solid p-3 cursor-pointer',
+          comp.fe_id === selectedId ? 'border-sky-500' : 'border-white hover:border-slate-300',
+          comp.locked ? 'cursor-not-allowed opacity-50' : ' '
+        )}
+        onClick={() => handleComponentClick(comp.fe_id)}
+        key={comp.fe_id}
+      >
+        <div className='pointer-events-none'>{renderComponent(comp.type, comp.props)}</div>
+      </div>
+    );
+  };
+
+  const onDragEnd = () => {
+    console.log('drag end...');
+  };
+
+  const onDragStart = () => {
+    console.log('drag start...');
+  };
+
   return (
     <div className='min-h-full overflow-hidden bg-white'>
-      {editorComponentList
-        .filter((item) => item.visible)
-        .map((item) => {
-          return (
-            <div
-              className={cls(
-                'm-3 rounded border border-solid p-3 cursor-pointer',
-                item.fe_id === selectedId
-                  ? 'border-sky-500'
-                  : 'border-white hover:border-slate-300',
-                item.locked ? 'cursor-not-allowed opacity-50' : ' '
-              )}
-              onClick={() => handleComponentClick(item.fe_id)}
-              key={item.fe_id}
-            >
-              <div className='pointer-events-none'>{renderComponent(item.type, item.props)}</div>
-            </div>
-          );
-        })}
+      <DragSortableSimple<EditorComponentType>
+        containers={editorComponentList}
+        setContainers={setEditorComponentList}
+        setActiveItem={setActiveComponent}
+        onDragStart={onDragStart}
+        onDragEnd={onDragEnd}
+      >
+        <SortableContainer containerId={'canvas'} itemIds={editorComponentList.map((i) => i.fe_id)}>
+          {editorComponentList.map((item) => {
+            return (
+              <SortableItemWrapper key={item.fe_id} itemId={item.fe_id}>
+                {renderComponentList(item)}
+              </SortableItemWrapper>
+            );
+          })}
+        </SortableContainer>
+        <DragOverlay>
+          {activeComponent && (
+            <SortableItem DragOverlay>{renderComponentList(activeComponent)}</SortableItem>
+          )}
+        </DragOverlay>
+      </DragSortableSimple>
     </div>
   );
 };

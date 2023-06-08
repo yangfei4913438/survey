@@ -12,7 +12,7 @@ const useSurveyEditor = () => {
 
   // 第一个泛型参数是整个store的导出类型，第二个泛型参数是目标命名空间的类型。下同。
   // 取出组件列表数据
-  const { editorComponentList, selectedId, copiedComponent } = useSelector<
+  const { editorComponentList, activeComponent, selectedId, copiedComponent } = useSelector<
     ReduxStoreType,
     EditorComponentsStateType
   >((state) => state.editorComponents);
@@ -31,6 +31,16 @@ const useSurveyEditor = () => {
   // 设置编辑器组件数据
   const resetEditorComponents = (state: EditorComponentsStateType) => {
     dispatch(storeActions.editorComponents.resetEditorComponents(state));
+  };
+
+  // 设置活动组件
+  const setActiveComponent = (comp: EditorComponentType | null) => {
+    dispatch(storeActions.editorComponents.setActiveComponent(comp));
+  };
+
+  // 设置编辑器组件列表
+  const setEditorComponentList = (list: EditorComponentType[]) => {
+    dispatch(storeActions.editorComponents.setEditorComponentList(list));
   };
 
   // 设置页面信息
@@ -64,7 +74,12 @@ const useSurveyEditor = () => {
         // 设置页面数据
         setPageInfo({ id, title, desc, js, css });
         // 设置编辑器组件数据
-        resetEditorComponents({ selectedId, editorComponentList: componentList, copiedComponent });
+        resetEditorComponents({
+          selectedId,
+          editorComponentList: componentList.map((c) => ({ ...c, id: c.fe_id })), // 加个ID给前端用的
+          copiedComponent: null,
+          activeComponent: null,
+        });
       },
     }
   );
@@ -141,7 +156,10 @@ const useSurveyEditor = () => {
     selectedComponent,
     editorComponentList,
     copiedComponent,
+    activeComponent,
     addComponent,
+    setActiveComponent,
+    setEditorComponentList,
     resetEditorComponents,
     changeSelectedId,
     clearSelectedId,

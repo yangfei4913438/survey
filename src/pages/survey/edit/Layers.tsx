@@ -2,14 +2,24 @@ import { EyeInvisibleOutlined, EyeOutlined, LockOutlined, UnlockOutlined } from 
 import { Button, Divider, Input, message, Space, Tooltip, Typography } from 'antd';
 import React, { ChangeEvent, useState } from 'react';
 
+import {
+  DragOverlay,
+  DragSortableSimple,
+  SortableContainer,
+  SortableItem,
+  SortableItemWrapper,
+} from '@/components/DragSortable';
 import useSurveyEditor from '@/hooks/useSurveyEditor';
 
 const Layers = () => {
   const {
+    editorComponentList,
+    setActiveComponent,
+    activeComponent,
     setComponentVisible,
     toggleComponentLockStatus,
     selectedId,
-    editorComponentList,
+    setEditorComponentList,
     changeSelectedId,
     changeComponentTitle,
   } = useSurveyEditor();
@@ -17,6 +27,7 @@ const Layers = () => {
   const [changeTitleID, setChangeTitleID] = useState('');
 
   const handleHidden = (comp: EditorComponentType) => {
+    console.log('数据:', comp.fe_id, !comp.visible);
     setComponentVisible(comp.fe_id, !comp.visible);
   };
 
@@ -44,48 +55,80 @@ const Layers = () => {
     }
   };
 
+  const renderComponentList = (comp: EditorComponentType) => {
+    return (
+      <>
+        <div key={comp.fe_id} className='group/layers flex py-3'>
+          <Typography.Paragraph
+            strong
+            className='flex flex-1 cursor-pointer items-center'
+            onClick={() => handleTitleClick(comp)}
+          >
+            {changeTitleID === comp.fe_id ? (
+              <Input value={comp.title} onChange={(e) => handleChangeTitle(e, comp)} />
+            ) : (
+              comp.title
+            )}
+          </Typography.Paragraph>
+          <Space className='w-20 opacity-30 group-hover/layers:opacity-100'>
+            <Tooltip title={comp.visible ? '点击隐藏' : '点击可见'}>
+              <Button
+                size='middle'
+                shape='circle'
+                type={comp.visible ? 'default' : 'primary'}
+                icon={comp.visible ? <EyeOutlined /> : <EyeInvisibleOutlined />}
+                onClick={() => handleHidden(comp)}
+              />
+            </Tooltip>
+            <Tooltip title={comp.locked ? '点击解锁' : '点击锁定'}>
+              <Button
+                size='middle'
+                shape='circle'
+                type={comp.locked ? 'primary' : 'default'}
+                icon={comp.locked ? <LockOutlined /> : <UnlockOutlined />}
+                onClick={() => handleLockToggle(comp)}
+              />
+            </Tooltip>
+          </Space>
+        </div>
+        <Divider className='my-0' />
+      </>
+    );
+  };
+
+  const onDragEnd = () => {
+    // 更新编辑器组件列表信息
+    console.log('drag end...');
+  };
+
+  const onDragStart = () => {
+    console.log('drag start...');
+  };
+
   return (
     <div>
-      {editorComponentList.map((comp) => {
-        return (
-          <>
-            <div key={comp.fe_id} className='group/layers flex py-3'>
-              <Typography.Paragraph
-                strong
-                className='flex flex-1 cursor-pointer items-center'
-                onClick={() => handleTitleClick(comp)}
-              >
-                {changeTitleID === comp.fe_id ? (
-                  <Input value={comp.title} onChange={(e) => handleChangeTitle(e, comp)} />
-                ) : (
-                  comp.title
-                )}
-              </Typography.Paragraph>
-              <Space className='opacity-30 group-hover/layers:opacity-100'>
-                <Tooltip title={comp.visible ? '点击隐藏' : '点击可见'}>
-                  <Button
-                    size='middle'
-                    shape='circle'
-                    type={comp.visible ? 'default' : 'primary'}
-                    icon={comp.visible ? <EyeOutlined /> : <EyeInvisibleOutlined />}
-                    onClick={() => handleHidden(comp)}
-                  />
-                </Tooltip>
-                <Tooltip title={comp.locked ? '点击解锁' : '点击锁定'}>
-                  <Button
-                    size='middle'
-                    shape='circle'
-                    type={comp.locked ? 'primary' : 'default'}
-                    icon={comp.locked ? <LockOutlined /> : <UnlockOutlined />}
-                    onClick={() => handleLockToggle(comp)}
-                  />
-                </Tooltip>
-              </Space>
-            </div>
-            <Divider className='my-0' />
-          </>
-        );
-      })}
+      <DragSortableSimple<EditorComponentType>
+        containers={editorComponentList}
+        setContainers={setEditorComponentList}
+        setActiveItem={setActiveComponent}
+        onDragStart={onDragStart}
+        onDragEnd={onDragEnd}
+      >
+        <SortableContainer containerId={'layers'} itemIds={editorComponentList.map((i) => i.fe_id)}>
+          {editorComponentList.map((item) => {
+            return (
+              <SortableItemWrapper key={item.fe_id} itemId={item.fe_id}>
+                {renderComponentList(item)}
+              </SortableItemWrapper>
+            );
+          })}
+        </SortableContainer>
+        <DragOverlay>
+          {activeComponent && (
+            <SortableItem DragOverlay>{renderComponentList(activeComponent)}</SortableItem>
+          )}
+        </DragOverlay>
+      </DragSortableSimple>
     </div>
   );
 };

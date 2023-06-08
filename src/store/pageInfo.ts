@@ -18,7 +18,7 @@ export const pageInfoSlice = createSlice({
     setPageTitle: (state: PageInfoType, action: PayloadAction<string>) => {
       state.title = action.payload;
     },
-    // 登出就是重置
+    // 重置数据
     resetPageInfo: () => initState,
   },
 });

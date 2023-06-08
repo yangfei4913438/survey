@@ -7,6 +7,8 @@ interface ReduxStoreType {
 
 // 编辑器组件类型
 interface EditorComponentType {
+  // id 和 fe_id 一样，主要是用于一些特殊场景下需要id字段。
+  id: string;
   // 表示前端生成的ID，和后端的ID进行区分
   fe_id: string;
   // 组件标题
@@ -29,6 +31,8 @@ interface EditorComponentsStateType {
   editorComponentList: EditorComponentType[];
   // 拷贝的组件
   copiedComponent: EditorComponentType | null;
+  // 拖拽的激活组件
+  activeComponent: EditorComponentType | null;
 }
 
 // 页面信息
