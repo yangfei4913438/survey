@@ -11,11 +11,10 @@ export const SortableItem: FC<SortableItemProps> = ({ children, isDragging, Drag
   return (
     <div
       className={cx(
-        '',
         isDragging // isDragging 设置底部原来的样式，
-          ? 'opacity-20 bg-gray-100'
+          ? 'opacity-20 bg-gray-100 border border-dashed border-slate-500'
           : DragOverlay //  DragOverlay 设置拖拽对象的样式
-          ? 'bg-gray-100 shadow rounded px-3 cursor-move'
+          ? 'bg-gray-100 shadow rounded border-none hover:border-none cursor-move'
           : 'bg-white' // 默认样式
       )}
     >

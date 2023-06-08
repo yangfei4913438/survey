@@ -47,12 +47,13 @@ const EditCanvas = () => {
     changeSelectedId(id);
   };
 
-  const renderComponentList = (comp: EditorComponentType) => {
+  const renderComponentList = (comp: EditorComponentType, dragging = false) => {
     return (
       <div
         className={cls(
           { hidden: !comp.visible },
-          'm-3 rounded border border-solid p-3 cursor-pointer',
+          'p-3',
+          !dragging && 'rounded border border-solid cursor-pointer',
           comp.fe_id === selectedId ? 'border-sky-500' : 'border-white hover:border-slate-300',
           comp.locked ? 'cursor-not-allowed opacity-50' : ' '
         )}
@@ -64,12 +65,12 @@ const EditCanvas = () => {
     );
   };
 
-  const onDragEnd = () => {
-    console.log('drag end...');
+  const onDragStart = () => {
+    console.log('canvas drag start...');
   };
 
-  const onDragStart = () => {
-    console.log('drag start...');
+  const onDragEnd = () => {
+    console.log('canvas drag end...');
   };
 
   return (
@@ -82,17 +83,19 @@ const EditCanvas = () => {
         onDragEnd={onDragEnd}
       >
         <SortableContainer containerId={'canvas'} itemIds={editorComponentList.map((i) => i.fe_id)}>
-          {editorComponentList.map((item) => {
-            return (
-              <SortableItemWrapper key={item.fe_id} itemId={item.fe_id}>
-                {renderComponentList(item)}
-              </SortableItemWrapper>
-            );
-          })}
+          <div className={'space-y-3'}>
+            {editorComponentList.map((item) => {
+              return (
+                <SortableItemWrapper key={item.fe_id} itemId={item.fe_id}>
+                  {renderComponentList(item, activeComponent?.fe_id === item.fe_id)}
+                </SortableItemWrapper>
+              );
+            })}
+          </div>
         </SortableContainer>
         <DragOverlay>
           {activeComponent && (
-            <SortableItem DragOverlay>{renderComponentList(activeComponent)}</SortableItem>
+            <SortableItem DragOverlay>{renderComponentList(activeComponent, true)}</SortableItem>
           )}
         </DragOverlay>
       </DragSortableSimple>

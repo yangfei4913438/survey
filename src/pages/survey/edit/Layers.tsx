@@ -1,5 +1,6 @@
 import { EyeInvisibleOutlined, EyeOutlined, LockOutlined, UnlockOutlined } from '@ant-design/icons';
 import { Button, Divider, Input, message, Space, Tooltip, Typography } from 'antd';
+import cls from 'classnames';
 import React, { ChangeEvent, useState } from 'react';
 
 import {
@@ -55,13 +56,19 @@ const Layers = () => {
     }
   };
 
-  const renderComponentList = (comp: EditorComponentType) => {
+  const renderComponentList = (comp: EditorComponentType, dragging: boolean) => {
     return (
       <>
-        <div key={comp.fe_id} className='group/layers flex py-3'>
+        <div
+          key={comp.fe_id}
+          className={cls(
+            'group/layers flex p-3',
+            dragging ? 'cursor-move pointer-events-none' : 'cursor-pointer'
+          )}
+        >
           <Typography.Paragraph
             strong
-            className='flex flex-1 cursor-pointer items-center'
+            className={cls('flex flex-1  items-center')}
             onClick={() => handleTitleClick(comp)}
           >
             {changeTitleID === comp.fe_id ? (
@@ -96,13 +103,13 @@ const Layers = () => {
     );
   };
 
-  const onDragEnd = () => {
-    // 更新编辑器组件列表信息
-    console.log('drag end...');
+  const onDragStart = () => {
+    console.log('Layers drag start...');
   };
 
-  const onDragStart = () => {
-    console.log('drag start...');
+  const onDragEnd = () => {
+    // 更新编辑器组件列表信息
+    console.log('Layers drag end...');
   };
 
   return (
@@ -118,14 +125,14 @@ const Layers = () => {
           {editorComponentList.map((item) => {
             return (
               <SortableItemWrapper key={item.fe_id} itemId={item.fe_id}>
-                {renderComponentList(item)}
+                {renderComponentList(item, activeComponent?.fe_id === item.fe_id)}
               </SortableItemWrapper>
             );
           })}
         </SortableContainer>
         <DragOverlay>
           {activeComponent && (
-            <SortableItem DragOverlay>{renderComponentList(activeComponent)}</SortableItem>
+            <SortableItem DragOverlay>{renderComponentList(activeComponent, true)}</SortableItem>
           )}
         </DragOverlay>
       </DragSortableSimple>
