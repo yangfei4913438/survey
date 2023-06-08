@@ -5,6 +5,8 @@ import {
   DownOutlined,
   EyeOutlined,
   LockOutlined,
+  RedoOutlined,
+  UndoOutlined,
   UnlockOutlined,
   UpOutlined,
 } from '@ant-design/icons';
@@ -28,6 +30,8 @@ const EditHeaderToolbar = () => {
     isLastVisibleComponent,
     moveComponentToPrev,
     moveComponentToNext,
+    componentOperationUndo,
+    componentOperationRedo,
   } = useSurveyEditor();
 
   // 隐藏
@@ -93,6 +97,12 @@ const EditHeaderToolbar = () => {
           onClick={moveDown}
           disabled={isLastVisibleComponent}
         />
+      </Tooltip>
+      <Tooltip title='点击撤销'>
+        <Button shape='circle' icon={<UndoOutlined />} onClick={componentOperationUndo}></Button>
+      </Tooltip>
+      <Tooltip title='点击重做'>
+        <Button shape='circle' icon={<RedoOutlined />} onClick={componentOperationRedo}></Button>
       </Tooltip>
     </Space>
   );

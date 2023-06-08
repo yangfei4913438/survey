@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { cacheKeys } from '@/consts/cache';
 import localCache from '@/core/cache';
 import { getUserInfoServices } from '@/services/user';
+import { ReduxStoreType } from '@/store';
 import storeActions from '@/store/storeActions';
 
 // 用户信息相关的数据处理

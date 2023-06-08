@@ -1,8 +1,10 @@
 import { useRequest } from 'ahooks';
 import { useDispatch, useSelector } from 'react-redux';
+import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
 import useProjectRoute from '@/hooks/useProjectRoute';
 import { getQuestionServices } from '@/services/question';
+import type { ReduxStoreType } from '@/store';
 import storeActions from '@/store/storeActions';
 
 const useSurveyEditor = () => {
@@ -15,7 +17,10 @@ const useSurveyEditor = () => {
   const { editorComponentList, activeComponent, selectedId, copiedComponent } = useSelector<
     ReduxStoreType,
     EditorComponentsStateType
-  >((state) => state.editorComponents);
+  >((state) => {
+    // state.editorComponents.present 是封装了 redux-undo 之后的实际数据存储位置。其他的都不用变
+    return state.editorComponents.present;
+  });
 
   // 取出页面数据
   const pageInfo = useSelector<ReduxStoreType, PageInfoType>((state) => state.pageInfo);
@@ -170,6 +175,16 @@ const useSurveyEditor = () => {
     dispatch(storeActions.editorComponents.moveComponentToNext(sourceIndex));
   };
 
+  // 撤销组件操作
+  const componentOperationUndo = () => {
+    dispatch(UndoActionCreators.undo());
+  };
+
+  // 重做组件操作
+  const componentOperationRedo = () => {
+    dispatch(UndoActionCreators.redo());
+  };
+
   return {
     getSurveyData,
     loading,
@@ -203,6 +218,8 @@ const useSurveyEditor = () => {
     selectNextComponent,
     moveComponentToPrev,
     moveComponentToNext,
+    componentOperationUndo,
+    componentOperationRedo,
   };
 };
 
