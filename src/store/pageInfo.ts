@@ -1,7 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // 默认值
-const initState: PageInfoType = { id: '', title: '', desc: '', js: '', css: '' };
+const initState: PageInfoType = {
+  id: '',
+  title: '',
+  desc: '',
+  js: '',
+  css: '',
+  isPublished: undefined,
+};
 
 export const pageInfoSlice = createSlice({
   name: 'pageInfo', // 模块名称

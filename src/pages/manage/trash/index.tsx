@@ -1,5 +1,5 @@
 import { ExclamationCircleOutlined } from '@ant-design/icons';
-import { useRequest } from 'ahooks';
+import { useRequest, useTitle } from 'ahooks';
 import { Button, Empty, message, Modal, Space, Spin, Table, Tag } from 'antd';
 import cls from 'classnames';
 import React, { FC, useState } from 'react';
@@ -13,6 +13,9 @@ import { deleteSurveysService, updateQuestionServices } from '@/services/questio
 const { confirm } = Modal;
 
 const ManageTrash: FC = () => {
+  // 设置页面标题
+  useTitle('星星问卷 - 回收站');
+
   // 记录选中的 id
   const [selectedIds, setSelectedIds] = useImmer<React.Key[]>([]);
   const { loading, data, refresh } = useLoadingSurveyListData<ResultSurveySimpleType>({

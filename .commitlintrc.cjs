@@ -4,7 +4,7 @@ module.exports = {
     'cz'
   ],
   rules: {
-    "header-max-length": [2, 'always', 120],
+    "header-max-length": [2, 'always', 150],
     "header-min-length": [2, 'always', 10]
   }
 }

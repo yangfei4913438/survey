@@ -1,5 +1,5 @@
 import { UserAddOutlined } from '@ant-design/icons';
-import { useRequest } from 'ahooks';
+import { useRequest, useTitle } from 'ahooks';
 import { Button, Form, Input, message, Space } from 'antd';
 import cls from 'classnames';
 import React, { FC } from 'react';
@@ -11,6 +11,9 @@ import { userRegisterServices } from '@/services/user';
 import styles from '@/styles/base.module.scss';
 
 const Register: FC = () => {
+  // 设置页面标题
+  useTitle('星星问卷 - 用户注册');
+
   const { Link, goToRoute } = useProjectRoute();
   const [form] = Form.useForm();
 

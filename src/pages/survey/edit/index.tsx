@@ -1,3 +1,4 @@
+import { useTitle } from 'ahooks';
 import React, { FC } from 'react';
 
 import useSurveyEditor from '@/hooks/useSurveyEditor';
@@ -7,7 +8,9 @@ import LeftPanel from '@/pages/survey/edit/LeftPanel';
 import RightPanel from '@/pages/survey/edit/RightPanel';
 
 const SurveyEdit: FC = () => {
-  const { clearSelectedId } = useSurveyEditor();
+  const { clearSelectedId, pageInfo } = useSurveyEditor();
+  // 设置页面标题
+  useTitle(`星星问卷 - ${pageInfo.title}`);
 
   return (
     <div className='flex h-full min-w-lg flex-col bg-gray-50'>

@@ -1,28 +1,19 @@
-import { useRequest } from 'ahooks';
 import { useDispatch, useSelector } from 'react-redux';
 import { ActionCreators as UndoActionCreators } from 'redux-undo';
 
-import useProjectRoute from '@/hooks/useProjectRoute';
-import { getQuestionServices } from '@/services/question';
 import type { ReduxStoreType } from '@/store';
 import storeActions from '@/store/storeActions';
 
 const useSurveyEditor = () => {
-  const {
-    pathParams: { id = '' },
-  } = useProjectRoute();
-
   // 第一个泛型参数是整个store的导出类型，第二个泛型参数是目标命名空间的类型。下同。
   // 取出组件列表数据
-  const { editorComponentList, activeComponent, selectedId, copiedComponent } = useSelector<
-    ReduxStoreType,
-    EditorComponentsStateType
-  >((state) => {
-    // state.editorComponents.present 是封装了 redux-undo 之后的实际数据存储位置。其他的都不用变
-    return state.editorComponents.present;
-  });
+  const { isLoading, editorComponentList, activeComponent, selectedId, copiedComponent } =
+    useSelector<ReduxStoreType, EditorComponentsStateType>((state) => {
+      // state.editorComponents.present 是封装了 redux-undo 之后的实际数据存储位置。其他的都不用变
+      return state.editorComponents.present;
+    });
 
-  // 取出页面数据
+  // 取出问卷编辑器的页面数据
   const pageInfo = useSelector<ReduxStoreType, PageInfoType>((state) => state.pageInfo);
 
   // redux 的 action 调用方法
@@ -31,6 +22,11 @@ const useSurveyEditor = () => {
   // 添加组件到列表中
   const addComponent = (component: EditorComponentType) => {
     dispatch(storeActions.editorComponents.addComponent(component));
+  };
+
+  // 更新数据加载状态
+  const setLoadingStatus = (loading: boolean) => {
+    dispatch(storeActions.editorComponents.setLoadingStatus(loading));
   };
 
   // 设置编辑器组件数据
@@ -57,37 +53,6 @@ const useSurveyEditor = () => {
   const setPageTitle = (title: string) => {
     dispatch(storeActions.pageInfo.setPageTitle(title));
   };
-
-  // 加载编辑器组件数据
-  const {
-    loading,
-    error,
-    run: getSurveyData,
-  } = useRequest(
-    async () => {
-      return await getQuestionServices<SurveyDetailType>(id);
-    },
-    {
-      ready: !!id,
-      manual: true,
-      onSuccess: ({ id, title, desc, js, css, componentList }) => {
-        let selectedId = '';
-        if (componentList.length) {
-          // 第一个组件默认选中
-          selectedId = componentList[0].fe_id;
-        }
-        // 设置页面数据
-        setPageInfo({ id, title, desc, js, css });
-        // 设置编辑器组件数据
-        resetEditorComponents({
-          selectedId,
-          editorComponentList: componentList.map((c) => ({ ...c, id: c.fe_id })), // 加个ID给前端用的
-          copiedComponent: null,
-          activeComponent: null,
-        });
-      },
-    }
-  );
 
   // 设置选中ID
   const changeSelectedId = (id: string) => {
@@ -186,9 +151,7 @@ const useSurveyEditor = () => {
   };
 
   return {
-    getSurveyData,
-    loading,
-    error,
+    isLoading,
     pageInfo,
     setPageInfo,
     setPageTitle,
@@ -202,6 +165,7 @@ const useSurveyEditor = () => {
     isFirstVisibleComponent,
     isLastVisibleComponent,
     addComponent,
+    setLoadingStatus,
     setActiveComponent,
     setEditorComponentList,
     resetEditorComponents,

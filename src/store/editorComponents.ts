@@ -10,6 +10,7 @@ const initialState: EditorComponentsStateType = {
   selectedId: '',
   copiedComponent: null,
   activeComponent: null,
+  isLoading: false,
 };
 
 const editorComponentsSlice = createSlice({
@@ -23,6 +24,10 @@ const editorComponentsSlice = createSlice({
       action: PayloadAction<EditorComponentsStateType>
     ) => {
       return action.payload;
+    },
+    // 设置数据的更新状态
+    setLoadingStatus: (state: EditorComponentsStateType, action: PayloadAction<boolean>) => {
+      state.isLoading = action.payload;
     },
     // 设置编辑器组件列表
     setEditorComponentList: (

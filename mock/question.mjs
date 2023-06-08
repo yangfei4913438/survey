@@ -31,10 +31,11 @@ export const question = [
         errno: 0,
         data: {
           id: Random.id(),
-          title: '这是问卷标题',
+          title: '信息登记 - RDC',
           desc: '这是问卷描述',
           js: '',
           css: '',
+          isPublished: true,
           componentList: [
             {
               fe_id: Random.id(),

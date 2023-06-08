@@ -25,6 +25,7 @@ export default configureStore({
         'editorComponents/selectPrevComponent', // 选中上一个组件操作，不需要撤销重做
         'editorComponents/selectNextComponent', // 选中下一个组件操作，不需要撤销重做
         'editorComponents/changeSelectedId', // 改变选中组件操作，不需要撤销重做
+        'editorComponents/setLoadingStatus', // 设置数据的加载状态，不需要撤销重做
       ]),
       syncFilter: true, // 用于解决撤销会清空初始数据的问题，具体有啥用还不清楚
       // ignoreInitialState: true, // 这个看起来应该生效，但实际没生效。先留着，说不定哪天更新就有用了。。。

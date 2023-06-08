@@ -12,6 +12,7 @@ const { Header, Content, Footer } = Layout;
 
 // 入口布局
 const MainLayout: FC = () => {
+  // 权限校验
   useJwt();
 
   return (

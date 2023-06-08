@@ -1,5 +1,5 @@
 import { UserAddOutlined } from '@ant-design/icons';
-import { useRequest } from 'ahooks';
+import { useRequest, useTitle } from 'ahooks';
 import { Button, Checkbox, Form, Input, message, Space } from 'antd';
 import cls from 'classnames';
 import React, { FC, useState } from 'react';
@@ -14,6 +14,9 @@ import { userLoginServices } from '@/services/user';
 import styles from '@/styles/base.module.scss';
 
 const Login: FC = () => {
+  // 设置页面标题
+  useTitle('星星问卷 - 登录');
+
   const { goToRoute, Link } = useProjectRoute();
   const { setUserInfo } = useUserInfo();
   const [remember, setRemember] = useState(false);

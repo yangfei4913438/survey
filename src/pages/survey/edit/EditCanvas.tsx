@@ -1,6 +1,5 @@
 import { Spin } from 'antd';
 import cls from 'classnames';
-import React, { useEffect } from 'react';
 
 import {
   DragOverlay,
@@ -16,9 +15,8 @@ import useSurveyEditor from '@/hooks/useSurveyEditor';
 const EditCanvas = () => {
   useEditorCanvasKeyPress();
   const {
-    loading,
-    getSurveyData,
     changeSelectedId,
+    isLoading,
     selectedId,
     activeComponent,
     setActiveComponent,
@@ -26,12 +24,7 @@ const EditCanvas = () => {
     setEditorComponentList,
   } = useSurveyEditor();
 
-  useEffect(() => {
-    // 注意：如果不是在相同组件里面发起的请求，loading的值会一直都是false！！！
-    getSurveyData();
-  }, [getSurveyData]);
-
-  if (loading) {
+  if (isLoading) {
     return (
       <div className='flex h-full w-full items-center justify-center'>
         <Spin size={'large'} />

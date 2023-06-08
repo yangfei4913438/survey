@@ -1,3 +1,4 @@
+import { useTitle } from 'ahooks';
 import cls from 'classnames';
 import React, { FC } from 'react';
 
@@ -7,6 +8,8 @@ import useLoadingSurveyListData from '@/hooks/useLoadingSurveyListData';
 import SurveyList from '@/pages/manage/components/surveyList';
 
 const ManageStar: FC = () => {
+  useTitle('星星问卷 - 星标问卷');
+
   const { loading, data } = useLoadingSurveyListData<ResultSurveySimpleType>({ isStar: true });
 
   const list = data?.list || [];

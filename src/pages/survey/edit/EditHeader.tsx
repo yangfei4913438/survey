@@ -1,6 +1,6 @@
 import { CheckOutlined, CloseOutlined, EditOutlined, LeftOutlined } from '@ant-design/icons';
 import { useDebounceEffect, useKeyPress } from 'ahooks';
-import { Button, Input, message, Space, Typography } from 'antd';
+import { Button, Input, message, Space, Spin, Typography } from 'antd';
 import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
 
 import { surveyPath } from '@/consts/routes';
@@ -10,7 +10,7 @@ import useUpdateSurvey from '@/hooks/useUpdateSurvey';
 import EditHeaderToolbar from '@/pages/survey/edit/EditHeaderToolbar';
 
 const TitleElem: FC = () => {
-  const { pageInfo, setPageTitle } = useSurveyEditor();
+  const { pageInfo, setPageTitle, isLoading } = useSurveyEditor();
   const [editState, setEditState] = useState(false);
   const [title, setTitle] = useState('');
 
@@ -40,6 +40,10 @@ const TitleElem: FC = () => {
         </Space>
       </Space>
     );
+  }
+
+  if (isLoading) {
+    return <Spin size={'small'} />;
   }
 
   return (
@@ -127,7 +131,7 @@ const EditHeader = () => {
   const { toPrevRoute } = useProjectRoute();
 
   return (
-    <div className='flex h-16 items-center justify-between border-b border-slate-500 bg-white px-4'>
+    <div className='flex h-16 items-center justify-between bg-white px-4 shadow-lg'>
       <Space className='flex-1'>
         <Button type='link' icon={<LeftOutlined />} onClick={toPrevRoute}>
           返回

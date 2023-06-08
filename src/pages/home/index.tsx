@@ -1,3 +1,4 @@
+import { useTitle } from 'ahooks';
 import { Button } from 'antd';
 import cls from 'classnames';
 import React, { FC } from 'react';
@@ -7,6 +8,8 @@ import useProjectRoute from '@/hooks/useProjectRoute';
 import styles from '@/styles/base.module.scss';
 
 const Home: FC = () => {
+  // 设置页面标题
+  useTitle('星星问卷 - 首页');
   const { goToRoute } = useProjectRoute();
 
   return (

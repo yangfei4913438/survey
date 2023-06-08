@@ -26,9 +26,11 @@ interface EditorComponentsStateType {
   copiedComponent: EditorComponentType | null;
   // 拖拽的激活组件
   activeComponent: EditorComponentType | null;
+  // 数据加载状态, 发起网络请求的时候会更新，多个组件共享。状态和数据放在一起，使用起来也会更方便
+  isLoading: boolean;
 }
 
-// 页面信息
+// 问卷编辑器的页面信息
 interface PageInfoType {
   // 问卷ID
   id: string;
@@ -40,4 +42,6 @@ interface PageInfoType {
   js?: string;
   // 问卷的css代码
   css?: string;
+  // 问卷是否已经发布
+  isPublished?: boolean;
 }
