@@ -15,6 +15,11 @@
 @import 'sanitize.css';
 
 @layer base {
+  // dnd-kit 样式优化
+  div[role='button'] {
+    outline: 0;
+  }
+
   // 消除 tailwindcss 对 antd 图标位置的影响
   svg {
     display: inline;

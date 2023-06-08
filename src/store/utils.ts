@@ -1,16 +1,17 @@
-const getNextVisibleComponent = (
+export const getNextVisibleComponent = (
   list: EditorComponentType[],
   startIndex: number,
   toNext = true
 ): EditorComponentType | null => {
-  const comp = list[startIndex];
+  const targetIndex = toNext ? startIndex + 1 : startIndex - 1;
+  const comp = list[targetIndex];
   if (!comp) {
     return null;
   }
   if (comp.visible) {
     return comp;
   }
-  return getNextVisibleComponent(list, toNext ? startIndex + 1 : startIndex - 1);
+  return getNextVisibleComponent(list, targetIndex, toNext);
 };
 
 // 组件数量大于1的时候，组件删除或者隐藏，变更选中组件ID

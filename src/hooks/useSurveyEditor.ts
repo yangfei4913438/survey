@@ -95,6 +95,21 @@ const useSurveyEditor = () => {
   // 被选中的组件
   const selectedComponent = editorComponentList.find((component) => component.fe_id === selectedId);
 
+  // 选中组件的索引
+  const selectedComponentIndex = editorComponentList.findIndex((c) => c.fe_id === selectedId);
+
+  // 可见组件列表
+  const visibleComponentList = editorComponentList.filter((c) => c.visible);
+
+  // 是否为第一个可见组件
+  const isFirstVisibleComponent =
+    visibleComponentList.length > 0 && visibleComponentList[0].fe_id === selectedId;
+
+  // 是否为最后一个可见组件
+  const isLastVisibleComponent =
+    visibleComponentList.length > 0 &&
+    visibleComponentList[visibleComponentList.length - 1].fe_id === selectedId;
+
   // 清除选中的组件ID
   const clearSelectedId = () => {
     dispatch(storeActions.editorComponents.changeSelectedId(''));
@@ -145,6 +160,17 @@ const useSurveyEditor = () => {
     dispatch(storeActions.editorComponents.selectNextComponent());
   };
 
+  // 可见组件位置前移
+  const moveComponentToPrev = (sourceIndex: number) => {
+    console.log('sourceIndex:', sourceIndex);
+    dispatch(storeActions.editorComponents.moveComponentToPrev(sourceIndex));
+  };
+
+  // 可见组件位置后移
+  const moveComponentToNext = (sourceIndex: number) => {
+    dispatch(storeActions.editorComponents.moveComponentToNext(sourceIndex));
+  };
+
   return {
     getSurveyData,
     loading,
@@ -154,9 +180,13 @@ const useSurveyEditor = () => {
     setPageTitle,
     selectedId,
     selectedComponent,
+    selectedComponentIndex,
     editorComponentList,
     copiedComponent,
     activeComponent,
+    visibleComponentList,
+    isFirstVisibleComponent,
+    isLastVisibleComponent,
     addComponent,
     setActiveComponent,
     setEditorComponentList,
@@ -172,6 +202,8 @@ const useSurveyEditor = () => {
     pasteCopiedComponent,
     selectPrevComponent,
     selectNextComponent,
+    moveComponentToPrev,
+    moveComponentToNext,
   };
 };
 

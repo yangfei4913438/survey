@@ -1,8 +1,9 @@
+import { arrayMove } from '@dnd-kit/sortable';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import cloneDeep from 'lodash-es/cloneDeep';
 import { nanoid } from 'nanoid';
 
-import { changeSelectedId, pushComponent } from '@/store/utils';
+import { changeSelectedId, getNextVisibleComponent, pushComponent } from '@/store/utils';
 
 const initialState: EditorComponentsStateType = {
   editorComponentList: [],
@@ -179,6 +180,25 @@ const editorComponentsSlice = createSlice({
       } else {
         // 其他情况，下移
         state.selectedId = visibleList[idx + 1].fe_id;
+      }
+    },
+    // 可见组件位置前移
+    moveComponentToPrev: (state: EditorComponentsStateType, action: PayloadAction<number>) => {
+      const currIndex = action.payload;
+      const target = getNextVisibleComponent(state.editorComponentList, currIndex, false);
+      if (target) {
+        const targetIndex = state.editorComponentList.findIndex((c) => c.fe_id === target.fe_id);
+        console.log('target:', target, targetIndex);
+        state.editorComponentList = arrayMove(state.editorComponentList, currIndex, targetIndex);
+      }
+    },
+    // 可见组件位置后移
+    moveComponentToNext: (state: EditorComponentsStateType, action: PayloadAction<number>) => {
+      const currIndex = action.payload;
+      const target = getNextVisibleComponent(state.editorComponentList, currIndex, true);
+      if (target) {
+        const targetIndex = state.editorComponentList.findIndex((c) => c.fe_id === target.fe_id);
+        state.editorComponentList = arrayMove(state.editorComponentList, currIndex, targetIndex);
       }
     },
   },
