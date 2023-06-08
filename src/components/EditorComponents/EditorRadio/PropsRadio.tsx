@@ -21,7 +21,6 @@ const PropsRadio: FC<EditorRadioPropsType> = ({
   const handleValueChange = () => {
     // 取出当前表单中所有的值
     const values = form.getFieldsValue();
-    console.log('values:', values);
     // 返回最新表单数据
     onChange?.(values);
   };

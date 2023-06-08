@@ -162,7 +162,6 @@ const useSurveyEditor = () => {
 
   // 可见组件位置前移
   const moveComponentToPrev = (sourceIndex: number) => {
-    console.log('sourceIndex:', sourceIndex);
     dispatch(storeActions.editorComponents.moveComponentToPrev(sourceIndex));
   };
 

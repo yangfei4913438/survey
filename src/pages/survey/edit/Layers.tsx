@@ -28,7 +28,6 @@ const Layers = () => {
   const [changeTitleID, setChangeTitleID] = useState('');
 
   const handleHidden = (comp: EditorComponentType) => {
-    console.log('数据:', comp.fe_id, !comp.visible);
     setComponentVisible(comp.fe_id, !comp.visible);
   };
 

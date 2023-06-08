@@ -22,7 +22,6 @@ const ListSearch = () => {
   };
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    // console.log('input value:', event.target.value);
     setValue(event.target.value);
   };
 

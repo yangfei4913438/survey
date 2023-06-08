@@ -125,7 +125,6 @@ const ManageTrash: FC = () => {
             type: 'checkbox',
             selectedRowKeys: selectedIds,
             onChange: (selectedRowKeys) => {
-              console.log('selectedRowKeys:', selectedRowKeys);
               setSelectedIds(selectedRowKeys);
             },
           }}

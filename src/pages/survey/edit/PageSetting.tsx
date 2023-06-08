@@ -19,7 +19,6 @@ const PageSetting = () => {
     // 取出当前表单中所有的值
     const values = form.getFieldsValue();
     // 返回最新表单数据
-    console.log('最新数据:', values);
     setPageInfo({ id, ...values });
   };
 

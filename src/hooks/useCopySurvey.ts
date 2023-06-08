@@ -16,7 +16,6 @@ const useCopySurvey = (id: string) => {
     {
       manual: true,
       onSuccess: async ({ id }) => {
-        console.log('id', id);
         await message.success('复制成功', 1).then(() => {
           // 编辑问卷
           const target = surveyPath.edit(id);

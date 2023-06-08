@@ -188,7 +188,6 @@ const editorComponentsSlice = createSlice({
       const target = getNextVisibleComponent(state.editorComponentList, currIndex, false);
       if (target) {
         const targetIndex = state.editorComponentList.findIndex((c) => c.fe_id === target.fe_id);
-        console.log('target:', target, targetIndex);
         state.editorComponentList = arrayMove(state.editorComponentList, currIndex, targetIndex);
       }
     },

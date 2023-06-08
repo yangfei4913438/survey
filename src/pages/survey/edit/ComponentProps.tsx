@@ -14,7 +14,6 @@ const ComponentProps = () => {
   if (!conf) return <NoProp />;
 
   const changeProps = (newProps: EditorComponentsPropsType) => {
-    console.log('newProps:', newProps, fe_id);
     changeComponentProps(fe_id, newProps);
   };
 

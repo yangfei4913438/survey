@@ -33,7 +33,6 @@ const useUserInfo = () => {
       // 内存中不存在的时候，而且存在token的时候。才会主动发起请求。（一般会在页面刷新的时候发起请求）
       ready: !userInfo.username && !!localCache.getItem(cacheKeys.token),
       onSuccess: (data) => {
-        console.log('data:', data);
         // 更新内存数据
         setUserInfo(data);
       },
