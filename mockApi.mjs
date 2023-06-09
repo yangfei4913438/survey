@@ -32,7 +32,7 @@ app.use((ctx, next) => {
   if (['/api/user/register', '/api/user/login'].includes(ctx.url)) {
     return next();
   } else {
-    const jwt = ctx.header.authorization.split(' ')[1];
+    const jwt = ctx.header.authorization?.split(' ')[1];
     if (!ctx.header.authorization || !jwt) {
       ctx.body = {
         errno: 401,

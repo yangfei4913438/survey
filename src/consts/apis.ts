@@ -81,4 +81,5 @@ export const apiConfig: ApiConfigType = {
     url: '/api/question/duplicate',
     needId: true,
   },
+  // 问卷状态
 };
