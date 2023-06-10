@@ -16,13 +16,13 @@ interface EditorHeaderPropsType extends FormControlType<EditorHeaderPropsType> {
 }
 // 问卷标题，传入参数类型
 interface EditorTitlePropsType extends FormControlType<EditorTitlePropsType> {
-  text?: string;
+  title?: string;
   level?: TitleLevelType;
   alignment?: TextAlignType;
 }
 // 问卷段落，传入参数类型
 interface EditorParagraphPropsType extends FormControlType<EditorParagraphPropsType> {
-  text?: string;
+  title?: string;
   alignment?: TextAlignType;
 }
 

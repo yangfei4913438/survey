@@ -81,12 +81,19 @@ instance.interceptors.response.use(
 interface IRequestParam {
   name: ConfigKeyType;
   id?: string;
+  componentId?: string;
   axiosConfig?: AxiosRequestConfig;
 }
-export const request = <T>({ name, id, axiosConfig }: IRequestParam): Promise<T> => {
-  const { url, method, needId } = apiConfig[name];
+export const request = <T>({ name, id, componentId, axiosConfig }: IRequestParam): Promise<T> => {
+  const { url, method, needId, needComponentID } = apiConfig[name];
+
+  if (needComponentID && !componentId) {
+    return Promise.reject('缺少组件ID');
+  }
+
   // 判断一下路由
-  const reqUrl = needId ? `${url}/${id}` : url;
+  const baseUrl = needId ? `${url}/${id}` : url;
+  const reqUrl = needComponentID ? `${baseUrl}/${componentId}` : baseUrl;
 
   switch (method) {
     case 'get':

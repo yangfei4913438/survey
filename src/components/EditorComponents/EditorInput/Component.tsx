@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { EditorInputDefaultProps } from './interface';
 
-const EditorInput: FC<EditorInputPropsType> = ({
+const Component: FC<EditorInputPropsType> = ({
   title = EditorInputDefaultProps.title,
   placeholder = EditorInputDefaultProps.placeholder,
 }) => {
@@ -15,4 +15,4 @@ const EditorInput: FC<EditorInputPropsType> = ({
   );
 };
 
-export default EditorInput;
+export default Component;

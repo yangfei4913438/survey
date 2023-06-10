@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { getFontSize, getTextAlign } from '../utils/styles';
 import { EditorHeaderDefaultProps } from './interface';
 
-const EditorHeader: FC<EditorHeaderPropsType> = ({
+const Component: FC<EditorHeaderPropsType> = ({
   title = EditorHeaderDefaultProps.title,
   titleLevel = EditorHeaderDefaultProps.titleLevel,
   titleAlignment = EditorHeaderDefaultProps.titleAlignment,
@@ -27,4 +27,4 @@ const EditorHeader: FC<EditorHeaderPropsType> = ({
   );
 };
 
-export default EditorHeader;
+export default Component;

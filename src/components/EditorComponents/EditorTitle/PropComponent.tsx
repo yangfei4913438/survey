@@ -1,20 +1,18 @@
 import { Form, Input, Radio, Select } from 'antd';
 import { FC, useEffect } from 'react';
 
-const PropsHeader: FC<EditorHeaderPropsType> = ({
+const PropComponent: FC<EditorTitlePropsType> = ({
   title,
-  titleAlignment,
-  titleLevel,
-  desc,
-  descAlignment,
+  level,
+  alignment,
   onChange,
   disabled,
 }) => {
-  const [form] = Form.useForm<EditorHeaderPropsType>();
+  const [form] = Form.useForm<EditorTitlePropsType>();
 
   useEffect(() => {
-    form.setFieldsValue({ title, titleAlignment, titleLevel, desc, descAlignment });
-  }, [desc, descAlignment, form, title, titleAlignment, titleLevel]);
+    form.setFieldsValue({ title, level, alignment });
+  }, [alignment, form, level, title]);
 
   // 监听表单变化
   const handleValueChange = () => {
@@ -28,7 +26,7 @@ const PropsHeader: FC<EditorHeaderPropsType> = ({
     <Form
       form={form}
       layout='vertical'
-      initialValues={{ title, titleAlignment, titleLevel, desc, descAlignment }}
+      initialValues={{ title, level, alignment }}
       onValuesChange={handleValueChange}
       disabled={disabled}
     >
@@ -39,7 +37,7 @@ const PropsHeader: FC<EditorHeaderPropsType> = ({
       >
         <Input />
       </Form.Item>
-      <Form.Item label='标题级别' name='titleLevel'>
+      <Form.Item label='标题级别' name='level'>
         <Select
           options={[
             { value: 1, text: 1 },
@@ -50,20 +48,7 @@ const PropsHeader: FC<EditorHeaderPropsType> = ({
           ]}
         />
       </Form.Item>
-      <Form.Item label='标题对齐方式' name='titleAlignment'>
-        <Radio.Group
-          options={[
-            { value: 'left', label: '左对齐' },
-            { value: 'center', label: '居中' },
-            { value: 'right', label: '右对齐' },
-          ]}
-          optionType={'button'}
-        />
-      </Form.Item>
-      <Form.Item label='问卷描述' name='desc'>
-        <Input.TextArea size={'large'} className='max-h-80' />
-      </Form.Item>
-      <Form.Item label='描述对齐方式' name='descAlignment'>
+      <Form.Item label='对齐方式' name='alignment'>
         <Radio.Group
           options={[
             { value: 'left', label: '左对齐' },
@@ -77,4 +62,4 @@ const PropsHeader: FC<EditorHeaderPropsType> = ({
   );
 };
 
-export default PropsHeader;
+export default PropComponent;

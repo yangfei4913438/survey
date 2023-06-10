@@ -11,7 +11,9 @@ export type ConfigKeyType =
   | 'getQuestions'
   | 'patchQuestion'
   | 'delQuestions'
-  | 'copyQuestion';
+  | 'copyQuestion'
+  | 'getStatList'
+  | 'getSurveyComponentStatList';
 
 interface ConfigObject {
   // restful 方法
@@ -20,6 +22,8 @@ interface ConfigObject {
   url: string;
   // 是否需要拼接路径ID参数
   needId: boolean;
+  // 是否需要拼接路径组件ID参数
+  needComponentID?: boolean;
 }
 
 // 配置对象的类型
@@ -81,5 +85,17 @@ export const apiConfig: ApiConfigType = {
     url: '/api/question/duplicate',
     needId: true,
   },
-  // 问卷状态
+  // 问卷统计列表
+  getStatList: {
+    method: 'get',
+    url: '/api/stat',
+    needId: true,
+  },
+  // 问卷的组件统计数据
+  getSurveyComponentStatList: {
+    method: 'get',
+    url: '/api/stat',
+    needId: true,
+    needComponentID: true,
+  },
 };

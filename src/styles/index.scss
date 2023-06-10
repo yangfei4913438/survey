@@ -33,6 +33,10 @@
     flex: 1 !important;
     overflow: auto;
   }
+  .ant-table-footer {
+    padding: 24px 16px !important;
+    background: inherit !important;
+  }
 }
 
 :root {

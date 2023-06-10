@@ -5,16 +5,16 @@ import { FC } from 'react';
 import { getFontSize, getTextAlign } from '../utils/styles';
 import { EditorTitleDefaultProps } from './interface';
 
-const EditorTitle: FC<EditorTitlePropsType> = ({
-  text = EditorTitleDefaultProps.text,
+const Component: FC<EditorTitlePropsType> = ({
+  title = EditorTitleDefaultProps.title,
   level = EditorTitleDefaultProps.level,
   alignment = EditorTitleDefaultProps.alignment,
 }) => {
   return (
     <Typography.Title level={level} className={cls(getFontSize(level), getTextAlign(alignment))}>
-      {text}
+      {title}
     </Typography.Title>
   );
 };
 
-export default EditorTitle;
+export default Component;

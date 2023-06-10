@@ -6,7 +6,7 @@ export async function getQuestionServices<T>(id: string) {
 }
 
 // 获取问卷列表
-export async function getQuestionsServices<T>(params: Partial<RequestSurveyListType> = {}) {
+export async function getQuestionsServices<T>(params: Partial<RequestOptionType> = {}) {
   return await request<T>({ name: 'getQuestions', axiosConfig: { params } });
 }
 

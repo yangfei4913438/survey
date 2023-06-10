@@ -1,12 +1,12 @@
 import { Form, Input, Radio } from 'antd';
 import { FC, useEffect } from 'react';
 
-const PropsParagraph: FC<EditorParagraphPropsType> = ({ text, alignment, onChange, disabled }) => {
+const PropComponent: FC<EditorParagraphPropsType> = ({ title, alignment, onChange, disabled }) => {
   const [form] = Form.useForm<EditorParagraphPropsType>();
 
   useEffect(() => {
-    form.setFieldsValue({ text, alignment });
-  }, [alignment, form, text]);
+    form.setFieldsValue({ title, alignment });
+  }, [alignment, form, title]);
 
   // 监听表单变化
   const handleValueChange = () => {
@@ -20,13 +20,13 @@ const PropsParagraph: FC<EditorParagraphPropsType> = ({ text, alignment, onChang
     <Form
       form={form}
       layout='vertical'
-      initialValues={{ text, alignment }}
+      initialValues={{ title, alignment }}
       onValuesChange={handleValueChange}
       disabled={disabled}
     >
       <Form.Item
         label='段落内容'
-        name='text'
+        name='title'
         rules={[{ required: true, message: '请输入段落内容' }]}
       >
         <Input.TextArea size={'large'} className='max-h-80' />
@@ -45,4 +45,4 @@ const PropsParagraph: FC<EditorParagraphPropsType> = ({ text, alignment, onChang
   );
 };
 
-export default PropsParagraph;
+export default PropComponent;

@@ -1,5 +1,5 @@
 import EditorCheckboxConf from './EditorCheckbox';
-import { EditorComponentConfType } from './editorComponentTypes';
+import type { EditorComponentConfType } from './editorComponentTypes';
 import EditorHeaderConf from './EditorHeader';
 import EditorInputConf from './EditorInput';
 import EditorParagraphConf from './EditorParagraph';

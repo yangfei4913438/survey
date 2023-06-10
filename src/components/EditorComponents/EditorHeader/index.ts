@@ -1,17 +1,17 @@
 import { editorComponentTypes } from '@/consts/editorComponent';
 
 import type { EditorComponentConfType } from '../editorComponentTypes';
-import EditorHeader from './EditorHeader';
+import Component from './Component';
 import { EditorHeaderDefaultProps } from './interface';
-import PropsHeader from './PropsHeader';
+import PropComponent from './PropComponent';
 
 export * from './interface';
 
 const EditorHeaderConf: EditorComponentConfType = {
   title: '问卷标题',
   type: editorComponentTypes.header,
-  Component: EditorHeader,
-  PropComponent: PropsHeader,
+  Component: Component,
+  PropComponent: PropComponent,
   defaultProps: EditorHeaderDefaultProps,
 };
 

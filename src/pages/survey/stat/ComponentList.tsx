@@ -2,32 +2,20 @@ import cls from 'classnames';
 import React, { FC } from 'react';
 
 import { getComponentConfByType } from '@/components/EditorComponents';
+import { interoperableTypes } from '@/consts/editorComponent';
 import useSurveyEditor from '@/hooks/useSurveyEditor';
 
-type PropsType = {
-  selectedComponentId: string;
-  setSelectedComponentId: (id: string) => void;
-  setSelectedComponentType: (type: string) => void;
-};
-
-const ComponentList: FC<PropsType> = ({
-  selectedComponentId,
-  setSelectedComponentId,
-  setSelectedComponentType,
-}) => {
-  const { visibleComponentList } = useSurveyEditor();
+const ComponentList: FC = () => {
+  const { visibleComponentList, changeSelectedId, selectedComponent } = useSurveyEditor();
 
   const handleClick = (id: string, type: SurveyEditorComponentType) => {
-    setSelectedComponentId(id);
-    setSelectedComponentType(type);
+    if (interoperableTypes.includes(type)) {
+      changeSelectedId(id);
+    }
   };
 
   return (
-    <div
-      className={
-        'box-content max-h-full w-90 space-y-2 overflow-auto rounded bg-white px-3 py-4 shadow hover:shadow-md'
-      }
-    >
+    <div className={'space-y-2 '}>
       {visibleComponentList.map((c) => {
         const { fe_id, props, type } = c;
 
@@ -39,8 +27,11 @@ const ComponentList: FC<PropsType> = ({
         return (
           <div
             className={cls(
-              'cursor-pointer rounded p-3 border-solid border hover:border-sky-500 ',
-              selectedComponentId === fe_id ? ' border-slate-300' : 'border-white'
+              'rounded p-3 border-solid border opacity-80',
+              interoperableTypes.includes(type) && selectedComponent?.fe_id === fe_id
+                ? ' border-sky-300'
+                : 'border-white',
+              interoperableTypes.includes(type) ? 'cursor-pointer hover:border-sky-500' : ''
             )}
             key={fe_id}
             onClick={() => handleClick(fe_id, type)}

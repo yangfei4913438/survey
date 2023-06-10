@@ -1,12 +1,20 @@
 import { Form, Input, Radio, Select } from 'antd';
 import { FC, useEffect } from 'react';
 
-const PropsTitle: FC<EditorTitlePropsType> = ({ text, level, alignment, onChange, disabled }) => {
-  const [form] = Form.useForm<EditorTitlePropsType>();
+const PropComponent: FC<EditorHeaderPropsType> = ({
+  title,
+  titleAlignment,
+  titleLevel,
+  desc,
+  descAlignment,
+  onChange,
+  disabled,
+}) => {
+  const [form] = Form.useForm<EditorHeaderPropsType>();
 
   useEffect(() => {
-    form.setFieldsValue({ text, level, alignment });
-  }, [alignment, form, level, text]);
+    form.setFieldsValue({ title, titleAlignment, titleLevel, desc, descAlignment });
+  }, [desc, descAlignment, form, title, titleAlignment, titleLevel]);
 
   // 监听表单变化
   const handleValueChange = () => {
@@ -20,18 +28,18 @@ const PropsTitle: FC<EditorTitlePropsType> = ({ text, level, alignment, onChange
     <Form
       form={form}
       layout='vertical'
-      initialValues={{ text, level, alignment }}
+      initialValues={{ title, titleAlignment, titleLevel, desc, descAlignment }}
       onValuesChange={handleValueChange}
       disabled={disabled}
     >
       <Form.Item
         label='标题内容'
-        name='text'
+        name='title'
         rules={[{ required: true, message: '请输入标题内容' }]}
       >
         <Input />
       </Form.Item>
-      <Form.Item label='标题级别' name='level'>
+      <Form.Item label='标题级别' name='titleLevel'>
         <Select
           options={[
             { value: 1, text: 1 },
@@ -42,7 +50,20 @@ const PropsTitle: FC<EditorTitlePropsType> = ({ text, level, alignment, onChange
           ]}
         />
       </Form.Item>
-      <Form.Item label='对齐方式' name='alignment'>
+      <Form.Item label='标题对齐方式' name='titleAlignment'>
+        <Radio.Group
+          options={[
+            { value: 'left', label: '左对齐' },
+            { value: 'center', label: '居中' },
+            { value: 'right', label: '右对齐' },
+          ]}
+          optionType={'button'}
+        />
+      </Form.Item>
+      <Form.Item label='问卷描述' name='desc'>
+        <Input.TextArea size={'large'} className='max-h-80' />
+      </Form.Item>
+      <Form.Item label='描述对齐方式' name='descAlignment'>
         <Radio.Group
           options={[
             { value: 'left', label: '左对齐' },
@@ -56,4 +77,4 @@ const PropsTitle: FC<EditorTitlePropsType> = ({ text, level, alignment, onChange
   );
 };
 
-export default PropsTitle;
+export default PropComponent;

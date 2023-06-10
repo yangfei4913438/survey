@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { EditorCheckboxDefaultProps } from './interface';
 
-const EditorCheckbox: FC<EditorCheckboxPropsType> = ({
+const Component: FC<EditorCheckboxPropsType> = ({
   title = EditorCheckboxDefaultProps.title,
   list = EditorCheckboxDefaultProps.list,
   orientation = EditorCheckboxDefaultProps.orientation,
@@ -25,4 +25,4 @@ const EditorCheckbox: FC<EditorCheckboxPropsType> = ({
   );
 };
 
-export default EditorCheckbox;
+export default Component;

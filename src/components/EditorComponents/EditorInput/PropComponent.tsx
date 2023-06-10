@@ -1,8 +1,8 @@
 import { Form, Input } from 'antd';
 import { FC, useEffect } from 'react';
 
-const PropsTextarea: FC<EditorTextareaPropsType> = ({ placeholder, title, onChange, disabled }) => {
-  const [form] = Form.useForm<EditorTextareaPropsType>();
+const PropComponent: FC<EditorInputPropsType> = ({ placeholder, title, onChange, disabled }) => {
+  const [form] = Form.useForm<EditorInputPropsType>();
 
   useEffect(() => {
     form.setFieldsValue({ title, placeholder });
@@ -34,4 +34,4 @@ const PropsTextarea: FC<EditorTextareaPropsType> = ({ placeholder, title, onChan
   );
 };
 
-export default PropsTextarea;
+export default PropComponent;

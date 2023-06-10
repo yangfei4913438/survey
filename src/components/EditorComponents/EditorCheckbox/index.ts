@@ -1,17 +1,19 @@
 import { editorComponentTypes } from '@/consts/editorComponent';
 
 import type { EditorComponentConfType } from '../editorComponentTypes';
-import EditorCheckbox from './EditorCheckbox';
+import Component from './Component';
 import { EditorCheckboxDefaultProps } from './interface';
-import PropsCheckbox from './PropsCheckbox';
+import PropComponent from './PropComponent';
+import StatComponent from './StatComponent';
 
 export * from './interface';
 
 const EditorCheckboxConf: EditorComponentConfType = {
   title: '多选框',
   type: editorComponentTypes.checkbox,
-  Component: EditorCheckbox,
-  PropComponent: PropsCheckbox,
+  Component,
+  PropComponent,
+  StatComponent,
   defaultProps: EditorCheckboxDefaultProps,
 };
 

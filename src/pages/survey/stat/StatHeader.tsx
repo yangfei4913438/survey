@@ -59,7 +59,7 @@ const StatHeader = () => {
   }, [id, isPublished]);
 
   return (
-    <article className='flex h-16 items-center justify-between bg-white px-4 shadow-lg'>
+    <article className='sticky z-40 flex h-16 items-center justify-between bg-white px-4 shadow-lg'>
       <Space className='flex-1'>
         <Button type='link' icon={<LeftOutlined />} onClick={toPrevRoute}>
           返回

@@ -5,17 +5,17 @@
 import { editorComponentTypes } from '@/consts/editorComponent';
 
 import type { EditorComponentConfType } from '../editorComponentTypes';
-import EditorInput from './EditorInput';
+import Component from './Component';
 import { EditorInputDefaultProps } from './interface';
-import PropsInput from './PropsInput';
+import PropComponent from './PropComponent';
 
 export * from './interface';
 
 const EditorInputConf: EditorComponentConfType = {
   title: '普通输入框',
   type: editorComponentTypes.input,
-  Component: EditorInput,
-  PropComponent: PropsInput,
+  Component: Component,
+  PropComponent: PropComponent,
   defaultProps: EditorInputDefaultProps,
 };
 

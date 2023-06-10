@@ -3,7 +3,7 @@ import { Button, Form, Input, Radio, Select, Space } from 'antd';
 import { nanoid } from 'nanoid';
 import { FC, useEffect } from 'react';
 
-const PropsRadio: FC<EditorRadioPropsType> = ({
+const PropComponent: FC<EditorRadioPropsType> = ({
   title,
   selected,
   options,
@@ -98,4 +98,4 @@ const PropsRadio: FC<EditorRadioPropsType> = ({
   );
 };
 
-export default PropsRadio;
+export default PropComponent;

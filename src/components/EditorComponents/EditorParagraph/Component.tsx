@@ -5,15 +5,15 @@ import { FC } from 'react';
 import { getTextAlign } from '../utils/styles';
 import { EditorParagraphDefaultProps } from './interface';
 
-const EditorParagraph: FC<EditorParagraphPropsType> = ({
-  text = EditorParagraphDefaultProps.text,
+const Component: FC<EditorParagraphPropsType> = ({
+  title = EditorParagraphDefaultProps.title,
   alignment = EditorParagraphDefaultProps.alignment,
 }) => {
   return (
     <Typography.Paragraph className={cls('whitespace-pre-wrap', getTextAlign(alignment))}>
-      {text}
+      {title}
     </Typography.Paragraph>
   );
 };
 
-export default EditorParagraph;
+export default Component;

@@ -1,23 +1,34 @@
 import { Pagination } from 'antd';
-import { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useLayoutEffect, useState } from 'react';
 
 import { actions, actionValues } from '@/consts/actions';
 import useProjectRoute from '@/hooks/useProjectRoute';
 
 interface IListPagination {
   total: number;
+  defaultPage?: number;
+  defaultPageSize?: number;
 }
 
-const ListPagination: FC<IListPagination> = ({ total }) => {
-  const [current, setCurrent] = useState(actionValues.survey.defaultPage);
-  const [pageSize, setPageSize] = useState(actionValues.survey.defaultPageSize);
+const ListPagination: FC<IListPagination> = ({
+  total,
+  defaultPage = actionValues.survey.defaultPage,
+  defaultPageSize = actionValues.survey.defaultPageSize,
+}) => {
+  const { currentPage, currentPageSize, setSearchParams } = useProjectRoute();
 
-  const { currentPageSize, currentPage, setSearchParams } = useProjectRoute();
-
-  useEffect(() => {
-    setCurrent(currentPage);
-    setPageSize(currentPageSize);
-  }, [currentPage, currentPageSize]);
+  useLayoutEffect(() => {
+    if (currentPage <= 0 || currentPageSize <= 0) {
+      // 更新路由参数
+      setSearchParams((prev) => {
+        return {
+          ...prev,
+          [actions.survey.pageKey]: defaultPage,
+          [actions.survey.pageSizeKey]: defaultPageSize,
+        };
+      });
+    }
+  }, [currentPage, currentPageSize, defaultPage, defaultPageSize, setSearchParams]);
 
   // 响应分页变更
   const handleChange = (page: number, pageSize: number) => {
@@ -34,10 +45,10 @@ const ListPagination: FC<IListPagination> = ({ total }) => {
   return (
     <Pagination
       total={total}
-      current={current}
-      pageSize={pageSize}
+      current={currentPage}
+      pageSize={currentPageSize}
       onChange={handleChange}
-      pageSizeOptions={[5, 10, 15, 20, 25, 30, 35, 40, 45, 50]}
+      pageSizeOptions={[defaultPageSize, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50]}
     />
   );
 };

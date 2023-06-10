@@ -3,7 +3,7 @@ import { FC } from 'react';
 
 import { EditorRadioDefaultProps } from './interface';
 
-const EditorRadio: FC<EditorRadioPropsType> = ({
+const Component: FC<EditorRadioPropsType> = ({
   title = EditorRadioDefaultProps.title,
   selected = EditorRadioDefaultProps.selected,
   options = EditorRadioDefaultProps.options,
@@ -27,4 +27,4 @@ const EditorRadio: FC<EditorRadioPropsType> = ({
   );
 };
 
-export default EditorRadio;
+export default Component;

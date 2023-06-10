@@ -59,12 +59,7 @@ const RightPanel: FC = () => {
   };
 
   return (
-    <Tabs
-      activeKey={activeKey}
-      items={tabsItems}
-      onChange={handleTabChange}
-      className='h-full'
-    ></Tabs>
+    <Tabs activeKey={activeKey} items={tabsItems} onChange={handleTabChange} className='h-full' />
   );
 };
 

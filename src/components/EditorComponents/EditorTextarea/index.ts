@@ -5,17 +5,17 @@
 import { editorComponentTypes } from '@/consts/editorComponent';
 
 import { EditorComponentConfType } from '../editorComponentTypes';
-import EditorTextarea from './EditorTextarea';
+import Component from './Component';
 import { EditorTextareaDefaultProps } from './interface';
-import PropsTextarea from './PropsTextarea';
+import PropComponent from './PropComponent';
 
 export * from './interface';
 
 const EditorTextareaConf: EditorComponentConfType = {
   title: '文本区域输入框',
   type: editorComponentTypes.textarea,
-  Component: EditorTextarea, // 画布
-  PropComponent: PropsTextarea, // 组件属性编辑
+  Component: Component, // 画布
+  PropComponent: PropComponent, // 组件属性编辑
   defaultProps: EditorTextareaDefaultProps,
 };
 

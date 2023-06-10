@@ -8,3 +8,11 @@ export const editorComponentTypes: SurveyEditorComponentTypes = {
   radio: 'editor_radio',
   checkbox: 'editor_checkbox',
 };
+
+// 可交互(输入、选中等交互行为)的组件类型
+export const interoperableTypes: SurveyEditorComponentType[] = [
+  editorComponentTypes.input,
+  editorComponentTypes.radio,
+  editorComponentTypes.checkbox,
+  editorComponentTypes.textarea,
+];
