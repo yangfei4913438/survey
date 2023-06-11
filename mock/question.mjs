@@ -35,6 +35,7 @@ export const question = [
           desc: '这是问卷描述',
           js: '',
           css: '',
+          isDeleted: false,
           isPublished: true,
           componentList: getComponentList(),
         },
