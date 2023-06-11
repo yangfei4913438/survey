@@ -1,6 +1,7 @@
 import Koa from 'koa';
 import Router from 'koa-router';
 import bodyParser from 'koa-bodyparser';
+import cors from '@koa/cors';
 
 import { mockList } from './mock/index.mjs';
 
@@ -25,8 +26,8 @@ mockList.forEach((item) => {
   });
 });
 
+app.use(cors());
 app.use(bodyParser());
-
 app.use((ctx, next) => {
   // 简单处理一下jwt, 不存在就干掉
   if (['/api/user/register', '/api/user/login'].includes(ctx.url)) {
@@ -45,4 +46,6 @@ app.use((ctx, next) => {
 });
 
 app.use(router.routes());
-app.listen(6001); // port
+app.listen(6001, () => {
+  console.log('🚀 Server ready at http://localhost:6001');
+});

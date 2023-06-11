@@ -11,7 +11,7 @@ import localCache from '@/core/cache';
  * */
 const instance = axios.create({
   // 开发环境使用 mock 数据，所以不需要 baseURL
-  baseURL: import.meta.env.PROD ? 'http://192.168.50.98:7001/' : '',
+  baseURL: import.meta.env.PROD ? 'http://127.0.0.1:6001/' : '',
   timeout: 30 * 1000, // 30秒超时
 });
 
