@@ -3,7 +3,8 @@ export const answer = [
   {
     url: '/api/answer',
     method: 'post',
-    response() {
+    response(ctx) {
+      console.log('query body:', ctx.request.body);
       return {
         errno: 0,
       };
