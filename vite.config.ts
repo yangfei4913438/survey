@@ -1,6 +1,7 @@
 import react from '@vitejs/plugin-react';
 import path from 'path';
-import { defineConfig } from 'vite';
+import { visualizer } from 'rollup-plugin-visualizer';
+import { defineConfig, type PluginOption } from 'vite';
 import eslint from 'vite-plugin-eslint';
 
 // https://vitejs.dev/config/
@@ -20,7 +21,29 @@ export default defineConfig({
     },
     port: 5001,
   },
-  plugins: [react(), eslint()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: (id) => {
+          if (id.includes('node_modules')) {
+            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+          }
+          return 'normal';
+        },
+      },
+    },
+  },
+  plugins: [
+    react(),
+    eslint(),
+    visualizer({
+      template: 'treemap',
+      open: true,
+      gzipSize: true,
+      brotliSize: true,
+      filename: 'analyse.html', // will be saved in project's root
+    }) as PluginOption,
+  ],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'), // 映射的目录必须以/开头，表示根目录

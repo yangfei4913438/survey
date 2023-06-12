@@ -1,4 +1,4 @@
-import { ECharts, EChartsCoreOption } from 'echarts';
+import type { EChartsCoreOption, EChartsType } from 'echarts/core';
 
 export type ChartType = 'echarts' | 'bar' | 'pie';
 
@@ -17,7 +17,7 @@ export interface EchartsProps {
 }
 
 export interface EchartsHandler {
-  getEchartsInstance: () => ECharts | undefined;
+  getEchartsInstance: () => EChartsType | undefined;
 }
 
 export type EventHandlers = Record<string, { (props: any): void }>;

@@ -90,6 +90,7 @@
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^8.4.1",
     "prettier": "^2.8.8",
+    "rollup-plugin-visualizer": "^5.9.2",
     "sass": "^1.62.1",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.2",
