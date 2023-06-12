@@ -84,7 +84,11 @@ const ListCard: FC<IListCard> = (surveyData) => {
   const statUrl = surveyPath.stat(id);
 
   return (
-    <article className={'w-full rounded bg-white p-3 hover:shadow-lg'}>
+    <article
+      className={
+        'w-full rounded-md border border-solid border-slate-200 bg-white p-3 shadow-sm hover:shadow-md'
+      }
+    >
       <div className='flex'>
         <div className='flex-1'>
           <Link to={isPublished ? statUrl : editorUrl}>

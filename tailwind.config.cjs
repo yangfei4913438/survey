@@ -22,7 +22,6 @@ const distance = {
   md: '854px',
   lg: '1280px',
   xl: '1920px',
-  '2xl': '2560px',
   'screen-10': '10%',
   'screen-20': '20%',
   'screen-30': '30%',
@@ -53,10 +52,10 @@ const config = {
   ],
   theme: {
     screens: {
-      sm: '640px', // 参考: 640*360 (16:9) 360P
+      // sm: '640px', // 参考: 640*360 (16:9) 360P
       // => @media (min-width: 640px) { ... }
 
-      md: '854px', // 参考: 854*480 (16:9) 480P
+      // md: '854px', // 参考: 854*480 (16:9) 480P
       // => @media (min-width: 768px) { ... }
 
       lg: '1280px', // 参考: 1280*720 (16:9) 720P
@@ -65,7 +64,7 @@ const config = {
       xl: '1920px', // 参考: 1920*1080 (16:9) 1080P
       // => @media (min-width: 1440px) { ... }
 
-      '2xl': '2560px', // 参考: 2560*1440 (16:9) 2k
+      // '2xl': '2560px', // 参考: 2560*1440 (16:9) 2k
       // => @media (min-width: 2560px) { ... }
 
       // '3xl': '3440px', // 参考: 3840*2160 (16:9) 4k
@@ -74,12 +73,8 @@ const config = {
     container: {
       center: true,
       padding: {
-        DEFAULT: '2rem',
-        md: '2rem',
-        lg: '4rem',
-        xl: '6rem',
-        '2xl': '8rem',
-        '3xl': '8rem',
+        DEFAULT: '4rem',
+        xl: '8rem',
       },
     },
     extend: {

@@ -16,7 +16,7 @@ const ManageLayout: FC = () => {
   const { loading, handleCreate } = useCreateSurvey();
 
   return (
-    <section className={cls(styles.layout, 'pt-8 flex space-x-4 bg-slate-200')}>
+    <section className={cls(styles.layout, 'pt-8 flex space-x-4 shadow-xl')}>
       <article className='w-40'>
         <Space direction='vertical'>
           <Button

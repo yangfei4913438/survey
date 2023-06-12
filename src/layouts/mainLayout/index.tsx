@@ -26,7 +26,11 @@ const MainLayout: FC = () => {
         <Outlet />
       </Content>
 
-      <Footer className={cls('w-full h-18 border-t border-solid border-gray-200 text-center')}>
+      <Footer
+        className={cls(
+          'w-full h-18 bg-white border border-t border-gray-200 border-solid text-center'
+        )}
+      >
         <span className='prose prose-slate'>
           版权所有 © 2022-2023 星星问卷 All rights reserved.
         </span>
