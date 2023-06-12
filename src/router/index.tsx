@@ -6,22 +6,16 @@ import MainLayout from '@/layouts/mainLayout';
 import Home from '@/pages/home';
 
 // 组件懒加载
-const ManageLayout = lazy(
-  () => import(/* webpackChunkName: 'ManageLayout' */ '@/layouts/manageLayout')
-);
-const SurveyLayout = lazy(
-  () => import(/* webpackChunkName: 'SurveyLayout' */ '@/layouts/surveyLayout')
-);
-const ManageList = lazy(() => import(/* webpackChunkName: 'ManageList' */ '@/pages/manage/list'));
-const ManageStar = lazy(() => import(/* webpackChunkName: 'ManageStar' */ '@/pages/manage/star'));
-const ManageTrash = lazy(
-  () => import(/* webpackChunkName: 'ManageTrash' */ '@/pages/manage/trash')
-);
-const SurveyEdit = lazy(() => import(/* webpackChunkName: 'SurveyEdit' */ '@/pages/survey/edit'));
-const SurveyStat = lazy(() => import(/* webpackChunkName: 'SurveyStat' */ '@/pages/survey/stat'));
-const NotFound = lazy(() => import(/* webpackChunkName: 'NotFound' */ '@/pages/notFound'));
-const Login = lazy(() => import(/* webpackChunkName: 'Login' */ '@/pages/login'));
-const Register = lazy(() => import(/* webpackChunkName: 'Register' */ '@/pages/register'));
+const ManageLayout = lazy(() => import('@/layouts/manageLayout'));
+const SurveyLayout = lazy(() => import('@/layouts/surveyLayout'));
+const ManageList = lazy(() => import('@/pages/manage/list'));
+const ManageStar = lazy(() => import('@/pages/manage/star'));
+const ManageTrash = lazy(() => import('@/pages/manage/trash'));
+const SurveyEdit = lazy(() => import('@/pages/survey/edit'));
+const SurveyStat = lazy(() => import('@/pages/survey/stat'));
+const NotFound = lazy(() => import('@/pages/notFound'));
+const Login = lazy(() => import('@/pages/login'));
+const Register = lazy(() => import('@/pages/register'));
 
 // 路由列表
 const routes: RouteObject[] = [
