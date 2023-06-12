@@ -75,9 +75,7 @@ const PropComponent: FC<EditorCheckboxPropsType> = ({
                       <Input placeholder='输入选项文字...' />
                     </Form.Item>
                     <Form.Item name={[name, 'disabled']} key={key} valuePropName={'checked'}>
-                      <Tooltip title={'打开表示禁用'}>
-                        <Switch />
-                      </Tooltip>
+                      <Switch />
                     </Form.Item>
                     {/* 最少要有3个选项，所以长度大于3，才显示删除按钮。name是关键字，操作属性删除只能这样操作 */}
                     {fields.length > 3 && (
