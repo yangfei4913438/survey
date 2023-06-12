@@ -1,7 +1,7 @@
 import { useTitle } from 'ahooks';
 import React, { FC } from 'react';
 
-import useSurveyEditor from '@/hooks/useSurveyEditor';
+import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import EditCanvas from '@/pages/survey/edit/EditCanvas';
 import EditHeader from '@/pages/survey/edit/EditHeader';
 import LeftPanel from '@/pages/survey/edit/LeftPanel';

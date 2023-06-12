@@ -4,7 +4,7 @@ import cls from 'classnames';
 import React, { FC, useRef } from 'react';
 
 import ListTitle from '@/components/ListTitle';
-import useLoadingSurveyMoreData from '@/hooks/useLoadingSurveyMoreData';
+import useLoadingSurveyMoreData from '@/hooks/network/useLoadingSurveyMoreData';
 import SurveyList from '@/pages/manage/components/surveyList';
 
 const ManageList: FC = () => {

@@ -2,7 +2,7 @@ import { Empty, Typography } from 'antd';
 import React, { FC } from 'react';
 
 import { getComponentConfByType } from '@/components/EditorComponents';
-import useSurveyEditor from '@/hooks/useSurveyEditor';
+import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 
 const ChartStat: FC = () => {
   const { selectedId, selectedComponent } = useSurveyEditor();

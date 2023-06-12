@@ -1,10 +1,10 @@
 import { useTitle } from 'ahooks';
 import { Button, Result, Spin } from 'antd';
 import cls from 'classnames';
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 
+import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import useSurveyEditor from '@/hooks/useSurveyEditor';
 import ChartStat from '@/pages/survey/stat/ChartStat';
 import ComponentList from '@/pages/survey/stat/ComponentList';
 import PageStat from '@/pages/survey/stat/PageStat';

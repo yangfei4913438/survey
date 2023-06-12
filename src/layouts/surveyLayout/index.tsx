@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
 import { Outlet } from 'react-router-dom';
 
-import useLoadSurveyEditorData from '@/hooks/useLoadSurveyEditorData';
+import useLoadSurveyEditorData from '@/hooks/network/useLoadSurveyEditorData';
 
 const SurveyLayout = () => {
   const { loadSurveyEditorData } = useLoadSurveyEditorData();

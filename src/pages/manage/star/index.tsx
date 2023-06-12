@@ -4,7 +4,7 @@ import React, { FC } from 'react';
 
 import ListPagination from '@/components/ListPagination';
 import ListTitle from '@/components/ListTitle';
-import useLoadingSurveyListData from '@/hooks/useLoadingSurveyListData';
+import useLoadingSurveyListData from '@/hooks/network/useLoadingSurveyListData';
 import SurveyList from '@/pages/manage/components/surveyList';
 
 const ManageStar: FC = () => {

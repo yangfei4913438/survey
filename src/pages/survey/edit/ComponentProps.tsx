@@ -1,7 +1,7 @@
 import { FC } from 'react';
 
 import { getComponentConfByType } from '@/components/EditorComponents';
-import useSurveyEditor from '@/hooks/useSurveyEditor';
+import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 
 const NoProp: FC = () => <div className='text-center'>未选中任何组件</div>;
 

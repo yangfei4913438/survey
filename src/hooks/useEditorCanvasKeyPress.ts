@@ -1,7 +1,7 @@
 // 仅限编辑器画布使用的快捷键
 import { useKeyPress } from 'ahooks';
 
-import useSurveyEditor from '@/hooks/useSurveyEditor';
+import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 
 const isEditActive = () => {
   const activeElemTag = document.activeElement?.tagName;

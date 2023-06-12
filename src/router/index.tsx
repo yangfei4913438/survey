@@ -4,6 +4,8 @@ import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import { routePath } from '@/consts/routes';
 import MainLayout from '@/layouts/mainLayout';
 import Home from '@/pages/home';
+import Login from '@/pages/login';
+import Register from '@/pages/register';
 
 // 组件懒加载
 const ManageLayout = lazy(() => import('@/layouts/manageLayout'));
@@ -14,8 +16,6 @@ const ManageTrash = lazy(() => import('@/pages/manage/trash'));
 const SurveyEdit = lazy(() => import('@/pages/survey/edit'));
 const SurveyStat = lazy(() => import('@/pages/survey/stat'));
 const NotFound = lazy(() => import('@/pages/notFound'));
-const Login = lazy(() => import('@/pages/login'));
-const Register = lazy(() => import('@/pages/register'));
 
 // 路由列表
 const routes: RouteObject[] = [

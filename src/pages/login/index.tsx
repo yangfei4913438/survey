@@ -8,8 +8,8 @@ import { cacheKeys } from '@/consts/cache';
 import { rules } from '@/consts/form';
 import { routePath } from '@/consts/routes';
 import localCache from '@/core/cache';
+import useUserInfo from '@/hooks/store/useUserInfo';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import useUserInfo from '@/hooks/useUserInfo';
 import { userLoginServices } from '@/services/user';
 import styles from '@/styles/base.module.scss';
 

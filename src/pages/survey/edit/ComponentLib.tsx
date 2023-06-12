@@ -2,7 +2,7 @@ import { Typography } from 'antd';
 import { nanoid } from 'nanoid';
 
 import { componentConfGroup, EditorComponentConfType } from '@/components/EditorComponents';
-import useSurveyEditor from '@/hooks/useSurveyEditor';
+import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 
 const ComponentLib = () => {
   const { addComponent } = useSurveyEditor();

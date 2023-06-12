@@ -3,7 +3,7 @@ import React, { FC } from 'react';
 
 import { getComponentConfByType } from '@/components/EditorComponents';
 import { interoperableTypes } from '@/consts/editorComponent';
-import useSurveyEditor from '@/hooks/useSurveyEditor';
+import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 
 const ComponentList: FC = () => {
   const { visibleComponentList, changeSelectedId, selectedComponent } = useSurveyEditor();

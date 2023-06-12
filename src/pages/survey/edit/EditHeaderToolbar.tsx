@@ -13,7 +13,7 @@ import {
 import { Button, Space, Tooltip } from 'antd';
 import React from 'react';
 
-import useSurveyEditor from '@/hooks/useSurveyEditor';
+import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 
 const EditHeaderToolbar = () => {
   const {

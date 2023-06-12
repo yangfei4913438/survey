@@ -1,19 +1,18 @@
 import { useLayoutEffect } from 'react';
 
+import { cacheKeys } from '@/consts/cache';
 import { routePath } from '@/consts/routes';
+import localCache from '@/core/cache';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import useUserInfo from '@/hooks/useUserInfo';
 
 const useJwt = () => {
   const { goToRoute, isLoginPage, isRegisterPage, isHomePage } = useProjectRoute();
-  const { loading, userInfo } = useUserInfo();
 
   /**
-   * 是否已经登录，
-   * loading表示当前有权限了，只不过在重新获取用户信息过程中（失败会被全局重定向到登陆页）。
-   * !!userInfo.username 表示当前已经有登录了。
+   * 是否已经登录
+   * 存在token，就表示当前用户已经登录了。
    */
-  const alreadyLogged = loading || !!userInfo.username;
+  const alreadyLogged = !!localCache.getItem(cacheKeys.token);
 
   // 不需要等到页面渲染完成，直接就阻塞执行了
   useLayoutEffect(() => {

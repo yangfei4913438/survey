@@ -2,7 +2,7 @@ import { FileTextOutlined, SettingOutlined } from '@ant-design/icons';
 import { Tabs, type TabsProps } from 'antd';
 import React, { FC, useLayoutEffect, useState } from 'react';
 
-import useSurveyEditor from '@/hooks/useSurveyEditor';
+import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import ComponentProps from '@/pages/survey/edit/ComponentProps';
 import PageSetting from '@/pages/survey/edit/PageSetting';
 

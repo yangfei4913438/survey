@@ -10,9 +10,9 @@ import { Button, Divider, message, Modal, Popconfirm, Space, Tag } from 'antd';
 import { FC, useState } from 'react';
 
 import { surveyPath } from '@/consts/routes';
-import useCopySurvey from '@/hooks/useCopySurvey';
+import useCopySurvey from '@/hooks/network/useCopySurvey';
+import useUpdateSurvey from '@/hooks/network/useUpdateSurvey';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import useUpdateSurvey from '@/hooks/useUpdateSurvey';
 
 const { confirm } = Modal;
 

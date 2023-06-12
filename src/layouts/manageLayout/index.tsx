@@ -5,7 +5,7 @@ import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import { routePath } from '@/consts/routes';
-import useCreateSurvey from '@/hooks/useCreateSurvey';
+import useCreateSurvey from '@/hooks/network/useCreateSurvey';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import styles from '@/styles/base.module.scss';
 

@@ -1,5 +1,5 @@
 import { Pagination } from 'antd';
-import { FC, useEffect, useLayoutEffect, useState } from 'react';
+import { FC, useLayoutEffect } from 'react';
 
 import { actions, actionValues } from '@/consts/actions';
 import useProjectRoute from '@/hooks/useProjectRoute';

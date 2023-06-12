@@ -3,8 +3,8 @@ import { Spin } from 'antd';
 import React, { FC } from 'react';
 
 import { EchartsAutoSize, type PieOptionType } from '@/components/Echarts';
+import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import useSurveyEditor from '@/hooks/useSurveyEditor';
 import { getComponentStatListServices } from '@/services/stat';
 
 // 单选数据使用饼图渲染

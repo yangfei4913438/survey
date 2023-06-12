@@ -7,7 +7,7 @@ import { useImmer } from 'use-immer';
 
 import ListPagination from '@/components/ListPagination';
 import ListTitle from '@/components/ListTitle';
-import useLoadingSurveyListData from '@/hooks/useLoadingSurveyListData';
+import useLoadingSurveyListData from '@/hooks/network/useLoadingSurveyListData';
 import { deleteSurveysService, updateQuestionServices } from '@/services/question';
 
 const { confirm } = Modal;

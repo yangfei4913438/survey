@@ -4,9 +4,9 @@ import { Button, Input, message, Space, Spin, Typography } from 'antd';
 import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
 
 import { surveyPath } from '@/consts/routes';
+import useUpdateSurvey from '@/hooks/network/useUpdateSurvey';
+import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import useSurveyEditor from '@/hooks/useSurveyEditor';
-import useUpdateSurvey from '@/hooks/useUpdateSurvey';
 import EditHeaderToolbar from '@/pages/survey/edit/EditHeaderToolbar';
 
 const TitleElem: FC = () => {

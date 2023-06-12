@@ -1,15 +1,23 @@
 import { UserOutlined } from '@ant-design/icons';
 import { Button, Spin } from 'antd';
+import { useLayoutEffect } from 'react';
 
 import { routePath } from '@/consts/routes';
 import localCache from '@/core/cache';
+import useLoadingUserInfo from '@/hooks/network/useLoadingUserInfo';
+import useUserInfo from '@/hooks/store/useUserInfo';
 import useProjectRoute from '@/hooks/useProjectRoute';
-import useUserInfo from '@/hooks/useUserInfo';
 
 const UserInfo = () => {
   const { Link, goToRoute } = useProjectRoute();
+  const { userInfo, resetUserInfo } = useUserInfo();
+  const { loadUserInfoLoading, loadUserInfo } = useLoadingUserInfo();
 
-  const { loading, userInfo, resetUserInfo } = useUserInfo();
+  useLayoutEffect(() => {
+    if (!userInfo.username) {
+      loadUserInfo();
+    }
+  }, [loadUserInfo, userInfo.username]);
 
   const logoutHandler = () => {
     localCache.clear();
@@ -29,7 +37,7 @@ const UserInfo = () => {
     </>
   );
 
-  const Login = loading ? (
+  const Login = loadUserInfoLoading ? (
     <Spin />
   ) : (
     <Link to={routePath.login} className='prose-sm text-lg text-blue-500 decoration-transparent'>
