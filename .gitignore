@@ -20,3 +20,6 @@ dist-ssr
 # build info
 /analyse.html
 /tsconfig.tsbuildinfo
+
+# test
+coverage

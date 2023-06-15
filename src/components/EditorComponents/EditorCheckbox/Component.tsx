@@ -11,7 +11,7 @@ const Component: FC<EditorCheckboxPropsType> = ({
   return (
     <div className='space-y-2'>
       <Typography.Paragraph strong>{title}</Typography.Paragraph>
-      <Space direction={orientation} wrap>
+      <Space direction={orientation} wrap role={'menuitemcheckbox'}>
         {list?.map((opt) => {
           const { value, label, checked, disabled } = opt;
           return (

@@ -13,7 +13,7 @@ const Component: FC<EditorRadioPropsType> = ({
     <div className='space-y-2'>
       <Typography.Paragraph strong>{title}</Typography.Paragraph>
       <Radio.Group value={selected}>
-        <Space direction={orientation} wrap>
+        <Space role={'radiogroup'} direction={orientation} wrap>
           {options.map((opt) => {
             return (
               <Radio value={opt.value} key={opt.value}>

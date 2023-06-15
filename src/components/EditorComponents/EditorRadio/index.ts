@@ -1,6 +1,3 @@
-import { FC } from 'react';
-
-import { ChartTypeOptions } from '@/components/Echarts/types';
 import { editorComponentTypes } from '@/consts/editorComponent';
 
 import type { EditorComponentConfType } from '../editorComponentTypes';
@@ -16,7 +13,7 @@ const EditorRadioConf: EditorComponentConfType = {
   type: editorComponentTypes.radio,
   Component: Component,
   PropComponent: PropComponent,
-  StatComponent: StatComponent as FC<ChartTypeOptions>,
+  StatComponent: StatComponent,
   defaultProps: EditorRadioDefaultProps,
 };
 

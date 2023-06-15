@@ -26,7 +26,7 @@ const useLoadingSurveyMoreData = (loadMoreRef: React.RefObject<HTMLDivElement>) 
     async () => {
       // 定义查询对象
       const params: any = { page: pageInfo.page, pageSize: pageInfo.pageSize };
-      // 如果搜索关键字不存在，那么就不用加上了，这个和分页不一样。
+      // 如果搜索关键字不存在，那么就不用加上了
       if (currentKeyword) {
         params.keyword = currentKeyword;
       }

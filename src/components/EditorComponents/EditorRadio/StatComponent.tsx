@@ -3,12 +3,13 @@ import { Spin } from 'antd';
 import React, { FC } from 'react';
 
 import { EchartsAutoSize, type PieOptionType } from '@/components/Echarts';
+import { type ChartTypeOptions } from '@/components/Echarts/types';
 import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import { getComponentStatListServices } from '@/services/stat';
 
 // 单选数据使用饼图渲染
-const StatComponent: FC<PieOptionType> = (options) => {
+const StatComponent: FC<PieOptionType | ChartTypeOptions> = (options) => {
   const { selectedComponent, selectedId } = useSurveyEditor();
 
   const {
