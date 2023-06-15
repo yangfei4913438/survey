@@ -14,7 +14,9 @@
     "prepare": "husky install",
     "commit": "git add . && cz-customizable",
     "changelog": "conventional-changelog -p gitmoji-config -i CHANGELOG.md -s",
-    "mock": "nodemon mockApi.mjs"
+    "mock": "nodemon mockApi.mjs",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "config": {
     "commitizen": {
@@ -55,6 +57,13 @@
   "devDependencies": {
     "@commitlint/cli": "^17.6.5",
     "@koa/cors": "^4.0.0",
+    "@storybook/addon-actions": "^7.0.21",
+    "@storybook/addon-controls": "^7.0.21",
+    "@storybook/addon-docs": "^7.0.21",
+    "@storybook/addon-links": "^7.0.21",
+    "@storybook/blocks": "^7.0.21",
+    "@storybook/react": "^7.0.21",
+    "@storybook/react-vite": "^7.0.21",
     "@tailwindcss/typography": "^0.5.9",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
@@ -84,6 +93,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.1",
     "eslint-plugin-simple-import-sort": "^10.0.0",
+    "eslint-plugin-storybook": "^0.6.12",
     "eslint-plugin-tailwindcss": "^3.12.1",
     "happy-dom": "^9.20.3",
     "husky": "^8.0.0",
@@ -98,8 +108,10 @@
     "postcss-normalize": "^10.0.1",
     "postcss-preset-env": "^8.4.1",
     "prettier": "^2.8.8",
+    "prop-types": "^15.8.1",
     "rollup-plugin-visualizer": "^5.9.2",
     "sass": "^1.62.1",
+    "storybook": "^7.0.21",
     "tailwindcss": "^3.3.2",
     "typescript": "^5.0.2",
     "vite": "^4.3.9",

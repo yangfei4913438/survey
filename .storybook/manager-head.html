@@ -1,0 +1,28 @@
+<script defer type="application/javascript">
+  sessionStorage.setItem(
+    '@storybook/manager/store',
+    JSON.stringify({
+      layout: {
+        initialActive: 'canvas',
+        showToolbar: false, // 这里是用来隐藏工具栏的，其他的是默认值
+        isFullscreen: false,
+        showPanel: true,
+        showNav: true,
+        panelPosition: 'bottom',
+        showTabs: true,
+      },
+    })
+  );
+
+  // 这里是用来隐藏快捷操作的按钮
+  function load() {
+    const dom = document.querySelector('.sidebar-header');
+    while (dom.childElementCount === 3) {
+      dom.removeChild(dom.lastChild);
+    }
+  }
+  window.addEventListener('load', load);
+  window.addEventListener('unload', () => {
+    window.removeEventListener('load', load);
+  });
+</script>
