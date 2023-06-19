@@ -1,4 +1,5 @@
-import { useDebounceFn, useRequest } from 'ahooks';
+import useDebounceFn from 'ahooks/es/useDebounceFn';
+import useRequest from 'ahooks/es/useRequest';
 import React, { useEffect } from 'react';
 import { useImmer } from 'use-immer';
 

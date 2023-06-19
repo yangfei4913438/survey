@@ -1,5 +1,5 @@
-import { useTitle } from 'ahooks';
-import { Button } from 'antd';
+import useTitle from 'ahooks/es/useTitle';
+import Button from 'antd/es/button';
 import cls from 'classnames';
 import React, { FC } from 'react';
 

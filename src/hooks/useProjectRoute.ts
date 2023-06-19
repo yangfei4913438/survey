@@ -9,7 +9,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 
-import { actions, actionValues } from '@/consts/actions';
+import { actions } from '@/consts/actions';
 import { RoutePath, routePath } from '@/consts/routes';
 
 const useProjectRoute = () => {

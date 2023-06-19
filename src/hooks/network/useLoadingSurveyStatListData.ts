@@ -1,4 +1,4 @@
-import { useRequest } from 'ahooks';
+import useRequest from 'ahooks/es/useRequest';
 
 import useProjectRoute from '@/hooks/useProjectRoute';
 import { getStatListServices } from '@/services/stat';

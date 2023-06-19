@@ -1,5 +1,6 @@
-import { UserOutlined } from '@ant-design/icons';
-import { Button, Spin } from 'antd';
+import UserOutlined from '@ant-design/icons/UserOutlined';
+import Button from 'antd/es/button';
+import Spin from 'antd/es/spin';
 import { useLayoutEffect } from 'react';
 
 import { routePath } from '@/consts/routes';

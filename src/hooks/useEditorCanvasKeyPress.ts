@@ -1,5 +1,5 @@
 // 仅限编辑器画布使用的快捷键
-import { useKeyPress } from 'ahooks';
+import useKeyPress from 'ahooks/es/useKeyPress';
 
 import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 

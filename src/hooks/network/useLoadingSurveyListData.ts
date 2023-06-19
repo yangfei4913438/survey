@@ -1,4 +1,4 @@
-import { useRequest } from 'ahooks';
+import useRequest from 'ahooks/es/useRequest';
 
 import { actionValues } from '@/consts/actions';
 import useProjectRoute from '@/hooks/useProjectRoute';

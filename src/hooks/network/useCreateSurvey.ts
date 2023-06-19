@@ -1,4 +1,4 @@
-import { useRequest } from 'ahooks';
+import useRequest from 'ahooks/es/useRequest';
 
 import { surveyPath } from '@/consts/routes';
 import useProjectRoute from '@/hooks/useProjectRoute';

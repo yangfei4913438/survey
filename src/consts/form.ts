@@ -1,4 +1,4 @@
-import { FormRule } from 'antd';
+import type { FormRule } from 'antd';
 
 import patterns from '@/consts/patterns';
 

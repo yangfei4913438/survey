@@ -29,7 +29,7 @@ import { type EChartsOption } from '@/components/Echarts';
 import { createBarOption, createPieOption } from './config';
 import customBar from './themes/custom_bar.json';
 import defaultTheme from './themes/default.json';
-import { BarOptionType, EchartsHandler, EchartsProps, PieOptionType } from './types';
+import type { BarOptionType, EchartsHandler, EchartsProps, PieOptionType } from './types';
 
 // 注册必须的组件
 use([

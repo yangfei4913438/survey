@@ -1,4 +1,4 @@
-import { useRequest } from 'ahooks';
+import useRequest from 'ahooks/es/useRequest';
 
 import { cacheKeys } from '@/consts/cache';
 import localCache from '@/core/cache';

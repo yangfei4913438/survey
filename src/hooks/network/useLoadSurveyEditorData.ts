@@ -1,4 +1,4 @@
-import { useRequest } from 'ahooks';
+import useRequest from 'ahooks/es/useRequest';
 
 import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import useProjectRoute from '@/hooks/useProjectRoute';

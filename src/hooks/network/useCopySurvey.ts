@@ -1,5 +1,5 @@
-import { useRequest } from 'ahooks';
-import { message } from 'antd';
+import useRequest from 'ahooks/es/useRequest';
+import message from 'antd/es/message';
 
 import { surveyPath } from '@/consts/routes';
 import useProjectRoute from '@/hooks/useProjectRoute';

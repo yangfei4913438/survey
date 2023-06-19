@@ -1,6 +1,6 @@
-import { Layout } from 'antd';
+import Layout from 'antd/es/layout';
 import cls from 'classnames';
-import { FC } from 'react';
+import type { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 
 import Logo from '@/components/logo';

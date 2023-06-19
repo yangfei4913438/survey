@@ -4,18 +4,24 @@ import { createBrowserRouter, RouteObject } from 'react-router-dom';
 import { routePath } from '@/consts/routes';
 import MainLayout from '@/layouts/mainLayout';
 import Home from '@/pages/home';
-import Login from '@/pages/login';
-import Register from '@/pages/register';
 
 // 组件懒加载
-const ManageLayout = lazy(() => import('@/layouts/manageLayout'));
-const SurveyLayout = lazy(() => import('@/layouts/surveyLayout'));
-const ManageList = lazy(() => import('@/pages/manage/list'));
-const ManageStar = lazy(() => import('@/pages/manage/star'));
-const ManageTrash = lazy(() => import('@/pages/manage/trash'));
-const SurveyEdit = lazy(() => import('@/pages/survey/edit'));
-const SurveyStat = lazy(() => import('@/pages/survey/stat'));
-const NotFound = lazy(() => import('@/pages/notFound'));
+const ManageLayout = lazy(
+  () => import(/* webpackChunkName: "manageLayout" */ '@/layouts/manageLayout')
+);
+const SurveyLayout = lazy(
+  () => import(/* webpackChunkName: "surveyLayout" */ '@/layouts/surveyLayout')
+);
+const ManageList = lazy(() => import(/* webpackChunkName: "manage-list" */ '@/pages/manage/list'));
+const ManageStar = lazy(() => import(/* webpackChunkName: "manage-star" */ '@/pages/manage/star'));
+const ManageTrash = lazy(
+  () => import(/* webpackChunkName: "manage-trash" */ '@/pages/manage/trash')
+);
+const SurveyEdit = lazy(() => import(/* webpackChunkName: "survey-edit" */ '@/pages/survey/edit'));
+const SurveyStat = lazy(() => import(/* webpackChunkName: "survey-stat" */ '@/pages/survey/stat'));
+const NotFound = lazy(() => import(/* webpackChunkName: "notFound" */ '@/pages/notFound'));
+const Login = lazy(() => import(/* webpackChunkName: "login" */ '@/pages/login'));
+const Register = lazy(() => import(/* webpackChunkName: "register" */ '@/pages/register'));
 
 // 路由列表
 const routes: RouteObject[] = [

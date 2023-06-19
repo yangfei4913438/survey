@@ -15,6 +15,7 @@
     "resolveJsonModule": true, // 直接加载json文件
     "esModuleInterop": true, // 可以直接使用 import react from React, 否则要 import * as react from React
     "isolatedModules": true,
+    // 不输出文件，只做类型检查
     "noEmit": true,
     "jsx": "react-jsx", // jsx 支持 react 风格
     "noUnusedLocals": false, // 检查只声明、未使用的局部变量(只提示不报错)
@@ -31,15 +32,18 @@
     }
   },
   "include": [
+    "webpack.config.cjs",
     "vite.config.ts",
     ".eslintrc.cjs",
     ".postcssrc.cjs",
     ".commitlintrc.cjs",
     "tailwind.config.cjs",
+    "tsconfig.json",
+    "package.json",
+    "src",
     "**/*.ts",
     "**/*.tsx",
-    "**/*.json",
-    "**/*.html"
+    "src/**/**/**/*.json"
   ],
   "exclude": ["node_modules"]
 }
