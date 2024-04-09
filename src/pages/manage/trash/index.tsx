@@ -2,13 +2,17 @@ import { ExclamationCircleOutlined } from '@ant-design/icons';
 import { useRequest, useTitle } from 'ahooks';
 import { Button, Empty, message, Modal, Space, Spin, Table, Tag } from 'antd';
 import cls from 'classnames';
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { useImmer } from 'use-immer';
 
 import ListPagination from '@/components/ListPagination';
 import ListTitle from '@/components/ListTitle';
-import useLoadingSurveyListData from '@/hooks/network/useLoadingSurveyListData';
-import { deleteSurveysService, updateQuestionServices } from '@/services/question';
+import useProjectRoute from '@/hooks/useProjectRoute';
+import {
+  deleteSurveysService,
+  getQuestionsServices,
+  updateQuestionServices,
+} from '@/services/question';
 
 const { confirm } = Modal;
 
@@ -16,11 +20,30 @@ const ManageTrash: FC = () => {
   // 设置页面标题
   useTitle('星星问卷 - 回收站');
 
+  const { currentPage, currentPageSize, currentKeyword } = useProjectRoute();
+
   // 记录选中的 id
   const [selectedIds, setSelectedIds] = useImmer<React.Key[]>([]);
-  const { loading, data, refresh } = useLoadingSurveyListData<ResultSurveySimpleType>({
-    isDeleted: true,
-  });
+
+  const { loading, data, refresh } = useRequest(
+    async () => {
+      // 定义查询对象
+      const params: Partial<RequestOptionType> = {
+        isDeleted: true,
+        page: currentPage,
+        pageSize: currentPageSize,
+      };
+      // 如果搜索关键字不存在，那么就不用加上了
+      if (currentKeyword) {
+        params.keyword = currentKeyword;
+      }
+      // 返回请求结果
+      return await getQuestionsServices<ResultSurveySimpleType>(params);
+    },
+    {
+      refreshDeps: [currentKeyword, currentPage, currentPageSize], // 重新发起请求的依赖项
+    }
+  );
 
   const tableColumns = [
     {

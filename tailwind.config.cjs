@@ -3,6 +3,7 @@ const distance = {
   d2: '2px',
   d3: '3px',
   d4: '4px',
+  header: '64px',
   18: '72px',
   20: '80px',
   30: '120px',
@@ -89,6 +90,8 @@ const config = {
       height: distance,
       minHeight: distance,
       maxHeight: distance,
+      margin: distance,
+      padding: distance,
       cursor: {
         'zoom-in': 'zoom-in',
         'zoom-out': 'zoom-out',

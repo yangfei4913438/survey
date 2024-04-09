@@ -8,9 +8,9 @@ import { cacheKeys } from '@/consts/cache';
 import { rules } from '@/consts/form';
 import { routePath } from '@/consts/routes';
 import localCache from '@/core/cache';
-import useUserInfo from '@/hooks/store/useUserInfo';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import { userLoginServices } from '@/services/user';
+import useUserInfo from '@/store/hooks/useUserInfo';
 import styles from '@/styles/base.module.scss';
 
 const Login: FC = () => {
@@ -31,7 +31,7 @@ const Login: FC = () => {
         // 记录token到浏览器
         localCache.setItem(cacheKeys.token, token, remember);
         // 记录用户信息到内存
-        setUserInfo(user);
+        setUserInfo({ username: user.username });
         // 提示用户，然后跳转路由
         message.success('登录成功', 1).then(() => {
           // 跳转到登录页面
@@ -53,7 +53,7 @@ const Login: FC = () => {
   };
 
   return (
-    <article className={cls(styles.layout, styles.flexColCenter, 'space-y-8 bg-white')}>
+    <article className={cls(styles.layout, styles.flexColCenter, 'space-y-8 h-full bg-white')}>
       <header className='prose-sm'>
         <h1 className='space-x-2'>
           <UserAddOutlined />

@@ -1,7 +1,9 @@
-import { pageInfoActions } from '@/store/pageInfo';
-
-import { editorComponentActions } from './editorComponents';
-import { userInfoActions } from './userInfo';
+import {
+  editorComponentActions,
+  pageInfoActions,
+  questionsActions,
+  userInfoActions,
+} from '@/store/slices';
 
 export default {
   userInfo: {
@@ -12,5 +14,8 @@ export default {
   },
   pageInfo: {
     ...pageInfoActions,
+  },
+  questions: {
+    ...questionsActions,
   },
 };

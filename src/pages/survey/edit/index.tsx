@@ -1,11 +1,11 @@
 import { useTitle } from 'ahooks';
 import React, { FC } from 'react';
 
-import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import EditCanvas from '@/pages/survey/edit/EditCanvas';
 import EditHeader from '@/pages/survey/edit/EditHeader';
 import LeftPanel from '@/pages/survey/edit/LeftPanel';
 import RightPanel from '@/pages/survey/edit/RightPanel';
+import useSurveyEditor from '@/store/hooks/useSurveyEditor';
 
 const SurveyEdit: FC = () => {
   const { clearSelectedId, pageInfo } = useSurveyEditor();

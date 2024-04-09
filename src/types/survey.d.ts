@@ -24,6 +24,26 @@ interface RequestOptionType {
   pageSize: number;
 }
 
+// 后端返回的问卷详情
+interface questionType {
+  id: string;
+  author: string;
+  title: string;
+  desc: string;
+  isPublished: boolean;
+  isStar: boolean;
+  isDeleted: boolean;
+  createdAt: string;
+  updatedAt: string;
+  componentList: EditorComponentType[];
+}
+
+// 问卷列表返回数据结构
+interface ResultSurveyDetailType {
+  list: questionType[];
+  total: number;
+}
+
 // 基础分页类型
 interface BasePageInfoType {
   page: number;
@@ -32,8 +52,8 @@ interface BasePageInfoType {
 }
 
 // 加载更多的分页信息类型
-interface SurveyPageInfoType extends BasePageInfoType {
-  list: SurveySimpleType[];
+interface SurveyPagesType extends BasePageInfoType {
+  list: questionType[];
 }
 
 // 问卷统计列表，分页信息
@@ -41,15 +61,7 @@ interface SurveyStatPageInfoType extends BasePageInfoType {
   list: { [key in string]: string | number }[];
 }
 
-// 返回的组件数据类型
-type ResultComponentType = EditorComponentType;
-
 // 问卷详情, 查询和更新都是这个
 interface SurveyDetailType extends PageInfoType {
-  componentList: ResultComponentType[];
-}
-
-// 组件的统计数据类型
-interface SurveyComponentStatType {
-  stat: { name: string; value: number }[];
+  componentList: EditorComponentType[];
 }

@@ -18,9 +18,13 @@ export async function createQuestionServices<T>() {
 // 更新问卷
 export async function updateQuestionServices<T>(
   id: string,
-  data: Partial<Omit<SurveySimpleType, '_id'>> | SurveyDetailType
+  data: Partial<Omit<questionType, '_id'>> | SurveyDetailType
 ) {
-  return await request<T>({ name: 'patchQuestion', id, axiosConfig: { data } });
+  return await request<T>({
+    name: 'patchQuestion',
+    id,
+    data,
+  });
 }
 
 // 复制问卷
@@ -29,6 +33,6 @@ export async function copyQuestionServices<T>(id: string) {
 }
 
 // 删除问卷
-export async function deleteSurveysService<T>(data: string[]) {
-  return await request<T>({ name: 'delQuestions', axiosConfig: { data } });
+export async function deleteSurveysService(data: string[]) {
+  return await request<string[]>({ name: 'delQuestions', data });
 }

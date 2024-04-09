@@ -1,8 +1,8 @@
 import useRequest from 'ahooks/es/useRequest';
 
-import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import { getQuestionServices } from '@/services/question';
+import useSurveyEditor from '@/store/hooks/useSurveyEditor';
 
 const useLoadSurveyEditorData = () => {
   const {

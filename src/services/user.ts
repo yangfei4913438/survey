@@ -6,11 +6,11 @@ export async function getUserInfoServices<T>() {
 }
 
 // 注册新用户
-export async function userRegisterServices<T>(data: UserType) {
-  return await request<T>({ name: 'register', axiosConfig: { data } });
+export async function userRegisterServices(data: UserType) {
+  return await request<UserType>({ name: 'register', data });
 }
 
 // 用户登录
 export async function userLoginServices<T>(data: Omit<UserType, 'nickname'>) {
-  return await request<T>({ name: 'login', axiosConfig: { data } });
+  return await request<T>({ name: 'login', data });
 }

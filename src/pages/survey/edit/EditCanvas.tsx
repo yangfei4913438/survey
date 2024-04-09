@@ -9,8 +9,8 @@ import {
   SortableItemWrapper,
 } from '@/components/DragSortable';
 import { getComponentConfByType } from '@/components/EditorComponents';
-import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import useEditorCanvasKeyPress from '@/hooks/useEditorCanvasKeyPress';
+import useSurveyEditor from '@/store/hooks/useSurveyEditor';
 
 const EditCanvas = () => {
   useEditorCanvasKeyPress();

@@ -5,9 +5,9 @@ import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react'
 
 import { surveyPath } from '@/consts/routes';
 import useUpdateSurvey from '@/hooks/network/useUpdateSurvey';
-import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import EditHeaderToolbar from '@/pages/survey/edit/EditHeaderToolbar';
+import useSurveyEditor from '@/store/hooks/useSurveyEditor';
 
 const TitleElem: FC = () => {
   const { pageInfo, setPageTitle, isLoading } = useSurveyEditor();

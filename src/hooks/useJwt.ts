@@ -22,12 +22,12 @@ const useJwt = () => {
     // 没有登录，当前不是登录页，也不是注册页
     if (!alreadyLogged && !isLoginPage && !isRegisterPage) {
       // 跳转登录页
-      goToRoute(routePath.login);
+      return goToRoute(routePath.login);
     }
     // 已经登录，是登陆页或注册页
     if (alreadyLogged && (isLoginPage || isRegisterPage)) {
       // 跳转列表页
-      goToRoute(routePath.manageList);
+      return goToRoute(routePath.manageList);
     }
   }, [alreadyLogged, goToRoute, isHomePage, isLoginPage, isRegisterPage]);
 };

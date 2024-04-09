@@ -3,9 +3,9 @@ import { Spin } from 'antd';
 import React, { FC } from 'react';
 
 import { type BarOptionType, EchartsAutoSize, PieOptionType } from '@/components/Echarts';
-import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import { getComponentStatListServices } from '@/services/stat';
+import useSurveyEditor from '@/store/hooks/useSurveyEditor';
 
 // 多选数据使用柱状图渲染
 const StatComponent: FC<BarOptionType> = (options) => {

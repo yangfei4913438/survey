@@ -5,8 +5,8 @@ import QRCode from 'qrcode.react';
 import React, { useMemo, useRef } from 'react';
 
 import { surveyPath } from '@/consts/routes';
-import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import useProjectRoute from '@/hooks/useProjectRoute';
+import useSurveyEditor from '@/store/hooks/useSurveyEditor';
 
 const StatHeader = () => {
   const { toPrevRoute, goToRoute } = useProjectRoute();

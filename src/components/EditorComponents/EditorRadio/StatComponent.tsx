@@ -4,9 +4,9 @@ import React, { FC } from 'react';
 
 import { EchartsAutoSize, type PieOptionType } from '@/components/Echarts';
 import { type ChartTypeOptions } from '@/components/Echarts/types';
-import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import { getComponentStatListServices } from '@/services/stat';
+import useSurveyEditor from '@/store/hooks/useSurveyEditor';
 
 // 单选数据使用饼图渲染
 const StatComponent: FC<PieOptionType | ChartTypeOptions> = (options) => {

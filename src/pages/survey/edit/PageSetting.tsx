@@ -1,7 +1,7 @@
 import { Form, Input } from 'antd';
 import { useEffect } from 'react';
 
-import useSurveyEditor from '@/hooks/store/useSurveyEditor';
+import useSurveyEditor from '@/store/hooks/useSurveyEditor';
 
 const PageSetting = () => {
   const {

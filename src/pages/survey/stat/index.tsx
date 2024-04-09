@@ -3,12 +3,12 @@ import { Button, Result, Spin } from 'antd';
 import cls from 'classnames';
 import React, { FC } from 'react';
 
-import useSurveyEditor from '@/hooks/store/useSurveyEditor';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import ChartStat from '@/pages/survey/stat/ChartStat';
 import ComponentList from '@/pages/survey/stat/ComponentList';
 import PageStat from '@/pages/survey/stat/PageStat';
 import StatHeader from '@/pages/survey/stat/StatHeader';
+import useSurveyEditor from '@/store/hooks/useSurveyEditor';
 import styles from '@/styles/base.module.scss';
 
 const SurveyStat: FC = () => {

@@ -4,7 +4,7 @@ import { updateQuestionServices } from '@/services/question';
 
 interface IUseUpdateSurvey<T> {
   id: string;
-  updateData: Partial<Omit<SurveySimpleType, '_id'>> | SurveyDetailType;
+  updateData: Partial<Omit<questionType, '_id'>> | SurveyDetailType;
   onSuccess?: (data: T, params: []) => void;
   onError?: (e: Error, params: []) => void;
 }

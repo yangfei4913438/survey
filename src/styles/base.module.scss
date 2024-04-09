@@ -2,6 +2,10 @@
   @apply container min-h-inherit;
 }
 
+.header {
+  background: rgba(0,0,0,0.88);
+}
+
 // 必须使用驼峰写法
 .flexCenter {
   @apply flex items-center justify-center;

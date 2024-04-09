@@ -1,4 +1,3 @@
-import Layout from 'antd/es/layout';
 import cls from 'classnames';
 import type { FC } from 'react';
 import { Outlet } from 'react-router-dom';
@@ -8,34 +7,27 @@ import UserInfo from '@/components/userInfo';
 import useJwt from '@/hooks/useJwt';
 import styles from '@/styles/base.module.scss';
 
-const { Header, Content, Footer } = Layout;
-
 // 入口布局
 const MainLayout: FC = () => {
   // 权限校验
   useJwt();
 
   return (
-    <Layout className='bg-white'>
-      <Header className={cls(styles.flexCenterBetween, 'sticky top-0 z-40 px-8 h-16')}>
-        <Logo />
-        <UserInfo />
-      </Header>
-
-      <Content style={{ minHeight: `calc(100vh - 64px - 72px)` }}>
-        <Outlet />
-      </Content>
-
-      <Footer
+    <div className={'flex h-screen w-screen flex-col'}>
+      <div
         className={cls(
-          'w-full h-18 bg-white border border-t border-gray-200 border-solid text-center'
+          styles.flexCenterBetween,
+          styles.header,
+          'fixed w-screen top-0 z-40 px-8 min-h-header'
         )}
       >
-        <span className='prose prose-slate'>
-          版权所有 © 2022-2023 星星问卷 All rights reserved.
-        </span>
-      </Footer>
-    </Layout>
+        <Logo />
+        <UserInfo />
+      </div>
+      <div className={'mt-header h-full'}>
+        <Outlet />
+      </div>
+    </div>
   );
 };
 

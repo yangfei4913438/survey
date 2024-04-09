@@ -10,7 +10,7 @@ import {
   SortableItem,
   SortableItemWrapper,
 } from '@/components/DragSortable';
-import useSurveyEditor from '@/hooks/store/useSurveyEditor';
+import useSurveyEditor from '@/store/hooks/useSurveyEditor';
 
 const Layers = () => {
   const {

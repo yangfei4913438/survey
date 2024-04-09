@@ -5,7 +5,7 @@ import React, { FC } from 'react';
 import ListPagination from '@/components/ListPagination';
 import { interoperableTypes } from '@/consts/editorComponent';
 import useLoadingSurveyStatListData from '@/hooks/network/useLoadingSurveyStatListData';
-import useSurveyEditor from '@/hooks/store/useSurveyEditor';
+import useSurveyEditor from '@/store/hooks/useSurveyEditor';
 
 const PageStat: FC = () => {
   const { visibleComponentList, changeSelectedId, selectedComponent } = useSurveyEditor();

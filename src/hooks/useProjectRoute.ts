@@ -9,7 +9,7 @@ import {
   useSearchParams,
 } from 'react-router-dom';
 
-import { actions } from '@/consts/actions';
+import { actions, actionValues } from '@/consts/actions';
 import { RoutePath, routePath } from '@/consts/routes';
 
 const useProjectRoute = () => {
@@ -45,9 +45,13 @@ const useProjectRoute = () => {
 
   // 页码和每页的记录数，大概率是一个页面中经常会变化的值，所以没有缓存的必要性。只有变化频率小的值才有必要缓存。
   // 当前页码
-  const currentPage = parseInt(searchParams.get(actions.survey.pageKey) || '0');
+  const currentPage = parseInt(
+    searchParams.get(actions.survey.pageKey) || actionValues.survey.defaultPage + ''
+  );
   // 当前的每页记录数量
-  const currentPageSize = parseInt(searchParams.get(actions.survey.pageSizeKey) || '0');
+  const currentPageSize = parseInt(
+    searchParams.get(actions.survey.pageSizeKey) || actionValues.survey.defaultPageSize + ''
+  );
 
   // 当前的搜索关键字
   const currentKeyword = searchParams.get(actions.survey.searchKey) || '';

@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 // 默认值
-const initState: LocalUserType = { username: '', nickname: '' };
+const initState: LocalUserType = { username: '' };
 
 export const userInfoSlice = createSlice({
   name: 'userInfo', // 模块名称

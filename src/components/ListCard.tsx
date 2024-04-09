@@ -7,12 +7,13 @@ import {
   StarOutlined,
 } from '@ant-design/icons';
 import { Button, Divider, message, Modal, Popconfirm, Space, Tag } from 'antd';
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 
 import { surveyPath } from '@/consts/routes';
 import useCopySurvey from '@/hooks/network/useCopySurvey';
 import useUpdateSurvey from '@/hooks/network/useUpdateSurvey';
 import useProjectRoute from '@/hooks/useProjectRoute';
+import useQuestions from '@/store/hooks/useQuestions';
 
 const { confirm } = Modal;
 
@@ -21,17 +22,18 @@ export interface IListCard {
   title: string;
   isStar: boolean;
   isPublished: boolean;
-  answerCount: number;
+  answerCount?: number;
   createdAt: string;
+  index: number;
 }
 
 // 列表卡片
 const ListCard: FC<IListCard> = (surveyData) => {
-  const { id, title, createdAt, answerCount, isPublished, isStar } = surveyData;
+  const { id, title, createdAt, answerCount, isPublished, isStar, index } = surveyData;
 
   const { goToRoute, Link } = useProjectRoute();
 
-  const [starState, setStarState] = useState(isStar);
+  const { questions, setPageList } = useQuestions();
 
   // 复制问卷
   const { copySurvey, copyLoading } = useCopySurvey(id);
@@ -43,7 +45,11 @@ const ListCard: FC<IListCard> = (surveyData) => {
       isStar: !isStar, // 这里要把需要更新的数据，直接写好放进去，里面是没有逻辑的
     },
     onSuccess: () => {
-      setStarState(!starState);
+      // 更新内存数据
+      const list = questions.list.map((item, idx) =>
+        idx === index ? { ...item, isStar: !isStar } : item
+      );
+      setPageList(list);
       message.success('更新成功');
     },
     onError: () => {
@@ -61,6 +67,10 @@ const ListCard: FC<IListCard> = (surveyData) => {
     },
     onSuccess: () => {
       setIsDeleted(true);
+      // 清空内存中的数据，保证交互一致。
+      // 因为切换页面之后，数据会重置，而且后台也更新了。所以不用担心这里删除后，在删除列表看不到数据。
+      const list = questions.list.filter((item, idx) => idx !== index);
+      setPageList(list);
       message.success('删除成功');
     },
     onError: () => {
@@ -86,14 +96,14 @@ const ListCard: FC<IListCard> = (surveyData) => {
   return (
     <article
       className={
-        'w-full rounded-md border border-solid border-slate-200 bg-white p-3 shadow-sm hover:shadow-md'
+        'mt-4 w-full rounded-md border border-solid border-slate-200 bg-white p-3 shadow-sm hover:shadow-md'
       }
     >
       <div className='flex'>
         <div className='flex-1'>
           <Link to={isPublished ? statUrl : editorUrl}>
             <div className='flex items-center space-x-1'>
-              {starState && <StarOutlined style={{ color: 'red' }} />}
+              {isStar && <StarOutlined style={{ color: 'red' }} />}
               <span>{title}</span>
             </div>
           </Link>
@@ -137,7 +147,7 @@ const ListCard: FC<IListCard> = (surveyData) => {
             onClick={changeSurvey}
             loading={changeSurveyLoading}
           >
-            {starState ? '取消标星' : '标星'}
+            {isStar ? '取消标星' : '标星'}
           </Button>
           <Popconfirm
             title='确定复制该问卷？'
