@@ -59,6 +59,7 @@ const ListCard: FC<IListCard> = (surveyData) => {
 
   // 问卷是否已经被删除
   const [isDeleted, setIsDeleted] = useState(false);
+
   // 删除问卷（软删除）
   const { changeSurvey: delSurvey, changeSurveyLoading: delSurveyLoading } = useUpdateSurvey({
     id,

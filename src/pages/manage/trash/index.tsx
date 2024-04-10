@@ -95,7 +95,7 @@ const ManageTrash: FC = () => {
   // 删除
   const { loading: delLoading, run: delRun } = useRequest(
     async () => {
-      await deleteSurveysService(selectedIds as string[]);
+      await deleteSurveysService({ ids: selectedIds as string[] });
     },
     {
       manual: true,
@@ -103,7 +103,7 @@ const ManageTrash: FC = () => {
         message.success('删除成功');
         // 清理内存
         setSelectedIds([]);
-        // 刷新删除列表
+        // 重新加载数据
         refresh();
       },
       onError: () => {

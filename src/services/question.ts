@@ -33,6 +33,7 @@ export async function copyQuestionServices<T>(id: string) {
 }
 
 // 删除问卷
-export async function deleteSurveysService(data: string[]) {
-  return await request<string[]>({ name: 'delQuestions', data });
+export async function deleteSurveysService(data: { ids: string[] }) {
+  // delete 方法，如果要携带数据，需要把数据放在axios配置中
+  return await request({ name: 'delQuestions', axiosConfig: { data } });
 }
