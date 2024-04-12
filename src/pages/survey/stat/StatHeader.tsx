@@ -4,6 +4,7 @@ import { Button, Input, message, Popover, Space, Tooltip, Typography } from 'ant
 import QRCode from 'qrcode.react';
 import React, { useMemo, useRef } from 'react';
 
+import { clientHost } from '@/consts/answer';
 import { surveyPath } from '@/consts/routes';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import useSurveyEditor from '@/store/hooks/useSurveyEditor';
@@ -36,7 +37,7 @@ const StatHeader = () => {
     if (!isPublished) return null;
 
     // 拼接 url ，需要参考 C 端的规则
-    const url = `${location.origin}/question/${id}`;
+    const url = `${clientHost}/question/${id}`;
 
     // 定义二维码组件
     const QRCodeElem = (

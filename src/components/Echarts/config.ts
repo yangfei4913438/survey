@@ -1,7 +1,7 @@
 import merge from 'lodash-es/merge';
 
 import { EChartsOption } from './index';
-import { BarOptionType, ChartTypeOptions, PieOptionType } from './types';
+import { BarOptionType, PieOptionType } from './types';
 
 const defaultTitle: EChartsOption['title'] = {
   text: '图表统计',
@@ -37,8 +37,9 @@ const baseOption: EChartsOption['baseOption'] = {
 };
 
 export const createPieOption = (options: PieOptionType): EChartsOption => {
+  console.log('options:', options);
   // 基础选项，自定义选项，自定义数据
-  const res = merge(baseOption, options?.options ?? {}, {
+  return merge(baseOption, options?.options ?? {}, {
     xAxis: { show: false },
     yAxis: { show: false },
     series: [
@@ -62,14 +63,11 @@ export const createPieOption = (options: PieOptionType): EChartsOption => {
       },
     ],
   }) as EChartsOption;
-
-  // console.log('res:', res);
-  return res;
 };
 
 export const createBarOption = (options: BarOptionType): EChartsOption => {
   // 目前只有单个系列的操作
-  const res = merge(baseOption, options?.options ?? {}, {
+  return merge(baseOption, options?.options ?? {}, {
     xAxis: { show: true, type: 'category', data: options!.list?.map((o) => o.name) },
     yAxis: {
       show: true,
@@ -90,7 +88,4 @@ export const createBarOption = (options: BarOptionType): EChartsOption => {
       },
     ],
   });
-
-  // console.log('one res:', res);
-  return res;
 };

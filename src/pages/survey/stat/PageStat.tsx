@@ -15,7 +15,7 @@ const PageStat: FC = () => {
   const list = data?.list || [];
   const total = data?.total || 0;
 
-  const dataSource = list.map((i: any) => ({ ...i, key: i._id }));
+  const dataSource = list.map((i: any) => ({ ...i, key: i.id }));
 
   const columns = visibleComponentList
     .filter((c) => interoperableTypes.includes(c.type)) // 非输入列，不用展示

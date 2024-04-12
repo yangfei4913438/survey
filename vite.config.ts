@@ -49,7 +49,7 @@ export default ({ mode }: UserConfig) => {
         inline: ['echarts'],
       },
     },
-    plugins: [react(), eslint()],
+    plugins: [react(), eslint() as any],
     resolve: {
       alias: {
         '@': path.resolve(__dirname, 'src'), // 映射的目录必须以/开头，表示根目录
