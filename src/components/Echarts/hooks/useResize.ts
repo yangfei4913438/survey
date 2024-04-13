@@ -6,16 +6,22 @@ const useResize = () => {
   const [realHeight, setHeight] = useState(0);
 
   const ref = useRef<HTMLDivElement>(null);
-  const { width = ref.current?.offsetWidth || 0, height = ref.current?.offsetHeight || 0 } =
-    useResizeObserver<HTMLDivElement>({
-      ref: ref,
-      box: 'border-box',
-      round: Math.floor,
-      onResize: ({ width, height }) => {
-        setWidth(width as number);
-        setHeight(height ?? ref.current?.offsetHeight ?? document.body.offsetHeight);
-      },
-    });
+  const {
+    width = ref.current?.getBoundingClientRect().width || 448,
+    height = ref.current?.getBoundingClientRect().height || 596,
+  } = useResizeObserver<HTMLDivElement>({
+    ref: ref,
+    box: 'border-box',
+    round: Math.floor,
+    onResize: ({ width, height }) => {
+      setWidth(width as number);
+      setHeight(
+        height ??
+          ref.current?.getBoundingClientRect().height ??
+          document.body.getBoundingClientRect().height
+      );
+    },
+  });
 
   return {
     resizeRef: ref,

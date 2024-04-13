@@ -2,7 +2,7 @@ import { useRequest } from 'ahooks';
 import { Spin } from 'antd';
 import React, { FC } from 'react';
 
-import { EchartsAutoSize, type PieOptionType } from '@/components/Echarts';
+import { EchartsReact, type PieOptionType } from '@/components/Echarts';
 import { type ChartTypeOptions } from '@/components/Echarts/types';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import { getComponentStatListServices } from '@/services/stat';
@@ -11,7 +11,6 @@ import useSurveyEditor from '@/store/hooks/useSurveyEditor';
 // 单选数据使用饼图渲染
 const StatComponent: FC<PieOptionType | ChartTypeOptions> = (options) => {
   const { selectedComponent, selectedId } = useSurveyEditor();
-
   const {
     pathParams: { id = '' },
   } = useProjectRoute();
@@ -30,13 +29,14 @@ const StatComponent: FC<PieOptionType | ChartTypeOptions> = (options) => {
   if (loading) {
     return <Spin size={'large'} />;
   }
-  console.log('selected:', selectedComponent);
-  console.log('data:', data);
 
   return (
-    <EchartsAutoSize
-      echartsOption={{ label: selectedComponent?.title, list: data!.stat }}
+    <EchartsReact
+      echartsOption={{ label: selectedComponent?.props.title ?? '', list: data?.stat ?? [] }}
       chartType={'pie'}
+      width={448}
+      height={500}
+      forceClear={!selectedId}
     />
   );
 };

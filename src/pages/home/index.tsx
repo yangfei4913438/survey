@@ -1,24 +1,16 @@
 import useTitle from 'ahooks/es/useTitle';
 import Button from 'antd/es/button';
 import cls from 'classnames';
-import React, { FC, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 import { routePath } from '@/consts/routes';
-import { setNavigate } from '@/core/navigation';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import styles from '@/styles/base.module.scss';
 
-const Home: FC = () => {
+const Home = () => {
   // 设置页面标题
   useTitle('星星问卷 - 首页');
   const { goToRoute } = useProjectRoute();
-
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    setNavigate(navigate);
-  }, [navigate]);
 
   return (
     <div className={'flex h-full flex-1 flex-col'}>

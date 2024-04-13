@@ -10,13 +10,15 @@ import {
   TransformComponent,
 } from 'echarts/components';
 // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
-import { type EChartsType, init, registerTheme, use } from 'echarts/core';
+import { dispose, type EChartsType, init, registerTheme, use } from 'echarts/core';
 // 标签自动布局、全局过渡动画等特性
 import { LabelLayout, UniversalTransition } from 'echarts/features';
 // 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
 import { CanvasRenderer } from 'echarts/renderers';
+import ignore from 'ignore';
 import React, {
   forwardRef,
+  useCallback,
   useEffect,
   useImperativeHandle,
   useLayoutEffect,
@@ -57,15 +59,13 @@ export const EchartsReact = forwardRef(
       echartsOption,
       eventHandlers,
       zrEventHandlers,
-      selectedValues = {},
     }: EchartsProps,
     ref: React.Ref<EchartsHandler>
   ) => {
     const divRef = useRef<HTMLDivElement>(null);
     const chartRef = useRef<EChartsType>();
-    const currentSelection = useMemo(() => Object.keys(selectedValues) || [], [selectedValues]);
-    const previousSelection = useRef<string[]>([]);
     const lastTheme = useRef<string>();
+    const lastType = useRef<string>('');
 
     useImperativeHandle(ref, () => ({
       getEchartsInstance: () => chartRef.current,
@@ -76,17 +76,6 @@ export const EchartsReact = forwardRef(
       registerTheme(defaultTheme.themeName, defaultTheme.theme);
       registerTheme(customBar.themeName, customBar.theme);
     }, []);
-
-    // 监听宽度
-    useEffect(() => {
-      const resize = () => {
-        chartRef.current?.resize({ width: width, height: height });
-      };
-      window.addEventListener('resize', resize);
-      return () => {
-        window.removeEventListener('resize', resize);
-      };
-    }, [width, height]);
 
     const TypeOptions = useMemo<EChartsOption>(() => {
       switch (chartType) {
@@ -99,69 +88,78 @@ export const EchartsReact = forwardRef(
       }
     }, [echartsOption, chartType]);
 
-    useEffect(() => {
+    const initChart = useCallback(() => {
       if (!divRef.current) return;
-      if (!chartRef.current) {
-        lastTheme.current = themeType;
-        // 初始化
-        chartRef.current = init(divRef.current, themeType);
-      }
-
+      chartRef.current = init(divRef.current, themeType);
+      chartRef.current.setOption(TypeOptions, true, false);
       Object.entries(eventHandlers || {}).forEach(([name, handler]) => {
         chartRef.current?.off(name);
         chartRef.current?.on(name, handler);
       });
-
       Object.entries(zrEventHandlers || {}).forEach(([name, handler]) => {
         chartRef.current?.getZr().off(name);
         chartRef.current?.getZr().on(name, handler);
       });
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [themeType, TypeOptions, echartsOption, chartType, eventHandlers, zrEventHandlers]);
 
-      chartRef.current?.setOption(TypeOptions, true, true);
-    }, [TypeOptions, eventHandlers, zrEventHandlers, themeType, echartsOption, chartType]);
-
+    // 监听宽度变化
     useEffect(() => {
-      // 选项变化或主题变化，触发更新
+      const resize = () => {
+        chartRef.current?.resize({ width: width, height: height });
+      };
+      window.addEventListener('resize', resize);
+      return () => {
+        window.removeEventListener('resize', resize);
+      };
+    }, [width, height]);
+
+    // 处理类型变化
+    useLayoutEffect(() => {
+      if (chartRef.current && divRef.current && lastType.current !== chartType) {
+        chartRef.current.clear();
+        chartRef.current.setOption(TypeOptions, true, false);
+      }
+    }, [TypeOptions, echartsOption, chartType]);
+
+    // 只处理初始化
+    useLayoutEffect(() => {
+      if (!divRef.current) return;
+      if (!chartRef.current) {
+        lastTheme.current = themeType;
+        lastType.current = chartType;
+        // 初始化
+        initChart();
+      }
+      return () => {
+        if (chartRef.current) {
+          dispose(chartRef.current);
+        }
+        Object.entries(eventHandlers || {}).forEach(([name, handler]) => {
+          chartRef.current?.off(name);
+        });
+        Object.entries(zrEventHandlers || {}).forEach(([name, handler]) => {
+          chartRef.current?.getZr().off(name);
+        });
+      };
+    }, [
+      initChart,
+      TypeOptions,
+      echartsOption,
+      chartType,
+      themeType,
+      eventHandlers,
+      zrEventHandlers,
+    ]);
+
+    // 处理主题切换
+    useLayoutEffect(() => {
       if (chartRef.current && divRef.current && lastTheme.current !== themeType) {
         lastTheme.current = themeType;
-        chartRef.current?.clear();
-        chartRef.current?.dispose();
-        chartRef.current = init(divRef.current, themeType);
-        chartRef.current.setOption(TypeOptions, true, true);
-        chartRef.current.resize({ width: width, height: height });
+        dispose(chartRef.current);
+        initChart();
       }
-    }, [width, height, TypeOptions, themeType, echartsOption, chartType]);
-
-    useEffect(() => {
-      if (chartRef.current && divRef.current) {
-        chartRef.current?.clear();
-        chartRef.current?.dispose();
-        chartRef.current = init(divRef.current, themeType);
-        chartRef.current.setOption(TypeOptions, false, false);
-      }
-    }, [TypeOptions, echartsOption, chartType, themeType]);
-
-    // highlighting
-    useEffect(() => {
-      if (!chartRef.current) return;
-      chartRef.current.dispatchAction({
-        type: 'downplay',
-        dataIndex: previousSelection.current.filter((value) => !currentSelection.includes(value)),
-      });
-      if (currentSelection.length) {
-        chartRef.current.dispatchAction({
-          type: 'highlight',
-          dataIndex: currentSelection,
-        });
-      }
-      previousSelection.current = currentSelection;
-    }, [currentSelection]);
-
-    useEffect(() => {
-      if (chartRef.current) {
-        chartRef.current.resize({ width: width, height: height });
-      }
-    }, [width, height]);
+    }, [initChart, TypeOptions, echartsOption, chartType, themeType]);
 
     return <div ref={divRef} className={className} style={{ width, height }} />;
   }

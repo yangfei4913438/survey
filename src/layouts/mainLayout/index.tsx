@@ -1,9 +1,10 @@
 import cls from 'classnames';
-import type { FC } from 'react';
-import { Outlet } from 'react-router-dom';
+import { FC, useEffect } from 'react';
+import { Outlet, useNavigate } from 'react-router-dom';
 
 import Logo from '@/components/logo';
 import UserInfo from '@/components/userInfo';
+import { setNavigate } from '@/core/navigation';
 import useJwt from '@/hooks/useJwt';
 import styles from '@/styles/base.module.scss';
 
@@ -11,6 +12,13 @@ import styles from '@/styles/base.module.scss';
 const MainLayout: FC = () => {
   // 权限校验
   useJwt();
+
+  const navigate = useNavigate();
+
+  // 页面根路由1
+  useEffect(() => {
+    setNavigate(navigate);
+  }, [navigate]);
 
   return (
     <div className={'flex h-screen w-screen flex-col'}>
