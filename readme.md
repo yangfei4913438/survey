@@ -6,34 +6,30 @@
   [survey-client](https://github.com/yangfei4913438/survey-client)
 
 - 服务端
-  开发中。。。
+  [survey-server](https://github.com/yangfei4913438/survey-server)
 
 #### 运行方法
 
-- 设计端（B端）
+##### 1、启动服务端
 
 ```bash
+# 安装依赖
+yarn
 
-# 代码
-yarn dev
-
-# mock服务端
-yarn mock
-
+# 运行开发服务
+yarn start:dev
 ```
 
-- 答题端（C端）
-> mock服务和设计端用的同一个，所以要预览答题端的效果，必须要先启动一下这里的mock
+##### 2、启动设计端（B端）
 
 ```bash
-
+yarn
 yarn dev
-
 ```
 
+##### 3、启动答题端（C端）
 
-#### 项目规划
-
-- 接入nestjs后端系统。
-- 部分场景使用graphql替换restful。
-
+```bash
+yarn
+yarn dev
+```
