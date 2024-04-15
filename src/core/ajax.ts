@@ -12,7 +12,6 @@ import { getNavigate } from './navigation';
  * 创建 axios 实例
  * */
 const instance = axios.create({
-  baseURL: 'http://127.0.0.1:3005/',
   timeout: 30 * 1000, // 30秒超时
 });
 

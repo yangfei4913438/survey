@@ -1,0 +1,32 @@
+# files
+*.md
+# not include readme.md
+!README.md
+
+# ides
+.vscode
+.idea
+
+# mac
+.DS_Store
+
+# project
+.git
+dist
+tests
+src/stories
+.storybook
+.husky
+mock
+mockApi.mjs
+node_modules
+.dockerignore
+.eslintignore
+.eslintrc.js
+.prettierrc
+.prettierignore
+.commitlintrc.cjs
+.cz-config.cjs
+analyse.html
+LICENSE
+vite.config.ts

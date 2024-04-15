@@ -16,13 +16,13 @@ export default ({ mode }: UserConfig) => {
     server: {
       // 代理设置查看 https://cn.vitejs.dev/config/server-options.html#server-proxy
       proxy: {
-        // 访问 /api/test 等价于访问 http://localhost:6001/api/test
+        // 访问 /api/test 等价于访问 http://localhost:3305/api/test
         '/api': {
-          target: 'http://localhost:6001/',
+          target: 'http://localhost:3305/',
           changeOrigin: true,
         },
       },
-      port: 5001,
+      port: 3006,
     },
     test: {
       // 使用类似 jest 中的全局 API

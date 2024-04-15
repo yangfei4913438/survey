@@ -39,7 +39,6 @@ const Register: FC = () => {
     run({
       username: values.username,
       password: values.password,
-      nickname: values.nickname,
     });
   };
 
