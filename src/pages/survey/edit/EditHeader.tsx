@@ -1,7 +1,7 @@
 import { CheckOutlined, CloseOutlined, EditOutlined, LeftOutlined } from '@ant-design/icons';
 import { useDebounceEffect, useKeyPress } from 'ahooks';
 import { Button, Input, message, Space, Spin, Typography } from 'antd';
-import React, { ChangeEvent, FC, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 
 import { surveyPath } from '@/consts/routes';
 import useUpdateSurvey from '@/hooks/network/useUpdateSurvey';
@@ -56,16 +56,13 @@ const TitleElem: FC = () => {
 
 const PublishButton: FC = () => {
   const { pageInfo, editorComponentList } = useSurveyEditor();
-  const { goToRoute } = useProjectRoute();
   const { changeSurvey, changeSurveyLoading } = useUpdateSurvey({
     id: pageInfo.id,
     updateData: { ...pageInfo, componentList: editorComponentList, isPublished: true },
     onSuccess: () => {
       message.success('发布成功', 1, () => {
-        // 拿到统计页面的地址
-        const path = surveyPath.stat(pageInfo.id);
-        // 跳转统计页面
-        goToRoute<typeof path>(path);
+        // 跳转统计页面, 这里需要刷新页面，拿到新的数据，所以不能使用单页路由的内部调整
+        window.location.href = surveyPath.stat(pageInfo.id);
       });
     },
     onError: () => {
