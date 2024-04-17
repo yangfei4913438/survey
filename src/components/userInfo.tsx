@@ -9,12 +9,15 @@ import { routePath } from '@/consts/routes';
 import localCache from '@/core/cache';
 import useProjectRoute from '@/hooks/useProjectRoute';
 import { getUserInfoServices } from '@/services/user';
+import useQuestions from '@/store/hooks/useQuestions';
 import useUserInfo from '@/store/hooks/useUserInfo';
 
 const UserInfo = () => {
   const { Link, goToRoute } = useProjectRoute();
 
   const { setUserInfo, userInfo, resetUserInfo } = useUserInfo();
+
+  const { resetQuestions } = useQuestions();
 
   /**
    * 是否已经登录
@@ -39,8 +42,9 @@ const UserInfo = () => {
   const logoutHandler = useCallback(() => {
     localCache.clear();
     resetUserInfo();
+    resetQuestions();
     goToRoute(routePath.login);
-  }, [goToRoute, resetUserInfo]);
+  }, [goToRoute, resetQuestions, resetUserInfo]);
 
   const User = useMemo(
     () => (
