@@ -43,7 +43,7 @@ const Register: FC = () => {
   };
 
   return (
-    <article className={cls(styles.layout, styles.flexColCenter, 'space-y-8 bg-white')}>
+    <article className={cls(styles.layout, styles.flexColCenter, 'space-y-8 h-full bg-white')}>
       <header className='prose-sm'>
         <h1 className='space-x-2'>
           <UserAddOutlined />
